@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+/* Import de la police Plus Jakarta Sans utilisée dans le design */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+
+@theme {
+  /* --- Palette de Couleurs --- */
+  /* Bleu Marseille (Boutons, Logo) */
+  --color-primary: #246BAD;
+  
+  /* Corail Néon (Accents, Play buttons) */
+  --color-accent: #FF5845;
+  
+  /* Dark Mode (Fonds principaux) */
+  --color-mars-dark: #282828;
+  
+  /* Light Mode (Fonds secondaires) */
+  --color-mars-light: #F2F3F5;
+
+  /* --- Typographie --- */
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  /* --- Animations --- */
+  /* Animation flottante existante + Fade in du code React */
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-fade-in: fadeIn 0.6s ease-out forwards;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* --- Styles globaux (Base Layer) --- */
+@layer base {
+  body {
+    /* Le design alterne entre dark et light, on met une base neutre */
+    @apply bg-white text-mars-dark font-sans selection:bg-primary selection:text-white antialiased;
+  }
+
+  /* Titres : Style "Impact" (H1, H2) */
+  h1, h2 {
+    @apply font-black uppercase tracking-tighter leading-[0.9];
+  }
+
+  h1 {
+    @apply text-5xl md:text-7xl lg:text-[100px];
+  }
+
+  h2 {
+    @apply text-3xl md:text-5xl lg:text-6xl;
+  }
+
+  /* Sous-titres et Titres de cartes */
+  h3 {
+    @apply text-xl font-black uppercase tracking-tight text-mars-dark;
+  }
+
+  /* Micro-copy (Labels, Tags, Catégories) */
+  /* Tu peux utiliser une classe utilitaire .label ou small */
+  small, .label {
+    @apply text-[10px] font-bold uppercase tracking-[0.2em];
+  }
+
+  p {
+    @apply text-base md:text-lg font-medium leading-relaxed text-slate-500;
+  }
+
+  /* Boutons par défaut pour correspondre au style */
+  button {
+    @apply cursor-pointer transition-all duration-300;
+  }
+}
