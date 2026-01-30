@@ -1,13 +1,16 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
 const MainLayout = () => {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      {/* On ajoute une marge interne en haut pour laisser la place à la Navbar */}
-      <main className="grow pt-20"> 
+      {/* Padding que si on n'est pas sur la homepage */}
+      <main className={`grow ${isHomePage ? '' : 'pt-20'}`}> 
         <Outlet />
       </main>
       <Footer />
@@ -15,4 +18,4 @@ const MainLayout = () => {
   )
 }
 
-export default MainLayout
+export default MainLayout;
