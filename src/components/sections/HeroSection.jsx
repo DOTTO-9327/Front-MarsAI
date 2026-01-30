@@ -37,7 +37,7 @@ const HeroSection = () => {
         {/* Description */}
         <p className="max-w-2xl mx-auto text-lg md:text-xl text-slate-300 mb-12 font-medium leading-relaxed">
           {t('hero.description1')} <br />
-          Vivez 2 jours d'immersion totale au cœur de Marseille.
+          {t('hero.description2')}
         </p>
 
         {/* Call to Action */}
@@ -51,7 +51,7 @@ const HeroSection = () => {
           </Button>
 
           <div className="text-left hidden md:block border-l-2 border-white/20 pl-6">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Co-créé par</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">{t('hero.cocreated')}</p>
             <p className="text-sm font-black text-white">La Plateforme × Mobile Film Festival</p>
           </div>
         </div>
