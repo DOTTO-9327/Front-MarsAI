@@ -1,39 +1,48 @@
 {
+  "_comment_nav": "--- NAVIGATION SECTION ---",
   "nav": {
     "galerie": "Gallery",
     "programme": "Program & Infos",
     "jury": "Jury",
     "soumettre": "Submit a film"
   },
+
+  "_comment_hero": "--- HERO SECTION (HOME) ---",
   "hero": {
     "badge": "International AI Film Festival • June 2025",
     "title_part1": "Imagine",
     "title_part2": "Desirable Futures",
     "description1": "The 60-second AI-generated short film festival.",
     "description2": "Experience 2 days of total immersion in the heart of Marseille.",
-    "cta": "Participate now",
+    "cta": "Join the call",
     "cocreated": "Co-created by"
   },
+
+  "_comment_project": "--- PROJECT SECTION (MANIFESTO) ---",
   "project": {
     "title": "THE MARS.A.I PROJECT",
     "intro": "A unique hybrid event in France, bringing together the best of generative AI and filmmaking.",
     "features": [
-      {
-        "title": "1 MINUTE",
-        "desc": "ULTRA-SHORT FORMAT TO MAXIMIZE CREATIVE IMPACT."
-      },
-      {
-        "title": "FREE ADMISSION",
-        "desc": "CONFERENCES AND WORKSHOPS ACCESSIBLE TO ALL."
-      },
-      {
-        "title": "FOR EVERYONE",
-        "desc": "PROFESSIONALS, STUDENTS, AND THE CURIOUS."
-      },
-      {
-        "title": "EXPERTISE",
-        "desc": "MEET THE WORLD LEADERS IN AI."
-      }
+      { "title": "1 MINUTE", "desc": "ULTRA-SHORT FORMAT TO MAXIMIZE CREATIVE IMPACT." },
+      { "title": "FREE", "desc": "CONFERENCES AND WORKSHOPS ACCESSIBLE TO ALL." },
+      { "title": "FOR EVERYONE", "desc": "PROFESSIONALS, STUDENTS, AND THE CURIOUS." },
+      { "title": "EXPERTISE", "desc": "MEET THE WORLD LEADERS IN AI." }
     ]
+  },
+
+  "_comment_competition": "--- COMPETITION SECTION ---",
+  "competition": {
+    "badge": "Official Selection",
+    "title_main": "Films in",
+    "title_accent": "Competition",
+    "description": "Discover a selection of pioneering works exploring the new frontiers of imagination assisted by Artificial Intelligence.",
+    "cta": "View full selection",
+    "cards": {
+      "director": "Director",
+      "origin": "Origin",
+      "tags": {
+        "cinematic": "Cinematic"
+      }
+    }
   }
 }
