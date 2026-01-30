@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import frFlag from '../assets/fr.png';
+import gbFlag from '../assets/gb.png';
+
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,11 +38,10 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-500 py-4 ${
-      isTransparent
+    <nav className={`fixed w-full z-50 transition-all duration-500 py-4 ${isTransparent
         ? 'bg-transparent'
         : 'bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm'
-    }`}>
+      }`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
 
         {/* LOGO */}
@@ -47,9 +49,8 @@ const Navbar = () => {
           <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center shadow-lg transition-transform hover:scale-105">
             <span className="font-bold text-white text-xl">M</span>
           </div>
-          <span className={`text-2xl font-black tracking-tighter transition-colors duration-300 ${
-            isTransparent ? 'text-white' : 'text-mars-dark'
-          }`}>
+          <span className={`text-2xl font-black tracking-tighter transition-colors duration-300 ${isTransparent ? 'text-white' : 'text-mars-dark'
+            }`}>
             MARS.A.I
           </span>
         </Link>
@@ -60,9 +61,8 @@ const Navbar = () => {
             <Link
               key={item.name}
               to={item.path}
-              className={`text-[10px] font-bold uppercase tracking-[0.2em] transition-colors ${
-                isTransparent ? 'text-white/80 hover:text-white' : 'text-slate-600 hover:text-primary'
-              }`}
+              className={`text-[10px] font-bold uppercase tracking-[0.2em] transition-colors ${isTransparent ? 'text-white/80 hover:text-white' : 'text-slate-600 hover:text-primary'
+                }`}
             >
               {item.name}
             </Link>
@@ -72,19 +72,23 @@ const Navbar = () => {
             <button className="bg-primary text-white px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-primary/90 hover:scale-105 transition-all shadow-md shadow-primary/20">
               Soumettre
             </button>
-            <button 
+            <button
               onClick={toggleLanguage}
               className="text-xl hover:scale-110 transition-transform pt-1"
               title="Changer de langue"
             >
-              {i18n.language === 'fr' ? '🇬🇧' : '🇫🇷'}
+              <img
+                src={i18n.language === 'fr' ? gbFlag : frFlag}
+                alt="Change language"
+                className="w-full h-full object-cover"
+              />
             </button>
           </div>
         </div>
 
         {/* ZONE DROITE MOBILE */}
         <div className="flex md:hidden items-center gap-4">
-          <button 
+          <button
             onClick={toggleLanguage}
             className={`text-xl pt-1 transition-colors ${isTransparent ? 'text-white' : 'text-mars-dark'}`}
           >
@@ -92,9 +96,8 @@ const Navbar = () => {
           </button>
 
           <button
-            className={`z-50 p-2 transition-colors ${
-              isTransparent ? 'text-white' : 'text-mars-dark'
-            }`}
+            className={`z-50 p-2 transition-colors ${isTransparent ? 'text-white' : 'text-mars-dark'
+              }`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -104,9 +107,8 @@ const Navbar = () => {
       </div>
 
       {/* MENU MOBILE (DROPDOWN) */}
-      <div className={`absolute top-full left-0 w-full bg-white border-b border-slate-200 p-8 flex flex-col gap-6 md:hidden shadow-2xl transition-all duration-300 origin-top ${
-        isMenuOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0 pointer-events-none'
-      }`}>
+      <div className={`absolute top-full left-0 w-full bg-white border-b border-slate-200 p-8 flex flex-col gap-6 md:hidden shadow-2xl transition-all duration-300 origin-top ${isMenuOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0 pointer-events-none'
+        }`}>
         {navLinks.map((item) => (
           <Link
             key={item.name}
