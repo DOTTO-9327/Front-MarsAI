@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "galerie": "Galerie",
+    "programme": "Programme & Infos",
+    "jury": "Jury",
+    "soumettre": "Soumettre un film"
+  },
+  "hero": {
+    "badge": "Festival International du Film IA • Juin 2025",
+    "title_part1": "Imaginez des",
+    "title_part2": "Futurs souhaitables",
+    "description1": "Le festival de courts-métrages de 60 secondes réalisés par IA.",
+    "description2": "Vivez 2 jours d'immersion totale au cœur de Marseille.",
+    "cta": "Participer maintenant",
+    "cocreated": "Co-créé par"
+  },
+  "project": {
+    "title": "LE PROJET MARS.A.I",
+    "intro": "Un événement hybride unique en France, réunissant la fine fleur de l'IA générative et de la création cinématographique.",
+    "features": [
+      {
+        "title": "1 MINUTE",
+        "desc": "FORMAT ULTRA-COURT POUR MAXIMISER L'IMPACT CRÉATIF."
+      },
+      {
+        "title": "GRATUITÉ",
+        "desc": "CONFÉRENCES ET WORKSHOPS ACCESSIBLES À TOUS."
+      },
+      {
+        "title": "POUR TOUS",
+        "desc": "PROFESSIONNELS, ÉTUDIANTS ET CURIEUX."
+      },
+      {
+        "title": "EXPERTISE",
+        "desc": "RENCONTREZ LES LEADERS MONDIAUX DE L'IA."
+      }
+    ]
+  }
+}
