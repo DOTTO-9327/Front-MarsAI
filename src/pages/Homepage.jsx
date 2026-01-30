@@ -1,3 +1,4 @@
+import CompetitionSection from "../components/sections/CompetitionSection"
 import HeroSection from "../components/sections/HeroSection"
 import ProjectSection from "../components/sections/ProjectSection"
 
@@ -6,6 +7,7 @@ const Homepage = () => {
     <>
       <HeroSection />
       <ProjectSection />
+      <CompetitionSection />
     </>
   )
 }
