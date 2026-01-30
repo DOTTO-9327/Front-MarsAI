@@ -1,0 +1,15 @@
+{
+  "nav": {
+    "galerie": "Gallery",
+    "programme": "Program & Infos",
+    "jury": "Jury",
+    "soumettre": "Submit a film"
+  },
+  "hero": {
+    "badge": "International AI Film Festival • June 2025",
+    "title_part1": "Imagine",
+    "title_part2": "Desirable Futures",
+    "description1": "The 60-second AI-generated short film festival.",
+    "cta": "Participate now"
+  }
+}
