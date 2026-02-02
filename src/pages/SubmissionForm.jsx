@@ -19,6 +19,8 @@ const SubmissionForm = () => {
     const [emailError, setEmailError] = useState('');
     const [youtubeLink, setYoutubeLink] = useState('');
     const [youtubeError, setYoutubeError] = useState('');
+    const [synopsisFr, setSynopsisFr] = useState('');
+    const [synopsisEn, setSynopsisEn] = useState('');
 
     // --- FONCTION DE VALIDATION REGEX ---
     const validateEmail = (value) => {
@@ -256,24 +258,42 @@ const SubmissionForm = () => {
                         <div className="md:col-span-2 space-y-2">
                             <div className="flex justify-between">
                                 <Label>{t('submission.sections.film.synopsis_orig')}</Label>
-                                <span className="text-[8px] font-bold text-slate-400">0/1000</span>
+                                {/* Compteur Dynamique */}
+                                <span className={`text-[8px] font-bold transition-colors ${synopsisFr.length >= 1000 ? 'text-red-500' : 'text-slate-400'
+                                    }`}>
+                                    {synopsisFr.length}/1000
+                                </span>
                             </div>
                             <TextArea
                                 rows={4}
                                 placeholder={t('submission.placeholders.synopsis_orig')}
                                 required
+                                // Saisie max à 1000
+                                maxLength={1000}
+                                value={synopsisFr}
+                                onChange={(e) => setSynopsisFr(e.target.value)}
+                                className={synopsisFr.length >= 1000 ? "border-red-500 focus:border-red-500" : ""}
                             />
                         </div>
 
                         <div className="md:col-span-2 space-y-2">
                             <div className="flex justify-between">
                                 <Label>{t('submission.sections.film.synopsis_en')}</Label>
-                                <span className="text-[8px] font-bold text-slate-400">0/1000</span>
+                                {/* Compteur Dynamique */}
+                                <span className={`text-[8px] font-bold transition-colors ${synopsisEn.length >= 1000 ? 'text-red-500' : 'text-slate-400'
+                                    }`}>
+                                    {synopsisEn.length}/1000
+                                </span>
                             </div>
                             <TextArea
                                 rows={4}
                                 placeholder={t('submission.placeholders.synopsis_en')}
                                 required
+                                // Saisie max à 1000
+                                maxLength={1000}
+                                value={synopsisEn}
+                                onChange={(e) => setSynopsisEn(e.target.value)}
+                                className={synopsisEn.length >= 1000 ? "border-red-500 focus:border-red-500" : ""}
                             />
                         </div>
                     </div>
