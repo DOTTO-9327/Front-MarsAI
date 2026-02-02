@@ -4,6 +4,9 @@ import {
   Facebook, Instagram, Twitter, Youtube, ImageIcon, Zap, 
   Plus, Trash2, ChevronRight, Check
 } from 'lucide-react'
+import Label from '../components/ui/Label'
+import Input from '../components/ui/Input'
+import TextArea from '../components/ui/TextArea'
 
 const SubmissionForm = () => {
   const [lang, setLang] = useState('FR')
@@ -15,7 +18,7 @@ const SubmissionForm = () => {
       
       <div className="max-w-5xl mx-auto px-6 space-y-12 animate-fade-in-up">
         
-        {/* --- PAGE HEADER (Spécifique au formulaire) --- */}
+        {/* --- PAGE HEADER --- */}
         <div className="text-center mb-16 space-y-6">
           <div className="inline-flex items-center gap-2 text-accent bg-accent/5 px-4 py-1.5 rounded-full border border-accent/10">
             <Rocket className="w-4 h-4" />
@@ -48,20 +51,20 @@ const SubmissionForm = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="space-y-2">
-              <label className="block text-[10px] font-black uppercase tracking-widest mb-2 ml-1 text-slate-500">Prénom *</label>
-              <input type="text" placeholder="JEAN" className="w-full bg-mars-light border border-transparent px-6 py-4 rounded-2xl font-bold text-sm text-mars-dark placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-primary focus:shadow-lg focus:shadow-primary/10 transition-all uppercase" />
+              <Label>Prénom *</Label>
+              <Input type="text" placeholder="JEAN" />
             </div>
             <div className="space-y-2">
-              <label className="block text-[10px] font-black uppercase tracking-widest mb-2 ml-1 text-slate-500">Nom *</label>
-              <input type="text" placeholder="DUPONT" className="w-full bg-mars-light border border-transparent px-6 py-4 rounded-2xl font-bold text-sm text-mars-dark placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-primary focus:shadow-lg focus:shadow-primary/10 transition-all uppercase" />
+              <Label>Nom *</Label>
+              <Input type="text" placeholder="DUPONT" />
             </div>
             <div className="space-y-2">
-              <label className="block text-[10px] font-black uppercase tracking-widest mb-2 ml-1 text-slate-500">Email *</label>
-              <input type="email" placeholder="JEAN@EXEMPLE.COM" className="w-full bg-mars-light border border-transparent px-6 py-4 rounded-2xl font-bold text-sm text-mars-dark placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-primary focus:shadow-lg focus:shadow-primary/10 transition-all uppercase" />
+              <Label>Email *</Label>
+              <Input type="email" placeholder="JEAN@EXEMPLE.COM" />
             </div>
             
             <div className="space-y-2">
-              <label className="block text-[10px] font-black uppercase tracking-widest mb-2 ml-1 text-slate-500">Genre *</label>
+              <Label>Genre *</Label>
               <div className="relative">
                 <select className="w-full bg-mars-light border border-transparent px-6 py-4 rounded-2xl font-bold text-sm text-mars-dark appearance-none focus:outline-none focus:bg-white focus:border-primary focus:shadow-lg focus:shadow-primary/10 transition-all uppercase cursor-pointer">
                   <option value="M">Masculin</option>
@@ -75,31 +78,31 @@ const SubmissionForm = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="block text-[10px] font-black uppercase tracking-widest mb-2 ml-1 text-slate-500">Date de Naissance *</label>
-              <input type="date" className="w-full bg-mars-light border border-transparent px-6 py-4 rounded-2xl font-bold text-sm text-mars-dark placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-primary focus:shadow-lg focus:shadow-primary/10 transition-all uppercase" />
+              <Label>Date de Naissance *</Label>
+              <Input type="date" />
             </div>
             <div className="space-y-2">
-              <label className="block text-[10px] font-black uppercase tracking-widest mb-2 ml-1 text-slate-500">Téléphone *</label>
-              <input type="tel" placeholder="+33 6..." className="w-full bg-mars-light border border-transparent px-6 py-4 rounded-2xl font-bold text-sm text-mars-dark placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-primary focus:shadow-lg focus:shadow-primary/10 transition-all uppercase" />
+              <Label>Téléphone *</Label>
+              <Input type="tel" placeholder="+33 6..." />
             </div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 pt-8 mt-8 border-t border-slate-100">
             <div className="relative group">
               <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-primary transition-colors"><Facebook className="w-4 h-4" /></div>
-              <input type="text" placeholder="FACEBOOK" className="w-full bg-mars-light pl-12 border border-transparent px-6 py-4 rounded-2xl font-bold text-xs text-mars-dark placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-primary transition-all uppercase" />
+              <Input type="text" placeholder="FACEBOOK" className="pl-12" />
             </div>
             <div className="relative group">
               <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-accent transition-colors"><Instagram className="w-4 h-4" /></div>
-              <input type="text" placeholder="INSTAGRAM" className="w-full bg-mars-light pl-12 border border-transparent px-6 py-4 rounded-2xl font-bold text-xs text-mars-dark placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-primary transition-all uppercase" />
+              <Input type="text" placeholder="INSTAGRAM" className="pl-12" />
             </div>
             <div className="relative group">
               <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-primary transition-colors"><Twitter className="w-4 h-4" /></div>
-              <input type="text" placeholder="TWITTER / X" className="w-full bg-mars-light pl-12 border border-transparent px-6 py-4 rounded-2xl font-bold text-xs text-mars-dark placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-primary transition-all uppercase" />
+              <Input type="text" placeholder="TWITTER / X" className="pl-12" />
             </div>
             <div className="relative group">
               <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-red-600 transition-colors"><Youtube className="w-4 h-4" /></div>
-              <input type="text" placeholder="YOUTUBE" className="w-full bg-mars-light pl-12 border border-transparent px-6 py-4 rounded-2xl font-bold text-xs text-mars-dark placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-primary transition-all uppercase" />
+              <Input type="text" placeholder="YOUTUBE" className="pl-12" />
             </div>
           </div>
         </section>
@@ -122,16 +125,16 @@ const SubmissionForm = () => {
 
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-2">
-              <label className="block text-[10px] font-black uppercase tracking-widest mb-2 ml-1 text-slate-500">Titre Original *</label>
-              <input type="text" placeholder="TITRE EN LANGUE D'ORIGINE" className="w-full bg-mars-light border border-transparent px-6 py-4 rounded-2xl font-bold text-sm text-mars-dark placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-primary focus:shadow-lg focus:shadow-primary/10 transition-all uppercase" />
+              <Label>Titre Original *</Label>
+              <Input type="text" placeholder="TITRE EN LANGUE D'ORIGINE" />
             </div>
             <div className="space-y-2">
-              <label className="block text-[10px] font-black uppercase tracking-widest mb-2 ml-1 text-slate-500">Titre Anglais *</label>
-              <input type="text" placeholder="INTERNATIONAL TITLE" className="w-full bg-mars-light border border-transparent px-6 py-4 rounded-2xl font-bold text-sm text-mars-dark placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-primary focus:shadow-lg focus:shadow-primary/10 transition-all uppercase" />
+              <Label>Titre Anglais *</Label>
+              <Input type="text" placeholder="INTERNATIONAL TITLE" />
             </div>
             
             <div className="space-y-2">
-              <label className="block text-[10px] font-black uppercase tracking-widest mb-2 ml-1 text-slate-500">Langue d'origine *</label>
+              <Label>Langue d'origine *</Label>
               <div className="flex gap-4">
                 <button type="button" onClick={() => setLang('FR')} className={`flex-1 py-4 rounded-xl border text-[10px] font-black transition-all ${lang === 'FR' ? 'bg-primary border-primary text-white shadow-lg shadow-primary/20' : 'bg-mars-light border-slate-200 text-slate-500 hover:bg-slate-200'}`}>FRANÇAIS</button>
                 <button type="button" onClick={() => setLang('EN')} className={`flex-1 py-4 rounded-xl border text-[10px] font-black transition-all ${lang === 'EN' ? 'bg-primary border-primary text-white shadow-lg shadow-primary/20' : 'bg-mars-light border-slate-200 text-slate-500 hover:bg-slate-200'}`}>ANGLAIS</button>
@@ -139,27 +142,27 @@ const SubmissionForm = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="block text-[10px] font-black uppercase tracking-widest mb-2 ml-1 text-slate-500">Lien Youtube *</label>
+              <Label>Lien Youtube *</Label>
               <div className="relative group">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-red-600 transition-colors"><Youtube className="w-4 h-4" /></div>
-                <input type="url" placeholder="HTTPS://YOUTUBE.COM/WATCH?V=..." className="w-full bg-mars-light border border-transparent pl-12 pr-6 py-4 rounded-2xl font-bold text-sm text-mars-dark placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-primary focus:shadow-lg focus:shadow-primary/10 transition-all uppercase" />
+                <Input type="url" placeholder="HTTPS://YOUTUBE.COM/WATCH?V=..." className="pl-12 pr-6" />
               </div>
             </div>
 
             <div className="md:col-span-2 space-y-2">
               <div className="flex justify-between">
-                <label className="block text-[10px] font-black uppercase tracking-widest mb-2 ml-1 text-slate-500">Synopsis Original *</label>
+                <Label>Synopsis Original *</Label>
                 <span className="text-[8px] font-bold text-slate-400">0/1000</span>
               </div>
-              <textarea rows={4} placeholder="DÉCRIVEZ VOTRE HISTOIRE..." className="w-full bg-mars-light border border-transparent p-6 rounded-[1.8rem] font-semibold text-sm text-mars-dark placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-primary focus:shadow-lg focus:shadow-primary/10 transition-all resize-none"></textarea>
+              <TextArea rows={4} placeholder="DÉCRIVEZ VOTRE HISTOIRE..." />
             </div>
 
             <div className="md:col-span-2 space-y-2">
               <div className="flex justify-between">
-                <label className="block text-[10px] font-black uppercase tracking-widest mb-2 ml-1 text-slate-500">English Synopsis *</label>
+                <Label>English Synopsis *</Label>
                 <span className="text-[8px] font-bold text-slate-400">0/1000</span>
               </div>
-              <textarea rows={4} placeholder="TRANSLATE YOUR VISION..." className="w-full bg-mars-light border border-transparent p-6 rounded-[1.8rem] font-semibold text-sm text-mars-dark placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-primary focus:shadow-lg focus:shadow-primary/10 transition-all resize-none"></textarea>
+              <TextArea rows={4} placeholder="TRANSLATE YOUR VISION..." />
             </div>
           </div>
         </section>
@@ -186,7 +189,7 @@ const SubmissionForm = () => {
 
           <div className="grid md:grid-cols-2 gap-8 relative z-10">
             <div className="space-y-4">
-              <label className="block text-[10px] font-black uppercase tracking-widest mb-2 ml-1 text-slate-400">Classification *</label>
+              <Label className="text-slate-400">Classification *</Label>
               <div className="flex gap-4">
                 <button type="button" onClick={() => setIsHybrid(false)} className={`flex-1 p-6 rounded-2xl border transition-all text-left active:scale-95 ${!isHybrid ? 'bg-primary border-primary' : 'bg-white/5 border-white/10 hover:bg-white/10'}`}>
                   <div className="text-[10px] font-black uppercase mb-1 text-white">Génération 100% IA</div>
@@ -200,7 +203,7 @@ const SubmissionForm = () => {
             </div>
 
             <div className="space-y-4">
-              <label className="block text-[10px] font-black uppercase tracking-widest mb-2 ml-1 text-slate-400">Sous-titrage *</label>
+              <Label className="text-slate-400">Sous-titrage *</Label>
               <div onClick={() => setHasSubs(!hasSubs)} className={`flex items-center gap-4 p-5 rounded-2xl border cursor-pointer transition-all group ${hasSubs ? 'bg-primary/10 border-primary' : 'bg-white/5 border-white/10 hover:bg-white/10'}`}>
                 <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${hasSubs ? 'border-primary bg-primary' : 'border-white/20'}`}>
                   {hasSubs && <Check className="w-3 h-3 text-white" />}
@@ -212,16 +215,17 @@ const SubmissionForm = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="block text-[10px] font-black uppercase tracking-widest mb-2 ml-1 text-slate-400">Outils IA *</label>
-              <textarea rows={4} placeholder="MIDJOURNEY, RUNWAY, PIKA..." className="w-full bg-white/5 border border-white/10 p-6 rounded-[1.8rem] font-semibold text-sm text-white placeholder:text-slate-500 focus:outline-none focus:bg-white/10 focus:border-primary transition-all resize-none"></textarea>
+              <Label className="text-slate-400">Outils IA *</Label>
+              {/* On surcharge le style pour le thème sombre */}
+              <TextArea rows={4} placeholder="MIDJOURNEY, RUNWAY, PIKA..." className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:bg-white/10 focus:border-primary" />
             </div>
             <div className="space-y-2">
-              <label className="block text-[10px] font-black uppercase tracking-widest mb-2 ml-1 text-slate-400">Processus Créatif *</label>
-              <textarea rows={4} placeholder="DÉCRIVEZ L'INTERACTION HUMAIN-MACHINE..." className="w-full bg-white/5 border border-white/10 p-6 rounded-[1.8rem] font-semibold text-sm text-white placeholder:text-slate-500 focus:outline-none focus:bg-white/10 focus:border-primary transition-all resize-none"></textarea>
+              <Label className="text-slate-400">Processus Créatif *</Label>
+              <TextArea rows={4} placeholder="DÉCRIVEZ L'INTERACTION HUMAIN-MACHINE..." className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus:bg-white/10 focus:border-primary" />
             </div>
 
             <div className="md:col-span-2 space-y-2">
-              <label className="block text-[10px] font-black uppercase tracking-widest mb-2 ml-1 text-slate-400">Affiche du film (Cover) *</label>
+              <Label className="text-slate-400">Affiche du film (Cover) *</Label>
               <div className="w-full h-48 border-2 border-dashed border-white/10 rounded-3xl bg-white/5 flex flex-col items-center justify-center group hover:border-primary hover:bg-primary/5 transition-all cursor-pointer">
                 <ImageIcon className="w-10 h-10 text-white/10 group-hover:text-primary transition-all mb-4" />
                 <span className="text-[10px] font-black text-slate-500 group-hover:text-white uppercase tracking-widest">Glisser-déposer ou cliquer pour uploader</span>
@@ -250,17 +254,18 @@ const SubmissionForm = () => {
           <div className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-6 bg-mars-light/50 rounded-4xl border border-slate-100 relative group hover:border-primary/20 transition-colors">
               <div className="space-y-2">
-                <label className="block text-[8px] font-black uppercase tracking-widest ml-1 text-slate-500">Prénom</label>
-                <input type="text" defaultValue="JEAN" className="w-full bg-white border border-transparent px-4 py-3 rounded-xl font-bold text-xs text-mars-dark focus:outline-none focus:border-primary transition-all uppercase" />
+                <Label className="text-[8px]">Prénom</Label>
+                {/* Surcharge pour le fond blanc */}
+                <Input type="text" defaultValue="JEAN" className="bg-white" />
               </div>
               <div className="space-y-2">
-                <label className="block text-[8px] font-black uppercase tracking-widest ml-1 text-slate-500">Nom</label>
-                <input type="text" defaultValue="VALJEAN" className="w-full bg-white border border-transparent px-4 py-3 rounded-xl font-bold text-xs text-mars-dark focus:outline-none focus:border-primary transition-all uppercase" />
+                <Label className="text-[8px]">Nom</Label>
+                <Input type="text" defaultValue="VALJEAN" className="bg-white" />
               </div>
               <div className="md:col-span-2 flex gap-4">
                 <div className="flex-1 space-y-2">
-                  <label className="block text-[8px] font-black uppercase tracking-widest ml-1 text-slate-500">Rôle</label>
-                  <input type="text" defaultValue="SOUND DESIGN" className="w-full bg-white border border-transparent px-4 py-3 rounded-xl font-bold text-xs text-mars-dark focus:outline-none focus:border-primary transition-all uppercase" />
+                  <Label className="text-[8px]">Rôle</Label>
+                  <Input type="text" defaultValue="SOUND DESIGN" className="bg-white" />
                 </div>
                 <div className="flex items-end">
                    <button className="p-3 bg-red-50 text-red-500 rounded-xl hover:bg-red-500 hover:text-white transition-all shadow-sm">

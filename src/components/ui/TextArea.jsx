@@ -1,5 +1,3 @@
-import React from 'react'
-
 const TextArea = ({ className = "", ...props }) => {
   return (
     <textarea

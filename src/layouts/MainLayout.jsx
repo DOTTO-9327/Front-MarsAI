@@ -10,7 +10,7 @@ const MainLayout = () => {
     <div className="flex flex-col min-h-screen">
       <Navbar />
       {/* Padding que si on n'est pas sur la homepage */}
-      <main className={`grow ${isHomePage ? '' : 'pt-20'}`}> 
+      <main className={`grow ${isHomePage ? '' : 'pt-18'}`}> 
         <Outlet />
       </main>
       <Footer />

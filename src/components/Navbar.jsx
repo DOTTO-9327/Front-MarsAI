@@ -4,6 +4,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import frFlag from '../assets/fr.png';
 import gbFlag from '../assets/gb.png';
+import Button from './ui/Button';
+import { useNavigate } from 'react-router-dom';
 
 
 const Navbar = () => {
@@ -11,6 +13,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t, i18n } = useTranslation();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const isHomePage = location.pathname === '/';
 
@@ -39,8 +42,8 @@ const Navbar = () => {
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-500 py-4 ${isTransparent
-        ? 'bg-transparent'
-        : 'bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm'
+      ? 'bg-transparent'
+      : 'bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm'
       }`}>
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
 
@@ -69,9 +72,12 @@ const Navbar = () => {
           ))}
 
           <div className="flex items-center gap-4 border-l border-slate-300/30 pl-6">
-            <button className="bg-primary text-white px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-primary/90 hover:scale-105 transition-all shadow-md shadow-primary/20">
+            <Button
+              variant="primary"
+              onClick={() => navigate('/soumettre')}
+            >
               Soumettre
-            </button>
+            </Button>
             <button
               onClick={toggleLanguage}
               className="text-xl hover:scale-110 transition-transform pt-1"
@@ -118,9 +124,12 @@ const Navbar = () => {
             {item.name}
           </Link>
         ))}
-        <button className="bg-primary text-white px-6 py-4 rounded-xl font-bold uppercase text-sm tracking-widest mt-4 active:scale-95 transition-transform">
-          {t('nav.soumettre') || 'Soumettre un film'}
-        </button>
+        <Button
+          variant="primary"
+          onClick={() => navigate('/soumettre')}
+        >
+          Soumettre
+        </Button>
       </div>
     </nav>
   );
