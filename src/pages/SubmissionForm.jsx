@@ -17,6 +17,8 @@ const SubmissionForm = () => {
     const [hasSubs, setHasSubs] = useState(false)
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState('');
+    const [youtubeLink, setYoutubeLink] = useState('');
+    const [youtubeError, setYoutubeError] = useState('');
 
     // --- FONCTION DE VALIDATION REGEX ---
     const validateEmail = (value) => {
@@ -30,6 +32,22 @@ const SubmissionForm = () => {
             return false;
         } else {
             setEmailError('');
+            return true;
+        }
+    };
+
+    // --- FONCTION DE VALIDATION YOUTUBE REGEX ---
+    const validateYoutube = (value) => {
+        const regex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/;
+
+        if (!value) {
+            setYoutubeError('Le lien YouTube est requis.');
+            return false;
+        } else if (!regex.test(value)) {
+            setYoutubeError('Lien invalide. Doit être une URL YouTube valide.');
+            return false;
+        } else {
+            setYoutubeError('');
             return true;
         }
     };
@@ -210,14 +228,29 @@ const SubmissionForm = () => {
                         <div className="space-y-2">
                             <Label>{t('submission.sections.film.youtube')}</Label>
                             <div className="relative group">
-                                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-red-600 transition-colors"><Youtube className="w-4 h-4" /></div>
+                                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-red-600 transition-colors pointer-events-none">
+                                    <Youtube className="w-4 h-4" />
+                                </div>
                                 <Input
                                     type="url"
                                     placeholder={t('submission.placeholders.youtube')}
-                                    className="pl-12 pr-6"
+                                    className={`pl-12 pr-6 ${youtubeError ? "border-red-500 focus:border-red-500 text-red-600" : ""}`}
                                     required
+                                    value={youtubeLink}
+                                    onChange={(e) => {
+                                        setYoutubeLink(e.target.value);
+                                        if (youtubeError) setYoutubeError('');
+                                    }}
+                                    // Validation à la sortie du champ
+                                    onBlur={(e) => validateYoutube(e.target.value)}
                                 />
                             </div>
+                            {/* Message d'erreur */}
+                            {youtubeError && (
+                                <p className="text-[10px] font-bold text-red-500 ml-1 mt-1 animate-pulse">
+                                    {youtubeError}
+                                </p>
+                            )}
                         </div>
 
                         <div className="md:col-span-2 space-y-2">
