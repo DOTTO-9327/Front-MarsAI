@@ -1,5 +1,6 @@
 import CompetitionSection from "../components/sections/CompetitionSection"
 import HeroSection from "../components/sections/HeroSection"
+import ObjectivesSection from "../components/sections/ObjectivesSection"
 import ProjectSection from "../components/sections/ProjectSection"
 
 const Homepage = () => {
@@ -8,6 +9,7 @@ const Homepage = () => {
       <HeroSection />
       <ProjectSection />
       <CompetitionSection />
+      <ObjectivesSection />
     </>
   )
 }

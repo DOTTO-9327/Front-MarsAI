@@ -40,7 +40,7 @@ const CompetitionSection = ({ setView }) => {
                             <Play className="w-5 h-5 fill-current" />
                             <span className="font-bold uppercase tracking-[0.3em] text-lg">{t('competition.badge')}</span>
                         </div>
-                        <h2 className="text-4xl md:text-6xl text-mars-dark mb-6">
+                        <h2 className="text-mars-dark mb-6">
                             {t('competition.title_main')} <span className="text-primary">{t('competition.title_accent')}</span>
                         </h2>
                         <p className="text-slate-500 font-medium text-lg">
