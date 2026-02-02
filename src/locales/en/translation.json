@@ -44,5 +44,23 @@
         "cinematic": "Cinematic"
       }
     }
+  },
+
+  "_comment_objectives": "--- OBJECTIVES SECTION ---",
+  "objectives": {
+    "title_main": "FESTIVAL",
+    "title_accent": "OBJECTIVES",
+    "humain": {
+      "title": "HUMAN AT THE CENTER",
+      "desc": "Keeping humans at the heart of AI-generated creations to ensure emotion is never lost."
+    },
+    "challenge": {
+      "title": "CREATIVE CHALLENGE",
+      "desc": "Challenging participants' creativity through a very short 60-second format."
+    },
+    "futurs": {
+      "title": "DESIRABLE FUTURES",
+      "desc": "Leveraging the power of AI to illustrate a theme: Imagine desirable futures."
+    }
   }
 }

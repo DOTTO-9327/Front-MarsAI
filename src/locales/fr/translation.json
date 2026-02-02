@@ -44,5 +44,23 @@
         "cinematic": "Cinématique"
       }
     }
+  },
+
+  "_comment_objectives": "--- SECTION OBJECTIFS ---",
+  "objectives": {
+    "title_main": "OBJECTIFS DU",
+    "title_accent": "FESTIVAL",
+    "humain": {
+      "title": "L'HUMAIN AU CENTRE",
+      "desc": "Mettre l'humain au cœur de la création d'œuvres générées par IA pour ne pas perdre l'émotion."
+    },
+    "challenge": {
+      "title": "CHALLENGE CRÉATIF",
+      "desc": "Challenger la créativité des participants grâce à un format très court de 60 secondes."
+    },
+    "futurs": {
+      "title": "FUTURS SOUHAITABLES",
+      "desc": "Mettre à profit la puissance de l'IA pour illustrer un thème : Imaginez des futurs souhaitables."
+    }
   }
 }
