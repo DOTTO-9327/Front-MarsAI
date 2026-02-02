@@ -161,5 +161,33 @@
         },
         "legal": "En soumettant ce dossier, vous certifiez détenir les droits d'exploitation de l'œuvre et autorisez MARS.A.I à utiliser ces éléments pour la promotion du festival.",
         "submit_btn": "Finaliser mon Inscription"
+    },
+    "_comment_format": "--- SECTION FORMAT SELECTION ---",
+    "format": {
+        "title": "Format de la sélection",
+        "subtitle": "Le parcours des œuvres",
+        "cta": "Participer maintenant",
+        "steps": [
+            {
+                "title": "2 MOIS",
+                "subtitle": "APPEL À PROJET",
+                "description": "CANDIDATURES OUVERTES AUX CRÉATEURS DU MONDE ENTIER."
+            },
+            {
+                "title": "50 FILMS",
+                "subtitle": "SÉLECTION OFFICIELLE",
+                "description": "COURTS-MÉTRAGES D'UNE MINUTE RETENUS POUR LA COMPÉTITION."
+            },
+            {
+                "title": "WEB & RS",
+                "subtitle": "DIFFUSION DIGITALE",
+                "description": "VISIBILITÉ MONDIALE VIA LES RÉSEAUX ET PLATEFORMES."
+            },
+            {
+                "title": "FESTIVAL",
+                "subtitle": "SALLES DE CINÉMA",
+                "description": "PROJECTION SUR GRAND ÉCRAN POUR UNE IMMERSION TOTALE."
+            }
+        ]
     }
 }

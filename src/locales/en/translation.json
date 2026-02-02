@@ -161,5 +161,33 @@
         },
         "legal": "By submitting this file, you certify that you own the exploitation rights to the work and authorize MARS.A.I to use these elements for the promotion of the festival.",
         "submit_btn": "Finalize my Registration"
+    },
+    "_comment_format": "--- FORMAT SELECTION SECTION ---",
+    "format": {
+        "title": "Selection Format",
+        "subtitle": "The journey of the works",
+        "cta": "Participate Now",
+        "steps": [
+            {
+                "title": "2 MONTHS",
+                "subtitle": "CALL FOR PROJECTS",
+                "description": "APPLICATIONS OPEN TO CREATORS WORLDWIDE."
+            },
+            {
+                "title": "50 FILMS",
+                "subtitle": "OFFICIAL SELECTION",
+                "description": "ONE-MINUTE SHORT FILMS SELECTED FOR COMPETITION."
+            },
+            {
+                "title": "WEB & SOCIALS",
+                "subtitle": "DIGITAL BROADCAST",
+                "description": "GLOBAL VISIBILITY VIA NETWORKS AND PLATFORMS."
+            },
+            {
+                "title": "FESTIVAL",
+                "subtitle": "MOVIE THEATERS",
+                "description": "SCREENING ON THE BIG SCREEN FOR TOTAL IMMERSION."
+            }
+        ]
     }
 }
