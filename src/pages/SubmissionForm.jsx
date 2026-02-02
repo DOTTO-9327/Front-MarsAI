@@ -15,6 +15,24 @@ const SubmissionForm = () => {
     const [lang, setLang] = useState('FR')
     const [isHybrid, setIsHybrid] = useState(false)
     const [hasSubs, setHasSubs] = useState(false)
+    const [email, setEmail] = useState('');
+    const [emailError, setEmailError] = useState('');
+
+    // --- FONCTION DE VALIDATION REGEX ---
+    const validateEmail = (value) => {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!value) {
+            setEmailError('L\'email est requis.');
+            return false;
+        } else if (!regex.test(value)) {
+            setEmailError('Format invalide (ex: jean@mail.com)');
+            return false;
+        } else {
+            setEmailError('');
+            return true;
+        }
+    };
 
     return (
         <div className="w-full bg-mars-light text-mars-dark font-sans pb-20 selection:bg-primary selection:text-white pt-20">
@@ -74,7 +92,21 @@ const SubmissionForm = () => {
                                 type="email"
                                 placeholder={t('submission.placeholders.email')}
                                 required
+                                value={email}
+                                onChange={(e) => {
+                                    setEmail(e.target.value);
+                                    if (emailError) setEmailError('');
+                                }}
+                                // Déclencher la validation quand on quitte le champ
+                                onBlur={(e) => validateEmail(e.target.value)}
+                                className={emailError ? "border-red-500 focus:border-red-500 text-red-600" : ""}
                             />
+                            {/* Message d'erreur */}
+                            {emailError && (
+                                <p className="text-[10px] font-bold text-red-500 ml-1 animate-pulse">
+                                    {emailError}
+                                </p>
+                            )}
                         </div>
 
                         <div className="space-y-2">
