@@ -3,6 +3,7 @@ import React from 'react';
 const Button = ({ 
   children, 
   variant = 'primary', 
+  size = 'default', 
   className = '', 
   onClick, 
   icon: Icon, 
@@ -19,18 +20,22 @@ const Button = ({
     outline: "bg-transparent border-2 border-white/20 text-white hover:bg-white/10"
   };
 
-  const sizeStyles = "px-8 py-4 text-sm md:text-base";
+  // 2. Définition des tailles
+  const sizes = {
+    default: "px-8 py-4 text-sm md:text-base",
+    small: "px-6 py-2.5 text-xs tracking-widest" 
+  };
 
   return (
     <button
       type={type}
       onClick={onClick}
-      className={`${baseStyles} ${variants[variant]} ${sizeStyles} ${className}`}
+      className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
       {...props}
     >
       <span className="relative z-10 flex items-center gap-2">
         {children}
-        {Icon && <Icon className="w-5 h-5 transition-transform group-hover:translate-x-1" />}
+        {Icon && <Icon className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
       </span>
     </button>
   );

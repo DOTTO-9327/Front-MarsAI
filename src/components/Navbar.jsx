@@ -74,9 +74,10 @@ const Navbar = () => {
           <div className="flex items-center gap-4 border-l border-slate-300/30 pl-6">
             <Button
               variant="primary"
+              size="small"
               onClick={() => navigate('/soumettre')}
             >
-              Soumettre
+              {t('nav.soumettre')}
             </Button>
             <button
               onClick={toggleLanguage}
@@ -128,7 +129,7 @@ const Navbar = () => {
           variant="primary"
           onClick={() => navigate('/soumettre')}
         >
-          Soumettre
+          {t('nav.soumettre')}
         </Button>
       </div>
     </nav>
