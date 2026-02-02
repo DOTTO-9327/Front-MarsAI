@@ -2,9 +2,11 @@ import { Sparkles, ArrowRight } from 'lucide-react';
 import heroImage from '../../assets/hero-bg.webp';
 import Button from '../ui/Button';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-mars-dark">
@@ -45,7 +47,7 @@ const HeroSection = () => {
           <Button
             variant="primary"
             icon={ArrowRight}
-            onClick={() => console.log('Click!')}
+            onClick={() => navigate('/soumettre')}
           >
             {t('hero.cta')}
           </Button>
