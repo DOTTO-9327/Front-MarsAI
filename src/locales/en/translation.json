@@ -1,141 +1,165 @@
 {
-  "_comment_nav": "--- NAVIGATION SECTION ---",
-  "nav": {
-    "galerie": "Gallery",
-    "programme": "Program & Infos",
-    "jury": "Jury",
-    "soumettre": "Submit a film"
-  },
-
-  "_comment_hero": "--- HERO SECTION (HOME) ---",
-  "hero": {
-    "badge": "International AI Film Festival • June 2025",
-    "title_part1": "Imagine",
-    "title_part2": "Desirable Futures",
-    "description1": "The 60-second AI-generated short film festival.",
-    "description2": "Experience 2 days of total immersion in the heart of Marseille.",
-    "cta": "Join the call",
-    "cocreated": "Co-created by"
-  },
-
-  "_comment_project": "--- PROJECT SECTION (MANIFESTO) ---",
-  "project": {
-    "title": "THE MARS.A.I PROJECT",
-    "intro": "A unique hybrid event in France, bringing together the best of generative AI and filmmaking.",
-    "features": [
-      { "title": "1 MINUTE", "desc": "ULTRA-SHORT FORMAT TO MAXIMIZE CREATIVE IMPACT." },
-      { "title": "FREE", "desc": "CONFERENCES AND WORKSHOPS ACCESSIBLE TO ALL." },
-      { "title": "FOR EVERYONE", "desc": "PROFESSIONALS, STUDENTS, AND THE CURIOUS." },
-      { "title": "EXPERTISE", "desc": "MEET THE WORLD LEADERS IN AI." }
-    ]
-  },
-
-  "_comment_competition": "--- COMPETITION SECTION ---",
-  "competition": {
-    "badge": "Official Selection",
-    "title_main": "Films in",
-    "title_accent": "Competition",
-    "description": "Discover a selection of pioneering works exploring the new frontiers of imagination assisted by Artificial Intelligence.",
-    "cta": "View full selection",
-    "cards": {
-      "director": "Director",
-      "origin": "Origin",
-      "tags": {
-        "cinematic": "Cinematic"
-      }
+    "_comment_nav": "--- NAVIGATION SECTION ---",
+    "nav": {
+        "galerie": "Gallery",
+        "programme": "Program & Infos",
+        "jury": "Jury",
+        "soumettre": "Submit a film"
+    },
+    "_comment_hero": "--- HERO SECTION (HOME) ---",
+    "hero": {
+        "badge": "International AI Film Festival • June 2025",
+        "title_part1": "Imagine",
+        "title_part2": "Desirable Futures",
+        "description1": "The 60-second AI-generated short film festival.",
+        "description2": "Experience 2 days of total immersion in the heart of Marseille.",
+        "cta": "Join the call",
+        "cocreated": "Co-created by"
+    },
+    "_comment_project": "--- PROJECT SECTION (MANIFESTO) ---",
+    "project": {
+        "title": "THE MARS.A.I PROJECT",
+        "intro": "A unique hybrid event in France, bringing together the best of generative AI and filmmaking.",
+        "features": [
+            {
+                "title": "1 MINUTE",
+                "desc": "ULTRA-SHORT FORMAT TO MAXIMIZE CREATIVE IMPACT."
+            },
+            {
+                "title": "FREE",
+                "desc": "CONFERENCES AND WORKSHOPS ACCESSIBLE TO ALL."
+            },
+            {
+                "title": "FOR EVERYONE",
+                "desc": "PROFESSIONALS, STUDENTS, AND THE CURIOUS."
+            },
+            {
+                "title": "EXPERTISE",
+                "desc": "MEET THE WORLD LEADERS IN AI."
+            }
+        ]
+    },
+    "_comment_competition": "--- COMPETITION SECTION ---",
+    "competition": {
+        "badge": "Official Selection",
+        "title_main": "Films in",
+        "title_accent": "Competition",
+        "description": "Discover a selection of pioneering works exploring the new frontiers of imagination assisted by Artificial Intelligence.",
+        "cta": "View full selection",
+        "cards": {
+            "director": "Director",
+            "origin": "Origin",
+            "tags": {
+                "cinematic": "Cinematic"
+            }
+        }
+    },
+    "_comment_objectives": "--- OBJECTIVES SECTION ---",
+    "objectives": {
+        "title_main": "FESTIVAL",
+        "title_accent": "OBJECTIVES",
+        "humain": {
+            "title": "HUMAN AT THE CENTER",
+            "desc": "Keeping humans at the heart of AI-generated creations to ensure emotion is never lost."
+        },
+        "challenge": {
+            "title": "CREATIVE CHALLENGE",
+            "desc": "Challenging participants' creativity through a very short 60-second format."
+        },
+        "futurs": {
+            "title": "DESIRABLE FUTURES",
+            "desc": "Leveraging the power of AI to illustrate a theme: Imagine desirable futures."
+        }
+    },
+    "_comment_submission": "--- SUBMISSION SECTION ---",
+    "submission": {
+        "header": {
+            "badge": "Call for Projects 2026",
+            "title_main": "Official",
+            "title_accent": "Submission",
+            "description": "No account required. Fill in your AI film details. A secure editing link will be sent to you by email after validation. All fields marked with a star (*) are mandatory."
+        },
+        "sections": {
+            "director": {
+                "title": "Director Profile",
+                "subtitle": "Identity and contact info",
+                "firstname": "First Name *",
+                "lastname": "Last Name *",
+                "email": "Email *",
+                "gender": "Gender *",
+                "gender_options": {
+                    "m": "Male",
+                    "f": "Female",
+                    "o": "Other"
+                },
+                "birthdate": "Date of Birth *",
+                "phone": "Phone *",
+                "country": "Country *",
+                "city": "City",
+                "job": "Profession / Job"
+            },
+            "film": {
+                "title": "Film Details",
+                "subtitle": "Artistic information",
+                "original_title": "Original Title *",
+                "english_title": "English Title *",
+                "original_lang": "Original Language *",
+                "lang_options": {
+                    "fr": "FRENCH",
+                    "en": "ENGLISH"
+                },
+                "youtube": "Youtube Link *",
+                "synopsis_orig": "Original Synopsis *",
+                "synopsis_en": "English Synopsis *",
+                "duration": "Duration (seconds) *"
+            },
+            "tech": {
+                "title": "Technical AI Expertise",
+                "subtitle": "Methodology and tools",
+                "classification": "Classification *",
+                "type_ai": {
+                    "title": "100% AI Generation",
+                    "sub": "No real footage"
+                },
+                "type_hybrid": {
+                    "title": "Hybrid Production",
+                    "sub": "Filming + AI"
+                },
+                "subtitles": "Subtitling *",
+                "subtitles_label": "Subtitles integrated into video (Hardcoded)",
+                "tools": "AI Tools *",
+                "process": "Creative Process *",
+                "cover": "Film Poster (Cover) *",
+                "cover_drag": "Drag & drop or click to upload"
+            },
+            "team": {
+                "title": "Team Composition",
+                "subtitle": "Technical credits",
+                "firstname": "First Name",
+                "lastname": "Last Name",
+                "role": "Role",
+                "add_btn": "Add a collaborator"
+            }
+        },
+        "placeholders": {
+            "firstname": "JOHN",
+            "lastname": "DOE",
+            "email": "JOHN@EXAMPLE.COM",
+            "phone": "+1 555...",
+            "orig_title": "TITLE IN ORIGINAL LANGUAGE",
+            "intl_title": "INTERNATIONAL TITLE",
+            "youtube": "HTTPS://YOUTUBE.COM/WATCH?V=...",
+            "synopsis_orig": "DESCRIBE YOUR STORY...",
+            "synopsis_en": "TRANSLATE YOUR VISION...",
+            "social_fb": "FACEBOOK",
+            "social_insta": "INSTAGRAM",
+            "social_x": "TWITTER / X",
+            "social_yt": "YOUTUBE CHANNEL",
+            "tools": "MIDJOURNEY, RUNWAY, PIKA...",
+            "process": "DESCRIBE THE HUMAN-MACHINE INTERACTION...",
+            "role": "SOUND DESIGN"
+        },
+        "legal": "By submitting this file, you certify that you own the exploitation rights to the work and authorize MARS.A.I to use these elements for the promotion of the festival.",
+        "submit_btn": "Finalize my Registration"
     }
-  },
-
-  "_comment_objectives": "--- OBJECTIVES SECTION ---",
-  "objectives": {
-    "title_main": "FESTIVAL",
-    "title_accent": "OBJECTIVES",
-    "humain": {
-      "title": "HUMAN AT THE CENTER",
-      "desc": "Keeping humans at the heart of AI-generated creations to ensure emotion is never lost."
-    },
-    "challenge": {
-      "title": "CREATIVE CHALLENGE",
-      "desc": "Challenging participants' creativity through a very short 60-second format."
-    },
-    "futurs": {
-      "title": "DESIRABLE FUTURES",
-      "desc": "Leveraging the power of AI to illustrate a theme: Imagine desirable futures."
-    }
-  },
-
-  "_comment_submission": "--- SUBMISSION SECTION ---",
-  "submission": {
-    "header": {
-      "badge": "Call for Projects 2026",
-      "title_main": "Official",
-      "title_accent": "Submission",
-      "description": "No account required. Fill in your AI film details. A secure editing link will be sent to you by email after validation. All fields marked with a star (*) are mandatory."
-    },
-    "sections": {
-      "director": {
-        "title": "Director Profile",
-        "subtitle": "Identity and contact info",
-        "firstname": "First Name *",
-        "lastname": "Last Name *",
-        "email": "Email *",
-        "gender": "Gender *",
-        "gender_options": { "m": "Male", "f": "Female", "o": "Other" },
-        "birthdate": "Date of Birth *",
-        "phone": "Phone *"
-      },
-      "film": {
-        "title": "Film Details",
-        "subtitle": "Artistic information",
-        "original_title": "Original Title *",
-        "english_title": "English Title *",
-        "original_lang": "Original Language *",
-        "lang_options": { "fr": "FRENCH", "en": "ENGLISH" },
-        "youtube": "Youtube Link *",
-        "synopsis_orig": "Original Synopsis *",
-        "synopsis_en": "English Synopsis *"
-      },
-      "tech": {
-        "title": "Technical AI Expertise",
-        "subtitle": "Methodology and tools",
-        "classification": "Classification *",
-        "type_ai": { "title": "100% AI Generation", "sub": "No real footage" },
-        "type_hybrid": { "title": "Hybrid Production", "sub": "Filming + AI" },
-        "subtitles": "Subtitling *",
-        "subtitles_label": "Subtitles integrated into video (Hardcoded)",
-        "tools": "AI Tools *",
-        "process": "Creative Process *",
-        "cover": "Film Poster (Cover) *",
-        "cover_drag": "Drag & drop or click to upload"
-      },
-      "team": {
-        "title": "Team Composition",
-        "subtitle": "Technical credits",
-        "firstname": "First Name",
-        "lastname": "Last Name",
-        "role": "Role",
-        "add_btn": "Add a collaborator"
-      }
-    },
-    "placeholders": {
-      "firstname": "JOHN",
-      "lastname": "DOE",
-      "email": "JOHN@EXAMPLE.COM",
-      "phone": "+1 555...",
-      "orig_title": "TITLE IN ORIGINAL LANGUAGE",
-      "intl_title": "INTERNATIONAL TITLE",
-      "youtube": "HTTPS://YOUTUBE.COM/WATCH?V=...",
-      "synopsis_orig": "DESCRIBE YOUR STORY...",
-      "synopsis_en": "TRANSLATE YOUR VISION...",
-      "social_fb": "FACEBOOK",
-      "social_insta": "INSTAGRAM",
-      "social_x": "TWITTER / X",
-      "social_yt": "YOUTUBE CHANNEL",
-      "tools": "MIDJOURNEY, RUNWAY, PIKA...",
-      "process": "DESCRIBE THE HUMAN-MACHINE INTERACTION...",
-      "role": "SOUND DESIGN"
-    },
-    "legal": "By submitting this file, you certify that you own the exploitation rights to the work and authorize MARS.A.I to use these elements for the promotion of the festival.",
-    "submit_btn": "Finalize my Registration"
-  }
 }
