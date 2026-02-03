@@ -1,4 +1,3 @@
-import React from 'react';
 import { Target, Zap, Rocket } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 

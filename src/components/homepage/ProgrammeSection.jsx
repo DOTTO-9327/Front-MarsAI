@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Award, Calendar, Cpu, Film } from "lucide-react";
 import Button from "../ui/Button";
