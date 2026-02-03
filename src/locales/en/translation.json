@@ -255,5 +255,19 @@
             "number": "+600",
             "label": "FILMS SUBMITTED"
         }
+    },
+    "footer": {
+        "description": "A co-creation of the digital school La Plateforme and the Mobile Film Festival. Together to draw the new horizons of cinema.",
+        "newsletter": {
+            "title": "STAY CONNECTED",
+            "placeholder": "your@email.com",
+            "button": "SUBSCRIBE"
+        },
+        "links": {
+            "legal": "LEGAL NOTICE",
+            "press": "PRESS",
+            "contact": "CONTACT"
+        },
+        "copyright": "© 2025 MARS.A.I"
     }
 }

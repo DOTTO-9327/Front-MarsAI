@@ -255,5 +255,19 @@
             "number": "+600",
             "label": "FILMS SOUMIS"
         }
+    },
+    "footer": {
+        "description": "Une co-création de l'école du numérique La Plateforme et le Mobile Film Festival. Ensemble pour dessiner les nouveaux horizons du cinéma.",
+        "newsletter": {
+            "title": "RESTEZ CONNECTÉS",
+            "placeholder": "votre@email.com",
+            "button": "S'INSCRIRE"
+        },
+        "links": {
+            "legal": "MENTIONS LÉGALES",
+            "press": "PRESSE",
+            "contact": "CONTACT"
+        },
+        "copyright": "© 2025 MARS.A.I"
     }
 }
