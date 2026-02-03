@@ -269,5 +269,10 @@
             "contact": "CONTACT"
         },
         "copyright": "© 2025 MARS.A.I"
+    },
+    "partners": {
+        "badge": "OUR PARTNERS",
+        "title_main": "THEY SUPPORT",
+        "title_accent": "THE FUTURE"
     }
 }
