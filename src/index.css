@@ -19,6 +19,9 @@
 
   --color-light-gray: #94A3B8;
 
+   /* Blanc pur (Fonds de cartes, sections claires) */
+  --color-white: #ffffff;
+
 
   /* --- Typographie --- */
   --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
