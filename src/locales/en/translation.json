@@ -189,5 +189,58 @@
                 "description": "SCREENING ON THE BIG SCREEN FOR TOTAL IMMERSION."
             }
         ]
+    },
+    "_comment_programme": "--- PROGRAMME SECTION ---",
+    "programme": {
+        "badge": "The heart of the festival",
+        "title_main": "Two days of",
+        "title_accent": "Conferences",
+        "title_free": "free",
+        "features": [
+            "Engaged debates on ethics and the future",
+            "Confrontation of ideas between artists and tech",
+            "Stimulating questions on creation"
+        ],
+        "projections": {
+            "title": "Screenings",
+            "desc": "Films in and out of competition on the big screen."
+        },
+        "workshops": {
+            "title": "Workshops",
+            "desc": "Screenwriting, creation, and post-production with AI experts."
+        },
+        "awards": {
+            "title": "Awards Ceremony",
+            "desc": "Renowned filmmakers, actors, and creators to reward excellence."
+        },
+        "night": {
+            "badge": "Closing Ceremony",
+            "title": "MARS.A.I NIGHT",
+            "desc": "Electro party blending AI and desirable futures.",
+            "subdesc": "An immersive sound and visual experience.",
+            "date": "June 13",
+            "time": "Starting at 7PM",
+            "cta": "Get my pass"
+        }
+    },
+    "venue": {
+        "badge": "The Venue",
+        "title_main": "La",
+        "title_accent": "Plateforme",
+        "subtitle": "(Ex Docks des Suds)",
+        "description": "4,000 m² of modular spaces in the center of Marseille, at the heart of the digital ecosystem.",
+        "rooms": {
+            "sucres": {
+                "title": "Salle des Sucres",
+                "desc": "Future sanctuary for conferences and the Mars.A.I award ceremony. A majestic space combining heritage and technology."
+            },
+            "plaza": {
+                "title": "Salle Plaza",
+                "desc": "The festival's epicenter: reception, animations, workshops, and catering. The meeting point for all participants."
+            }
+        },
+        "image_alt": "La Plateforme Event Center",
+        "image_title": "La Plateforme Event Center",
+        "location": "Marseille, France"
     }
 }

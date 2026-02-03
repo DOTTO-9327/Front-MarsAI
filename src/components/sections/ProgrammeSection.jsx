@@ -1,8 +1,12 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Award, Calendar, Cpu, Film } from "lucide-react";
 import Button from "../ui/Button";
 import NightImage from '../../assets/Night.webp';
 
 const ProgrammeSection = () => {
+    const { t } = useTranslation();
+
     return (
         <section className="w-full bg-white py-24 px-4 md:px-8 lg:px-16 font-sans">
             <div className="max-w-7xl mx-auto">
@@ -10,19 +14,15 @@ const ProgrammeSection = () => {
                 {/* Header Section */}
                 <header className="mb-12">
                     <span className="inline-block bg-primary text-white text-md font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-16">
-                        Le cœur du festival
+                        {t('programme.badge')}
                     </span>
-                    <h2 className="tracking-tighter text-mars-dark mb-16 leading-[1.1]">
-                        Deux journées de <br />
-                        <span className="text-primary">Conférences</span> gratuites
+                    <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-mars-dark mb-16 leading-[1.1]">
+                        {t('programme.title_main')} <br />
+                        <span className="text-primary">{t('programme.title_accent')}</span> {t('programme.title_free')}
                     </h2>
 
                     <ul className="mt-8 space-y-3 mb-16">
-                        {[
-                            "Débats engagés sur l'éthique et le futur",
-                            "Confrontations d'idées entre artistes et tech",
-                            "Interrogations stimulantes sur la création"
-                        ].map((text, i) => (
+                        {t('programme.features', { returnObjects: true }).map((text, i) => (
                             <li key={i} className="flex items-center gap-4">
                                 <span className="flex-none w-6 h-6 flex items-center justify-center rounded-full bg-blue-50 text-primary text-[10px] font-bold">
                                     {i + 1}
@@ -41,8 +41,12 @@ const ProgrammeSection = () => {
                             <Film size={32} strokeWidth={1.5} />
                         </div>
                         <div>
-                            <h3 className="text-3xl text-white font-black uppercase mb-2 tracking-tight">Projections</h3>
-                            <p className="text-gray-400">Films en compétition et hors-compétition sur écran géant.</p>
+                            <h3 className="text-3xl text-white font-black uppercase mb-2 tracking-tight">
+                                {t('programme.projections.title')}
+                            </h3>
+                            <p className="text-gray-400">
+                                {t('programme.projections.desc')}
+                            </p>
                         </div>
                     </article>
 
@@ -52,8 +56,12 @@ const ProgrammeSection = () => {
                             <Cpu size={32} strokeWidth={1.5} />
                         </div>
                         <div>
-                            <h3 className="text-3xl font-black uppercase mb-2 tracking-tight text-mars-dark">Workshops</h3>
-                            <p className="text-gray-500">Scénario, création et post-prod avec des experts de l'IA.</p>
+                            <h3 className="text-3xl font-black uppercase mb-2 tracking-tight text-mars-dark">
+                                {t('programme.workshops.title')}
+                            </h3>
+                            <p className="text-gray-500">
+                                {t('programme.workshops.desc')}
+                            </p>
                         </div>
                     </article>
 
@@ -63,8 +71,12 @@ const ProgrammeSection = () => {
                             <Award size={32} strokeWidth={1.5} />
                         </div>
                         <div>
-                            <h3 className="text-3xl font-black uppercase mb-2 tracking-tight text-mars-dark">Remise des prix</h3>
-                            <p className="text-gray-500">Cinéastes, acteurs et créateurs renommés pour récompenser l'excellence.</p>
+                            <h3 className="text-3xl font-black uppercase mb-2 tracking-tight text-mars-dark">
+                                {t('programme.awards.title')}
+                            </h3>
+                            <p className="text-gray-500">
+                                {t('programme.awards.desc')}
+                            </p>
                         </div>
                     </article>
                 </div>
@@ -76,7 +88,7 @@ const ProgrammeSection = () => {
                         <div className="absolute inset-0 bg-linear-to-t from-black via-black/20 to-transparent z-10" />
                         <img
                             src={NightImage}
-                            alt="DJ Night IA"
+                            alt={t('programme.night.title')}
                             className="w-full h-full object-cover opacity-70"
                         />
                     </div>
@@ -84,14 +96,16 @@ const ProgrammeSection = () => {
                     {/* Texte de gauche */}
                     <div className="relative z-20 max-w-xl mb-8 md:mb-0">
                         <span className="inline-block bg-accent text-white text-md font-bold px-4 py-1.5 rounded-full uppercase mb-8">
-                            Cérémonie de clôture
+                            {t('programme.night.badge')}
                         </span>
-                        <h2 className="text-6xl md:text-8xl text-white leading-[0.9] uppercase mb-6">
-                            MARS.A.I<br />NIGHT
+                        <h2 className="text-6xl md:text-8xl text-white leading-[0.9] font-black uppercase mb-6">
+                            {t('programme.night.title')}
                         </h2>
                         <p className="text-gray-200 text-lg italic font-medium leading-tight">
-                            Fête Électro mêlant IA et futurs souhaitables.<br />
-                            <span className="text-sm font-normal not-italic opacity-70">Une expérience immersive sonore et visuelle.</span>
+                            {t('programme.night.desc')}<br />
+                            <span className="text-sm font-normal not-italic opacity-70">
+                                {t('programme.night.subdesc')}
+                            </span>
                         </p>
                     </div>
 
@@ -100,15 +114,19 @@ const ProgrammeSection = () => {
                         <div className="flex justify-center mb-4 text-primary">
                             <Calendar size={32} strokeWidth={1.5} />
                         </div>
-                        <h4 className="text-4xl font-black text-mars-dark uppercase leading-none">13 Juin</h4>
-                        <p className="text-accent font-bold text-xs uppercase tracking-widest mt-2 mb-8">À partir de 19H</p>
+                        <h4 className="text-4xl font-black text-mars-dark uppercase leading-none">
+                            {t('programme.night.date')}
+                        </h4>
+                        <p className="text-accent font-bold text-xs uppercase tracking-widest mt-2 mb-8">
+                            {t('programme.night.time')}
+                        </p>
                         <Button
                             variant="primary"
                             size="small"
                             className="w-full"
                             onClick={() => console.log('Pass cliqué')}
                         >
-                            Prendre mon pass
+                            {t('programme.night.cta')}
                         </Button>
                     </div>
                 </footer>

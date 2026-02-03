@@ -27,7 +27,7 @@
             },
             {
                 "title": "GRATUITÉ",
-                "desc": "CONFÉRENCES ET WORKSHOPS ACCESSIBLES À TOUS."
+                "desc": "CONFÉRENCES ET WORKSHOPS ACCESSIBLE À TOUS."
             },
             {
                 "title": "POUR TOUS",
@@ -189,5 +189,58 @@
                 "description": "PROJECTION SUR GRAND ÉCRAN POUR UNE IMMERSION TOTALE."
             }
         ]
+    },
+    "_comment_programme": "--- SECTION PROGRAMME ---",
+    "programme": {
+        "badge": "Le cœur du festival",
+        "title_main": "Deux journées de",
+        "title_accent": "Conférences",
+        "title_free": "gratuites",
+        "features": [
+            "Débats engagés sur l'éthique et le futur",
+            "Confrontations d'idées entre artistes et tech",
+            "Interrogations stimulantes sur la création"
+        ],
+        "projections": {
+            "title": "Projections",
+            "desc": "Films en compétition et hors-compétition sur écran géant."
+        },
+        "workshops": {
+            "title": "Workshops",
+            "desc": "Scénario, création et post-prod avec des experts de l'IA."
+        },
+        "awards": {
+            "title": "Remise des prix",
+            "desc": "Cinéastes, acteurs et créateurs renommés pour récompenser l'excellence."
+        },
+        "night": {
+            "badge": "Cérémonie de clôture",
+            "title": "MARS.A.I NIGHT",
+            "desc": "Fête Électro mêlant IA et futurs souhaitables.",
+            "subdesc": "Une expérience immersive sonore et visuelle.",
+            "date": "13 Juin",
+            "time": "À partir de 19H",
+            "cta": "Prendre mon pass"
+        }
+    },
+    "venue": {
+        "badge": "Le Lieu",
+        "title_main": "La",
+        "title_accent": "Plateforme",
+        "subtitle": "(Ex Docks des Suds)",
+        "description": "4 000 m² d'espaces modulables dans le centre de Marseille, au cœur de l'écosystème numérique.",
+        "rooms": {
+            "sucres": {
+                "title": "Salle des Sucres",
+                "desc": "Futur sanctuaire des conférences et de la remise des prix de Mars.A.I. Un espace majestueux alliant patrimoine et technologie."
+            },
+            "plaza": {
+                "title": "Salle Plaza",
+                "desc": "L'épicentre du festival : accueil, animations, workshops et restauration. Le point de rencontre de tous les participants."
+            }
+        },
+        "image_alt": "Centre événementiel La Plateforme",
+        "image_title": "Centre événementiel La Plateforme",
+        "location": "Marseille, France"
     }
 }
