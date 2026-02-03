@@ -4,6 +4,7 @@ import HeroSection from "../components/sections/HeroSection"
 import ObjectivesSection from "../components/sections/ObjectivesSection"
 import ProgrammeSection from "../components/sections/ProgrammeSection"
 import ProjectSection from "../components/sections/ProjectSection"
+import VenueSection from "../components/sections/VenueSection"
 
 const Homepage = () => {
   return (
@@ -14,6 +15,7 @@ const Homepage = () => {
       <ObjectivesSection />
       <FormatSelection />
       <ProgrammeSection />
+      <VenueSection />
     </>
   )
 }
