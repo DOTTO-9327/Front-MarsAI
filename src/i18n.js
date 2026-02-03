@@ -1,17 +1,19 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-
-// Importation des fichiers JSON
-import translationFR from './locales/fr/translation.json';
-import translationEN from './locales/en/translation.json';
+import homeFR from './locales/fr/home.json';
+import submissionFR from './locales/fr/submission.json';
+import homeEN from './locales/en/home.json';
+import submissionEN from './locales/en/submission.json';
 
 const resources = {
   fr: {
-    translation: translationFR
+    home: homeFR,         
+    submission: submissionFR 
   },
   en: {
-    translation: translationEN
+    home: homeEN,
+    submission: submissionEN
   }
 };
 
@@ -21,6 +23,8 @@ i18n
   .init({
     resources,
     fallbackLng: 'fr',
+    ns: ['home', 'submission'], 
+    defaultNS: 'home',          
     interpolation: {
       escapeValue: false 
     }

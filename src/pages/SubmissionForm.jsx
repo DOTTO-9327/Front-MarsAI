@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
@@ -11,7 +11,7 @@ import TeamSection from '../components/submission/TeamSection';
 import SubmitActions from '../components/submission/SubmitActions';
 
 const SubmissionPage = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('submission');
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     // Initialisation de React Hook Form

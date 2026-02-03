@@ -1,4 +1,3 @@
-import React from 'react';
 import { Film, Youtube, Clock } from 'lucide-react';
 import Label from '../ui/Label';
 import Input from '../ui/Input';
@@ -21,32 +20,32 @@ const FilmSection = ({ t, register, errors, watch, setValue }) => {
                 </div>
                 <div>
                     <h2 className="text-lg font-black uppercase tracking-widest leading-tight">
-                        <span className="opacity-50 mr-2">02.</span>{t('submission.sections.film.title')}
+                        <span className="opacity-50 mr-2">02.</span>{t('sections.film.title')}
                     </h2>
-                    <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">{t('submission.sections.film.subtitle')}</p>
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500">{t('sections.film.subtitle')}</p>
                 </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
                 {/* TITRES */}
                 <div className="space-y-2">
-                    <Label>{t('submission.sections.film.original_title')}</Label>
-                    <Input type="text" placeholder={t('submission.placeholders.orig_title')} {...register("film.titleOriginal", { required: "Requis" })} className={errors.film?.titleOriginal ? "border-red-500" : ""} />
+                    <Label>{t('sections.film.original_title')}</Label>
+                    <Input type="text" placeholder={t('placeholders.orig_title')} {...register("film.titleOriginal", { required: "Requis" })} className={errors.film?.titleOriginal ? "border-red-500" : ""} />
                     {errors.film?.titleOriginal && <ErrorMessage message={errors.film.titleOriginal.message} />}
                 </div>
                 <div className="space-y-2">
-                    <Label>{t('submission.sections.film.english_title')}</Label>
-                    <Input type="text" placeholder={t('submission.placeholders.intl_title')} {...register("film.titleEnglish", { required: "Requis" })} className={errors.film?.titleEnglish ? "border-red-500" : ""} />
+                    <Label>{t('sections.film.english_title')}</Label>
+                    <Input type="text" placeholder={t('placeholders.intl_title')} {...register("film.titleEnglish", { required: "Requis" })} className={errors.film?.titleEnglish ? "border-red-500" : ""} />
                     {errors.film?.titleEnglish && <ErrorMessage message={errors.film.titleEnglish.message} />}
                 </div>
 
                 {/* LANGUE & DUREE */}
                 <div className="space-y-2">
-                    <Label>{t('submission.sections.film.original_lang')}</Label>
+                    <Label>{t('sections.film.original_lang')}</Label>
                     <div className="flex gap-4">
                         {['FR', 'EN'].map((l) => (
                             <button key={l} type="button" onClick={() => setValue('film.lang', l)} className={`flex-1 py-4 rounded-xl border text-[10px] font-black transition-all ${currentLang === l ? 'bg-primary border-primary text-white shadow-lg' : 'bg-mars-light border-slate-200 text-slate-500 hover:bg-slate-200'}`}>
-                                {t(`submission.sections.film.lang_options.${l.toLowerCase()}`)}
+                                {t(`sections.film.lang_options.${l.toLowerCase()}`)}
                             </button>
                         ))}
                     </div>
@@ -54,7 +53,7 @@ const FilmSection = ({ t, register, errors, watch, setValue }) => {
 
                 {/* DUREE (Nouveau) */}
                 <div className="space-y-2">
-                    <Label>{t('submission.sections.film.duration')}</Label>
+                    <Label>{t('sections.film.duration')}</Label>
                     <div className="relative group">
                         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 pointer-events-none"><Clock className="w-4 h-4" /></div>
                         <Input type="number" placeholder="60" className="pl-12" {...register("film.duration", { required: "Durée requise", min: 1, max: { value: 60, message: "Max 60 secondes" } })} />
@@ -64,10 +63,10 @@ const FilmSection = ({ t, register, errors, watch, setValue }) => {
 
                 {/* YOUTUBE */}
                 <div className="md:col-span-2 space-y-2">
-                    <Label>{t('submission.sections.film.youtube')}</Label>
+                    <Label>{t('sections.film.youtube')}</Label>
                     <div className="relative group">
                         <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-red-600 transition-colors pointer-events-none"><Youtube className="w-4 h-4" /></div>
-                        <Input type="url" placeholder={t('submission.placeholders.youtube')} className={`pl-12 pr-6 ${errors.film?.youtube ? "border-red-500 text-red-600" : ""}`}
+                        <Input type="url" placeholder={t('placeholders.youtube')} className={`pl-12 pr-6 ${errors.film?.youtube ? "border-red-500 text-red-600" : ""}`}
                             {...register("film.youtube", { required: "Lien requis", pattern: { value: /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/, message: "URL Youtube invalide" } })}
                         />
                     </div>
@@ -77,19 +76,19 @@ const FilmSection = ({ t, register, errors, watch, setValue }) => {
                 {/* SYNOPSIS */}
                 <div className="md:col-span-2 space-y-2">
                     <div className="flex justify-between">
-                        <Label>{t('submission.sections.film.synopsis_orig')}</Label>
+                        <Label>{t('sections.film.synopsis_orig')}</Label>
                         <span className={`text-[8px] font-bold transition-colors ${synopsisFr.length >= 1000 ? 'text-red-500' : 'text-slate-400'}`}>{synopsisFr.length}/1000</span>
                     </div>
-                    <TextArea rows={4} placeholder={t('submission.placeholders.synopsis_orig')} {...register("film.synopsisFr", { required: "Requis", maxLength: 1000 })} className={synopsisFr.length >= 1000 ? "border-red-500" : ""} />
+                    <TextArea rows={4} placeholder={t('placeholders.synopsis_orig')} {...register("film.synopsisFr", { required: "Requis", maxLength: 1000 })} className={synopsisFr.length >= 1000 ? "border-red-500" : ""} />
                     {errors.film?.synopsisFr && <ErrorMessage message={errors.film.synopsisFr.message} />}
                 </div>
 
                 <div className="md:col-span-2 space-y-2">
                     <div className="flex justify-between">
-                        <Label>{t('submission.sections.film.synopsis_en')}</Label>
+                        <Label>{t('sections.film.synopsis_en')}</Label>
                         <span className={`text-[8px] font-bold transition-colors ${synopsisEn.length >= 1000 ? 'text-red-500' : 'text-slate-400'}`}>{synopsisEn.length}/1000</span>
                     </div>
-                    <TextArea rows={4} placeholder={t('submission.placeholders.synopsis_en')} {...register("film.synopsisEn", { required: "Requis", maxLength: 1000 })} className={synopsisEn.length >= 1000 ? "border-red-500" : ""} />
+                    <TextArea rows={4} placeholder={t('placeholders.synopsis_en')} {...register("film.synopsisEn", { required: "Requis", maxLength: 1000 })} className={synopsisEn.length >= 1000 ? "border-red-500" : ""} />
                     {errors.film?.synopsisEn && <ErrorMessage message={errors.film.synopsisEn.message} />}
                 </div>
             </div>
