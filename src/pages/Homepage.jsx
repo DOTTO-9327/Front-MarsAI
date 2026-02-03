@@ -1,12 +1,12 @@
-import CompetitionSection from "../components/sections/CompetitionSection"
-import FormatSelection from "../components/sections/FormatSection"
-import HeroSection from "../components/sections/HeroSection"
-import ObjectivesSection from "../components/sections/ObjectivesSection"
-import PartnersSection from "../components/sections/PartnersSection"
-import ProgrammeSection from "../components/sections/ProgrammeSection"
-import ProjectSection from "../components/sections/ProjectSection"
-import StatsSection from "../components/sections/StatsSection"
-import VenueSection from "../components/sections/VenueSection"
+import CompetitionSection from "../components/homepage/CompetitionSection"
+import FormatSelection from "../components/homepage/FormatSection"
+import HeroSection from "../components/homepage/HeroSection"
+import ObjectivesSection from "../components/homepage/ObjectivesSection"
+import PartnersSection from "../components/homepage/PartnersSection"
+import ProgrammeSection from "../components/homepage/ProgrammeSection"
+import ProjectSection from "../components/homepage/ProjectSection"
+import StatsSection from "../components/homepage/StatsSection"
+import VenueSection from "../components/homepage/VenueSection"
 
 const Homepage = () => {
   return (
