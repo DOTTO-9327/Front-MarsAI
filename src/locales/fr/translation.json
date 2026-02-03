@@ -242,5 +242,18 @@
         "image_alt": "Centre événementiel La Plateforme",
         "image_title": "Centre événementiel La Plateforme",
         "location": "Marseille, France"
+    },
+    "stats": {
+        "title_main": "CHIFFRES",
+        "title_accent": "PROJETÉS",
+        "description": "Basé sur l'expertise du Mobile Film Festival et le rayonnement de La Plateforme.",
+        "countries": {
+            "number": "+120",
+            "label": "PAYS REPRÉSENTÉS"
+        },
+        "films": {
+            "number": "+600",
+            "label": "FILMS SOUMIS"
+        }
     }
 }
