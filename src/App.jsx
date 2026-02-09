@@ -3,6 +3,8 @@ import Homepage from './pages/Homepage'
 import MainLayout from './layouts/MainLayout'
 import Program from './pages/Program'
 import SubmissionForm from './pages/SubmissionForm'
+import DashboardAdmin from './pages/DashboardAdmin'
+import AdminLayout from './layouts/AdminLayout'
 
 function App() {
   return (
@@ -12,6 +14,9 @@ function App() {
           <Route index element={<Homepage />} />
           <Route path="soumettre" element={<SubmissionForm />} />
           <Route path="programme" element={<Program />} />
+        </Route>
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<DashboardAdmin />} />
         </Route>
       </Routes>
     </BrowserRouter>
