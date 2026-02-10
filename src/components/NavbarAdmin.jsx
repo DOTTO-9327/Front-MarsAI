@@ -1,19 +1,26 @@
 import { NavLink } from 'react-router-dom'
-import { Settings } from 'lucide-react'
+import {
+  Settings,
+  Film,
+  User,
+  ChartNoAxesCombined,
+  CalendarDays,
+  FolderKanban,
+} from 'lucide-react'
 
 const NavbarAdmin = () => {
   const linkStyle =
-    'mt-16 ml-8 inline-block rounded-xl px-6 py-3 text-xl font-black tracking-tighter transition-colors'
+    ' flex items-center gap-3 rounded-xl px-6 py-3 text-sm font-black tracking-tighter transition-colors mb-6 '
 
   return (
-    <div className="bg-mars-dark w-72 text-amber-50">
-      <div className=":hover bg-primary mt-16 ml-8 inline-block rounded-xl px-6 py-3 text-xl font-black tracking-tighter">
+    <div className="bg-mars-dark w-l text-amber-50">
+      <div className=":hover bg-primary mt-16 mb-10 ml-8 inline-block rounded-xl px-6 py-3 text-xl font-black tracking-tighter">
         <NavLink to="/" className="z-50 flex items-center gap-2">
           MARS.A.I
         </NavLink>
       </div>
-      <ul className="ml-10">
-        <li>
+      <ul className="flex flex-col items-start ml-10 mr-10">
+        <li className="">
           <NavLink
             to="/admin"
             end
@@ -21,21 +28,22 @@ const NavbarAdmin = () => {
               `${linkStyle} ${isActive ? 'bg-primary' : 'hover:bg-primary'}`
             }
           >
-            DASHBOARD
+            <FolderKanban size={20} />
+            <span>DASHBOARD</span>
+            {/* <FolderKanban /> DASHBOARD */}
           </NavLink>
         </li>
 
         <li>
           <NavLink
-            to="/admin/gestion"
+            to="/admin/movie"
             className={({ isActive }) =>
               `${linkStyle} ${isActive ? 'bg-primary' : 'hover:bg-primary'}`
             }
           >
-            GESTION DE FILMS
+            <Film /> GESTION DE FILMS
           </NavLink>
         </li>
-
         <li>
           <NavLink
             to="/admin/jury"
@@ -43,10 +51,9 @@ const NavbarAdmin = () => {
               `${linkStyle} ${isActive ? 'bg-primary' : 'hover:bg-primary'}`
             }
           >
-            JURY
+            <User /> JURY
           </NavLink>
         </li>
-
         <li>
           <NavLink
             to="/admin/resultats"
@@ -54,10 +61,9 @@ const NavbarAdmin = () => {
               `${linkStyle} ${isActive ? 'bg-primary' : 'hover:bg-primary'}`
             }
           >
-            RÉSULTATS & CLASSEMENT
+            <ChartNoAxesCombined /> RÉSULTATS & CLASSEMENT
           </NavLink>
         </li>
-
         <li>
           <NavLink
             to="/admin/events"
@@ -65,19 +71,17 @@ const NavbarAdmin = () => {
               `${linkStyle} ${isActive ? 'bg-primary' : 'hover:bg-primary'}`
             }
           >
-            ÉVÈNEMENTS
+            <CalendarDays /> ÉVÈNEMENTS
           </NavLink>
         </li>
-
         <li>
-          <Settings />
           <NavLink
             to="/admin/confirm"
             className={({ isActive }) =>
               `${linkStyle} ${isActive ? 'bg-primary' : 'hover:bg-primary'}`
             }
           >
-            CONFIRMATION
+            <Settings /> CONFIRMATION
           </NavLink>
         </li>
       </ul>
