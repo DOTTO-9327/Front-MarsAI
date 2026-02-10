@@ -5,6 +5,7 @@ import Program from './pages/Program'
 import SubmissionForm from './pages/SubmissionForm'
 import DashboardAdmin from './pages/DashboardAdmin'
 import AdminLayout from './layouts/AdminLayout'
+import Movie from './pages/Movie'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         </Route>
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<DashboardAdmin />} />
+          <Route path="movie" element={<Movie />} />
         </Route>
       </Routes>
     </BrowserRouter>
