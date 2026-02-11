@@ -1,90 +1,91 @@
 {
-    "header": {
-        "badge": "Appel à Projets 2026",
-        "title_main": "Soumission",
-        "title_accent": "Officielle",
-        "description": "Aucun compte requis. Remplissez les détails de votre film IA. Un lien d'édition sécurisé vous sera envoyé par email après validation. Tous les champs marqués d'une étoile (*) sont obligatoires."
+  "header": {
+    "badge": "Appel à Projets 2026",
+    "title_main": "Soumission",
+    "title_accent": "Officielle",
+    "description": "Aucun compte requis. Remplissez les détails de votre film IA. Un lien d'édition sécurisé vous sera envoyé par email après validation. Tous les champs marqués d'une étoile (*) sont obligatoires."
+  },
+  "sections": {
+    "director": {
+      "title": "Profil du Réalisateur",
+      "subtitle": "Identité et coordonnées",
+      "firstname": "Prénom *",
+      "lastname": "Nom *",
+      "email": "Email *",
+      "gender": "Genre *",
+      "gender_options": {
+        "m": "Masculin",
+        "f": "Féminin",
+        "o": "Autre"
+      },
+      "birthdate": "Date de Naissance *",
+      "phone": "Téléphone *",
+      "country": "Pays *",
+      "city": "Ville",
+      "job": "Profession / Job"
     },
-    "sections": {
-        "director": {
-            "title": "Profil du Réalisateur",
-            "subtitle": "Identité et coordonnées",
-            "firstname": "Prénom *",
-            "lastname": "Nom *",
-            "email": "Email *",
-            "gender": "Genre *",
-            "gender_options": {
-                "m": "Masculin",
-                "f": "Féminin",
-                "o": "Autre"
-            },
-            "birthdate": "Date de Naissance *",
-            "phone": "Téléphone *",
-            "country": "Pays *",
-            "city": "Ville",
-            "job": "Profession / Job"
-        },
-        "film": {
-            "title": "Détails de l'œuvre",
-            "subtitle": "Informations artistiques",
-            "original_title": "Titre Original *",
-            "english_title": "Titre Anglais *",
-            "original_lang": "Langue d'origine *",
-            "lang_options": {
-                "fr": "FRANÇAIS",
-                "en": "ANGLAIS"
-            },
-            "youtube": "Lien Youtube *",
-            "synopsis_orig": "Synopsis Original *",
-            "synopsis_en": "English Synopsis *",
-            "duration": "Durée (en secondes) *"
-        },
-        "tech": {
-            "title": "Expertise Technique IA",
-            "subtitle": "Méthodologie et outils",
-            "classification": "Classification *",
-            "type_ai": {
-                "title": "Génération 100% IA",
-                "sub": "Sans prises réelles"
-            },
-            "type_hybrid": {
-                "title": "Production Hybride",
-                "sub": "Tournage + IA"
-            },
-            "subtitles": "Sous-titrage *",
-            "subtitles_label": "Sous-titres intégrés dans la vidéo (Hardcoded)",
-            "tools": "Outils IA *",
-            "process": "Processus Créatif *",
-            "cover": "Affiche du film (Cover) *",
-            "cover_drag": "Glisser-déposer ou cliquer pour uploader"
-        },
-        "team": {
-            "title": "Composition de l'Équipe",
-            "subtitle": "Générique technique",
-            "firstname": "Prénom",
-            "lastname": "Nom",
-            "role": "Rôle",
-            "add_btn": "Ajouter un collaborateur"
-        }
+    "film": {
+      "title": "Détails de l'œuvre",
+      "subtitle": "Informations artistiques",
+      "original_title": "Titre Original *",
+      "english_title": "Titre Anglais *",
+      "original_lang": "Langue d'origine *",
+      "lang_options": {
+        "fr": "FRANÇAIS",
+        "en": "ANGLAIS"
+      },
+      "youtube": "Lien Youtube *",
+      "synopsis_orig": "Synopsis Original *",
+      "synopsis_en": "English Synopsis *",
+      "duration": "Durée (en secondes) *",
+      "movie_drag": "déposer vos films *"
     },
-    "placeholders": {
-        "firstname": "JEAN",
-        "lastname": "DUPONT",
-        "email": "JEAN@EXEMPLE.COM",
-        "phone": "+33 6...",
-        "orig_title": "TITRE EN LANGUE d'ORIGINE",
-        "intl_title": "INTERNATIONAL TITLE",
-        "youtube": "HTTPS://YOUTUBE.COM/WATCH?V=...",
-        "synopsis_orig": "DÉCRIVEZ VOTRE HISTOIRE...",
-        "synopsis_en": "TRANSLATE YOUR VISION...",
-        "social_fb": "FACEBOOK",
-        "social_insta": "INSTAGRAM",
-        "social_x": "TWITTER / X",
-        "social_yt": "CHAÎNE YOUTUBE",
-        "tools": "MIDJOURNEY, RUNWAY, PIKA...",
-        "process": "DÉCRIVEZ L'INTERACTION HUMAIN-MACHINE...",
-        "role": "SOUND DESIGN"
+    "tech": {
+      "title": "Expertise Technique IA",
+      "subtitle": "Méthodologie et outils",
+      "classification": "Classification *",
+      "type_ai": {
+        "title": "Génération 100% IA",
+        "sub": "Sans prises réelles"
+      },
+      "type_hybrid": {
+        "title": "Production Hybride",
+        "sub": "Tournage + IA"
+      },
+      "subtitles": "Sous-titrage *",
+      "subtitles_label": "Sous-titres intégrés dans la vidéo (Hardcoded)",
+      "tools": "Outils IA *",
+      "process": "Processus Créatif *",
+      "cover": "Affiche du film (Cover) *",
+      "cover_drag": "Glisser-déposer ou cliquer pour uploader"
     },
-    "legal": "En soumettant ce dossier, vous certifiez détenir les droits d'exploitation de l'œuvre et autorisez MARS.A.I à utiliser ces éléments pour la promotion du festival.",
-    "submit_btn": "Finaliser mon Inscription"
+    "team": {
+      "title": "Composition de l'Équipe",
+      "subtitle": "Générique technique",
+      "firstname": "Prénom",
+      "lastname": "Nom",
+      "role": "Rôle",
+      "add_btn": "Ajouter un collaborateur"
+    }
+  },
+  "placeholders": {
+    "firstname": "JEAN",
+    "lastname": "DUPONT",
+    "email": "JEAN@EXEMPLE.COM",
+    "phone": "+33 6...",
+    "orig_title": "TITRE EN LANGUE d'ORIGINE",
+    "intl_title": "INTERNATIONAL TITLE",
+    "youtube": "HTTPS://YOUTUBE.COM/WATCH?V=...",
+    "synopsis_orig": "DÉCRIVEZ VOTRE HISTOIRE...",
+    "synopsis_en": "TRANSLATE YOUR VISION...",
+    "social_fb": "FACEBOOK",
+    "social_insta": "INSTAGRAM",
+    "social_x": "TWITTER / X",
+    "social_yt": "CHAÎNE YOUTUBE",
+    "tools": "MIDJOURNEY, RUNWAY, PIKA...",
+    "process": "DÉCRIVEZ L'INTERACTION HUMAIN-MACHINE...",
+    "role": "SOUND DESIGN"
+  },
+  "legal": "En soumettant ce dossier, vous certifiez détenir les droits d'exploitation de l'œuvre et autorisez MARS.A.I à utiliser ces éléments pour la promotion du festival.",
+  "submit_btn": "Finaliser mon Inscription"
 }
