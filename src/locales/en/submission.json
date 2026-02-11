@@ -37,7 +37,8 @@
             "youtube": "Youtube Link *",
             "synopsis_orig": "Original Synopsis *",
             "synopsis_en": "English Synopsis *",
-            "duration": "Duration (seconds) *"
+            "duration": "Duration (seconds) *",
+            "movie_drag":"Drop your movie here *"
         },
         "tech": {
             "title": "Technical AI Expertise",
