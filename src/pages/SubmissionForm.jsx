@@ -90,18 +90,18 @@ const SubmissionPage = () => {
       // MODE SIMULATION (TEST SANS BACKEND)
       // ============================================================
 
-      console.group("Données prêtes à l'envoi (FormData)")
-      for (let pair of formData.entries()) {
-        console.log(
-          `%c${pair[0]}:`,
-          'color: #3b82f6; font-weight: bold;',
-          pair[1]
-        )
-      }
-      console.groupEnd()
+    //   console.group("Données prêtes à l'envoi (FormData)")
+    //   for (let pair of formData.entries()) {
+    //     console.log(
+    //       `%c${pair[0]}:`,
+    //       'color: #3b82f6; font-weight: bold;',
+    //       pair[1]
+    //     )
+    //   }
+    //   console.groupEnd()
 
       // Simulation d'attente réseau (2 secondes)
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+    //   await new Promise((resolve) => setTimeout(resolve, 2000))
 
       // Pour tester le cas d'erreur, décommenter la ligne ci-dessous :
       // throw new Error("Simulation d'erreur serveur (500)");
@@ -109,17 +109,17 @@ const SubmissionPage = () => {
       // ============================================================
       // VRAI APPEL API (À DÉCOMMENTER QUAND L'API EST PRÊTE)
       // ============================================================
-      /*
-            const response = await fetch('http://localhost:3000/api/submission', {
-                method: 'POST',
-                body: formData, // Le navigateur gère le Content-Type automatiquement
-            });
+      
+            const response = await fetch('http://localhost:3000/submission', {
+              method: 'POST',
+              body: formData, // Le navigateur gère le Content-Type automatiquement
+            })
 
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.message || "Erreur serveur");
             }
-            */
+            
       // ============================================================
 
       // SUCCÈS
