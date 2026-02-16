@@ -2,22 +2,38 @@ import logo from '../assets/StatCard.png'
 
 const HeaderAdmin = () => {
   return (
-    <div>
-      <section className="flex justify-between">
-        <h3>Back-office officiel</h3>
-        <div className="flex h-10 w-auto items-center gap-10">
-          <div className="flex-col justify-between">
-            <p>administrateur</p>
-            <p>admin@email.com</p>
+    <div className="w-full bg-mars-light">
+
+      <section className="flex justify-between items-center">
+        <h3 className="text-light-gray font-bold text-lg tracking-[0.2em] uppercase">
+          Back-office officiel
+        </h3>
+
+        <div className="flex items-center gap-4">
+          <div className="text-right">
+            <p className="text-md uppercase tracking-tight text-mars-dark">
+              Administrateur
+            </p>
+            <p className="text-[#2563EB] font-bold text-xs">
+              admin@email.com
+            </p>
           </div>
-          <div>
-            <img src={logo} alt="Logo" className="w-32" />
+          <div className="h-12 w-12 overflow-hidden rounded-xl border-2 border-white shadow-sm">
+            <img
+              src={logo}
+              alt="Profile"
+              className="h-full w-full object-cover"
+            />
           </div>
         </div>
       </section>
-      <section className='mt-20'>
-        <h3>admin management</h3>
+
+      <section className="mt-16">
+        <h3 className="text-accent uppercase tracking-[0.15em] font-bold text-2xl">
+          Admin Management
+        </h3>
       </section>
+
     </div>
   )
 }
