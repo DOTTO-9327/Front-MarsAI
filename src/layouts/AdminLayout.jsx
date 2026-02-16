@@ -4,15 +4,15 @@ import HeaderAdmin from '../components/HeaderAdmin'
 
 const AdminLayout = () => {
   return (
-    <>
-      <div className="bg-mars-light flex min-h-screen">
-        <NavbarAdmin />
-        <main className="w-full p-20">
-          <HeaderAdmin />
+    <div className="bg-mars-light flex h-screen overflow-hidden">
+      <NavbarAdmin />
+            <main className="flex-1 py-10 px-18 overflow-y-auto bg-mars-light">
+        <HeaderAdmin />
+        <div className="mt-8">
           <Outlet />
-        </main>
-      </div>
-    </>
+        </div>
+      </main>
+    </div>
   )
 }
 

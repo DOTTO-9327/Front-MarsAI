@@ -29,11 +29,11 @@ const MovieManagement = () => {
 
   return (
     <>
-      <div className="min-h-screen p-8">
-        <h3 className="mb-2 text-2xl font-bold">FILMS SOUMIS</h3>
-        <div className="mb-8 text-gray-500">
+      <div className="min-h-screen py-6">
+        <h3 className="mb-8 font-bold text-5xl">FILMS SOUMIS</h3>
+        <p className="max-w-2xl text-light-gray font-medium text-lg leading-snug mb-10">
           Gérer l'intégralité des soumissions et gérer les mise en avant.
-        </div>
+        </p>
         <div className="w-full rounded-[40px] bg-white p-8 shadow-sm">
           <div className="mb-10">
             <Searchbar />
@@ -52,6 +52,7 @@ const MovieManagement = () => {
             {data.map((movie) => (
               <CardMovie
                 key={movie.id}
+                id={movie.id} 
                 cover_image={movie.cover_image}
                 original_title={movie.original_title}
                 submitted_at={movie.submitted_at}
