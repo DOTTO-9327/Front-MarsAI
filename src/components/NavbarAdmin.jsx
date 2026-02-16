@@ -10,78 +10,92 @@ import {
 
 const NavbarAdmin = () => {
   const linkStyle =
-    ' flex items-center gap-3 rounded-xl px-6 py-3 text-sm font-black tracking-tighter transition-colors mb-6 '
+    ' flex items-center gap-3 rounded-2xl px-6 py-3 text-sm font-black tracking-tighter transition-colors  mb-6 h-19'
 
   return (
-    <div className="bg-mars-dark w-l text-amber-50">
-      <div className=":hover bg-primary mt-16 mb-10 ml-8 inline-block rounded-xl px-6 py-3 text-xl font-black tracking-tighter">
-        <NavLink to="/" className="z-50 flex items-center gap-2">
-          MARS.A.I
-        </NavLink>
+    <div className="bg-mars-dark w-l w-2xl pl-12 text-amber-50">
+      <div className=":hover bg-primary mt-16 mb-16 inline-block rounded-xl px-6 py-3 text-xl font-black tracking-tighter ">
+        <NavLink to="/">MARS.A.I</NavLink>
       </div>
-      <ul className="flex flex-col items-start ml-10 mr-10">
-        <li className="">
+      <ul className="flex flex-col">
+        <li className="w-4/5">
           <NavLink
             to="/admin"
             end
             className={({ isActive }) =>
-              `${linkStyle} ${isActive ? 'bg-primary' : 'hover:bg-primary'}`
+              `${linkStyle} ${isActive ? 'bg-primary text-white' : 'hover:bg-primary text-gray-400'}`
             }
           >
             <FolderKanban size={20} />
-            <span>DASHBOARD</span>
-            {/* <FolderKanban /> DASHBOARD */}
+            <span className="font-sans text-sm font-extrabold tracking-widest">
+              DASHBOARD
+            </span>
           </NavLink>
         </li>
 
-        <li>
+        <li className="w-4/5">
           <NavLink
             to="/admin/movie"
             className={({ isActive }) =>
-              `${linkStyle} ${isActive ? 'bg-primary' : 'hover:bg-primary'}`
+              `${linkStyle} ${isActive ? 'bg-primary text-white' : 'hover:bg-primary text-gray-400'}`
             }
           >
-            <Film /> GESTION DE FILMS
+            <Film />
+            <span className="font-sans text-sm font-extrabold tracking-widest">
+              GESTION DE FILMS
+            </span>
           </NavLink>
         </li>
-        <li>
+        <li className="w-4/5">
           <NavLink
             to="/admin/jury"
             className={({ isActive }) =>
-              `${linkStyle} ${isActive ? 'bg-primary' : 'hover:bg-primary'}`
+              `${linkStyle} ${isActive ? 'bg-primary text-white' : 'hover:bg-primary text-gray-400'}`
             }
           >
-            <User /> JURY
+            <User />
+            <span className="font-sans text-sm font-extrabold tracking-widest">
+              JURY
+            </span>
           </NavLink>
         </li>
-        <li>
+        <li className="w-4/5">
           <NavLink
             to="/admin/resultats"
             className={({ isActive }) =>
-              `${linkStyle} ${isActive ? 'bg-primary' : 'hover:bg-primary'}`
+              `${linkStyle} ${isActive ? 'bg-primary text-white' : 'hover:bg-primary text-gray-400'}`
             }
           >
-            <ChartNoAxesCombined /> RÉSULTATS & CLASSEMENT
+            <ChartNoAxesCombined />
+            <span className="font-sans text-sm font-extrabold tracking-widest">
+              RÉSULTATS & CLASSEMENT
+            </span>
           </NavLink>
         </li>
-        <li>
+        <li className="w-4/5">
           <NavLink
             to="/admin/events"
             className={({ isActive }) =>
-              `${linkStyle} ${isActive ? 'bg-primary' : 'hover:bg-primary'}`
+              `${linkStyle} ${isActive ? 'bg-primary text-white' : 'hover:bg-primary text-gray-400'}`
             }
           >
-            <CalendarDays /> ÉVÈNEMENTS
+            <CalendarDays />
+            <span className="font-sans text-sm font-extrabold tracking-widest">
+              ÉVÈNEMENTS
+            </span>
           </NavLink>
         </li>
-        <li>
+        <li className="w-4/5">
           <NavLink
             to="/admin/confirm"
             className={({ isActive }) =>
-              `${linkStyle} ${isActive ? 'bg-primary' : 'hover:bg-primary'}`
+              `${linkStyle} ${isActive ? 'bg-primary text-white' : 'hover:bg-primary text-gray-400'}`
             }
           >
-            <Settings /> CONFIRMATION
+            <Settings />
+            <span className="font-sans text-sm font-extrabold tracking-widest">
+              CONFIGURATION
+            </span>
           </NavLink>
         </li>
       </ul>
