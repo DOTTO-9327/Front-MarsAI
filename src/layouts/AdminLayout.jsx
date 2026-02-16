@@ -5,7 +5,7 @@ import HeaderAdmin from '../components/HeaderAdmin'
 const AdminLayout = () => {
   return (
     <>
-      <div className="flex min-h-screen">
+      <div className="bg-mars-light flex min-h-screen">
         <NavbarAdmin />
         <main className="w-full p-20">
           <HeaderAdmin />
