@@ -11,7 +11,7 @@ const PartnersSection = () => {
 
     return (
         <section className="w-full bg-[#F3F4F6] py-24 px-4 md:px-8 lg:px-16 font-sans">
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-6xl mx-auto">
 
                 {/* Header Section */}
                 <header className="flex flex-col items-center text-center mb-16 space-y-6">

@@ -24,7 +24,7 @@ const ProgrammePage = () => {
 
   return (
     <main className="bg-white py-16 px-4 md:px-8 font-sans min-h-screen">
-      <div className="max-w-7xl mx-auto space-y-16">
+      <div className="max-w-6xl mx-auto space-y-16">
         <ProgramHeader t={t} />
         <ConferenceList t={t} agenda={agenda} />
         <AccessSection />

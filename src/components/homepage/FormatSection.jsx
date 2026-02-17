@@ -23,7 +23,7 @@ const FormatSelection = () => {
 
     return (
         <section className="bg-mars-light py-20 px-4 md:px-8 font-sans">
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-6xl mx-auto">
 
                 <header className="text-center mb-16 space-y-4 animate-fade-in-up">
                     <h2 className="text-4xl md:text-6xl font-black text-mars-dark uppercase tracking-tight">

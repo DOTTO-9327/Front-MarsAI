@@ -17,7 +17,7 @@ const ProjectSection = () => {
 
   return (
     <section className="bg-mars-light py-24 px-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <div className="w-16 h-1.5 bg-primary mb-12"></div>
 
         <header className="mb-20">
