@@ -24,7 +24,7 @@ const ObjectivesSection = () => {
 
   return (
     <section className="bg-mars-dark py-24 px-6 md:px-12 text-white">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         
         <header className="mb-20">
           <h2 className="tracking-tighter">

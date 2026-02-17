@@ -6,7 +6,7 @@ const StatsSection = () => {
 
     return (
         <section className="w-full bg-white py-24 px-4 md:px-8 lg:px-16 font-sans">
-            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
+            <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
 
                 {/* Texte de gauche */}
                 <div className="flex-1 space-y-6">

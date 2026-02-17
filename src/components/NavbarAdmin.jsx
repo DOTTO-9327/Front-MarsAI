@@ -24,7 +24,7 @@ const NavbarAdmin = () => {
           { to: "/admin/movie", icon: <Film size={20} />, label: "GESTION DE FILMS" },
           { to: "/admin/jury", icon: <User size={20} />, label: "JURY" },
           { to: "/admin/resultats", icon: <ChartNoAxesCombined size={20} />, label: "RÉSULTATS" },
-          { to: "/admin/events", icon: <CalendarDays size={20} />, label: "ÉVÈNEMENTS" },
+          { to: "/admin/evenements", icon: <CalendarDays size={20} />, label: "ÉVÈNEMENTS" },
           { to: "/admin/confirm", icon: <Settings size={20} />, label: "CONFIGURATION" },
         ].map((item) => (
           <li key={item.to} className="w-full">

@@ -8,7 +8,7 @@ const VenueSection = () => {
 
     return (
         <section className="w-full bg-mars-light py-16 px-4 md:px-8 lg:px-16 font-sans">
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-6xl mx-auto">
 
                 {/* Header: Titre et Description */}
                 <header className="flex flex-col md:flex-row justify-between items-start gap-8 mb-16">

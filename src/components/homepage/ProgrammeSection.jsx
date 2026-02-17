@@ -8,7 +8,7 @@ const ProgrammeSection = () => {
 
     return (
         <section className="w-full bg-white py-24 px-4 md:px-8 lg:px-16 font-sans">
-            <div className="max-w-7xl mx-auto">
+            <div className="max-w-6xl mx-auto">
 
                 {/* Header Section */}
                 <header className="mb-12">

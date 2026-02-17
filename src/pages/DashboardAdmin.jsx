@@ -17,7 +17,7 @@ const DashboardAdmin = () => {
     <div className="min-h-screen py-6">
       {/* En-tête de la page */}
       <div className="mb-10">
-        <h2 className="mb-8 font-bold text-5xl">VUE D'ENSEMBLE</h2>
+        <h2 className="mb-4 font-black text-5xl tracking-tighter uppercase">VUE D'ENSEMBLE</h2>
         <p className="max-w-2xl text-light-gray font-medium text-lg leading-snug">
           Analyse détaillée de la progression du festival et des indicateurs de performance.
         </p>
