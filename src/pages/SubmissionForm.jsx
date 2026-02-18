@@ -77,7 +77,7 @@ const SubmissionPage = () => {
                 formData.append('team', JSON.stringify(data.team))
             }
 
-            const response = await (`${import.meta.env.VITE_API_URL}/submission`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/submission`, {
                 method: 'POST',
                 body: formData,
             })
