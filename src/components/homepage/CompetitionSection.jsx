@@ -4,7 +4,7 @@ import FilmCard from '../ui/FilmCard';
 import { Play, ArrowRight, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const CompetitionSection = ({ setView }) => {
+const CompetitionSection = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
     const [films, setFilms] = useState([]);
@@ -13,14 +13,14 @@ const CompetitionSection = ({ setView }) => {
     useEffect(() => {
         const fetchCompetitionFilms = async () => {
             try {
-                // On récupère tous les films
+                // On récupère tous les films depuis l'API
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/movie`);
                 const result = await response.json();
                 
-                // On ne garde que les films 'VALIDÉ' et on en prend 3 pour l'accueil
+                // On ne garde que les films 'VALIDÉ' ou 'APPROVED'
                 const validatedFilms = result.data
                     .filter(f => f.status?.toUpperCase() === 'VALIDÉ' || f.status?.toUpperCase() === 'APPROVED')
-                    .slice(0, 3);
+                    .slice(0, 3); // On en prend 3 pour la section d'accueil
                 
                 setFilms(validatedFilms);
             } catch (error) {
@@ -36,7 +36,7 @@ const CompetitionSection = ({ setView }) => {
         <section id="galerie" className="py-26 bg-white">
             <div className="max-w-6xl mx-auto px-6">
 
-                {/* Header */}
+                {/* Header Section */}
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
                     <div className="max-w-2xl">
                         <div className="flex items-center gap-3 text-accent mb-4">
@@ -52,6 +52,7 @@ const CompetitionSection = ({ setView }) => {
                     </div>
                 </div>
 
+                {/* Grille des Films */}
                 {loading ? (
                     <div className="flex justify-center py-20">
                         <Loader2 className="animate-spin text-primary w-12 h-12" />
@@ -64,10 +65,18 @@ const CompetitionSection = ({ setView }) => {
                                 title={film.original_title}
                                 director={`${film.firstname} ${film.lastname}`}
                                 country={film.original_language || "France"}
-                                thumbnail={`http://localhost:3000/${film.cover_image}`}
-                                tags={film.ia_tools ? film.ia_tools.split(',') : ["AI"]}
+                                thumbnail={film.cover_image} 
+                                tags={film.ia_tools ? film.ia_tools.split(',').slice(0, 2) : ["AI"]}
                                 onClick={() => {
-                                    const slug = film.original_title.toLowerCase().trim().replace(/[\s_]+/g, '-');
+                                    // Génération d'un slug propre (sans accents ni caractères spéciaux)
+                                    const slug = film.original_title
+                                        .toLowerCase()
+                                        .trim()
+                                        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                                        .replace(/[^\w\s-]/g, '')
+                                        .replace(/[\s_-]+/g, '-')
+                                        .replace(/^-+|-+$/g, '');
+                                        
                                     navigate(`/movie/${slug}`, { state: { movieId: film.id } });
                                 }}
                             />
@@ -75,9 +84,10 @@ const CompetitionSection = ({ setView }) => {
                     </div>
                 )}
 
+                {/* CTA vers la galerie complète */}
                 <button
                     onClick={() => navigate('/galerie')}
-                    className="text-xl group flex items-center gap-2 font-bold uppercase tracking-widest text-primary transition-all mt-12"
+                    className="text-xl group flex items-center gap-2 font-bold uppercase tracking-widest text-primary transition-all mt-12 cursor-pointer"
                 >
                     {t('competition.cta')}
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />

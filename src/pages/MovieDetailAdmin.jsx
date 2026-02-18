@@ -3,19 +3,29 @@ import { ArrowLeft, User, Globe, BookOpen, Cpu, Copy, Loader2, ChevronDown } fro
 import { useState, useEffect } from 'react'
 
 const MovieDetailAdmin = () => {
-    const { title } = useParams() // Le nom du film dans l'URL
+    const { title } = useParams()
     const location = useLocation()
     const navigate = useNavigate()
-    
+
     // On récupère l'ID passé par CardMovie via le state
     const id = location.state?.movieId
-    
+
     const [movie, setMovie] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [updating, setUpdating] = useState(false)
 
-    const serverUrl = 'http://localhost:3000/'
+    /**
+     * Gestion dynamiquement des URLs des médias (S3 ou Local)
+     */
+    const getMediaUrl = (path) => {
+        if (!path) return null;
+        if (path.startsWith('http')) return path; // URL directe S3
+
+        const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
+        const cleanPath = path.startsWith('/') ? path : `/${path}`;
+        return `${baseUrl}${cleanPath}`;
+    };
 
     const statusTranslations = {
         'PENDING': 'EN ATTENTE',
@@ -27,8 +37,6 @@ const MovieDetailAdmin = () => {
     }
 
     useEffect(() => {
-        // Sécurité : si on arrive sur la page sans ID (ex: refresh F5), 
-        // on redirige vers la liste car le state est perdu
         if (!id) {
             navigate('/admin/movie')
             return
@@ -67,10 +75,6 @@ const MovieDetailAdmin = () => {
         }
     }
 
-    if (loading) return <div className="flex h-96 items-center justify-center"><Loader2 className="animate-spin text-primary" size={40} /></div>
-    if (error) return <p className="p-10 text-center text-red-500 font-bold">Erreur : {error}</p>
-    if (!movie) return null
-
     const getStatusTheme = (status) => {
         const s = status?.toUpperCase()
         if (s === 'VALIDÉ' || s === 'APPROVED') {
@@ -91,6 +95,10 @@ const MovieDetailAdmin = () => {
         }
     }
 
+    if (loading) return <div className="flex h-96 items-center justify-center"><Loader2 className="animate-spin text-primary" size={40} /></div>
+    if (error) return <p className="p-10 text-center text-red-500 font-bold">Erreur : {error}</p>
+    if (!movie) return null
+
     const theme = getStatusTheme(movie.status)
     const displayStatus = statusTranslations[movie.status?.toUpperCase()] || movie.status
 
@@ -100,14 +108,24 @@ const MovieDetailAdmin = () => {
                 <ArrowLeft size={16} /> Retour Liste des films
             </button>
 
-            {/* Hero Section */}
-            <div className="relative mb-8 aspect-video w-full overflow-hidden rounded-[40px] shadow-2xl bg-mars-dark border border-gray-100">
-                <img src={`${serverUrl}${movie.cover_image}`} className="h-full w-full object-cover" alt={movie.original_title} />
-                <div className="absolute inset-0 flex items-center justify-center bg-black/10">
-                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-accent text-white shadow-xl transition-transform hover:scale-110">
-                        <div className="ml-1 h-0 w-0 border-b-10 border-l-18 border-t-10 border-b-transparent border-l-white border-t-transparent"></div>
+            {/* Hero Section avec Lecteur Vidéo */}
+            <div className="relative mb-8 aspect-video w-full overflow-hidden rounded-[40px] shadow-2xl bg-black border border-gray-100">
+                {movie.video_local_path ? (
+                    <video
+                        controls
+                        className="h-full w-full object-contain"
+                        poster={getMediaUrl(movie.cover_image)}
+                        preload="metadata"
+                    >
+                        <source src={getMediaUrl(movie.video_local_path)} type="video/mp4" />
+                        Votre navigateur ne supporte pas la lecture de vidéos.
+                    </video>
+                ) : (
+                    <div className="flex h-full w-full items-center justify-center bg-mars-dark">
+                        <img src={getMediaUrl(movie.cover_image)} className="absolute inset-0 h-full w-full object-cover opacity-20 blur-sm" alt="" />
+                        <p className="relative font-black uppercase tracking-widest text-white">Vidéo non disponible</p>
                     </div>
-                </div>
+                )}
             </div>
 
             <div className="mb-8 rounded-[40px] bg-white p-10 shadow-sm border border-gray-100">
@@ -120,8 +138,8 @@ const MovieDetailAdmin = () => {
                                 <div>
                                     <p className="text-[10px] font-bold uppercase text-light-gray tracking-widest">Réalisateur</p>
                                     <p className="font-bold text-mars-dark">
-                                        {movie.firstname && movie.lastname 
-                                            ? `${movie.firstname} ${movie.lastname}` 
+                                        {movie.firstname && movie.lastname
+                                            ? `${movie.firstname} ${movie.lastname}`
                                             : `Réalisateur #${movie.director_id}`}
                                     </p>
                                 </div>
@@ -140,10 +158,10 @@ const MovieDetailAdmin = () => {
                         <label className="mb-3 block text-[10px] font-black uppercase tracking-widest opacity-80">
                             Statut actuel : {updating ? 'Mise à jour...' : displayStatus}
                         </label>
-                        
+
                         <div className="relative">
                             <select
-                                value="" 
+                                value=""
                                 onChange={(e) => handleStatusChange(e.target.value)}
                                 disabled={updating}
                                 className={`w-full cursor-pointer appearance-none rounded-2xl border-2 bg-white/90 p-4 text-sm font-black outline-none transition-all shadow-sm pr-10 hover:bg-white ${theme.select}`}
@@ -159,7 +177,7 @@ const MovieDetailAdmin = () => {
                 </div>
 
                 <div className="mt-12 pt-8 border-t border-gray-50">
-                    <p className="mb-3 text-[10px] font-bold uppercase text-light-gray tracking-widest">URL du film</p>
+                    <p className="mb-3 text-[10px] font-bold uppercase text-light-gray tracking-widest">URL publique</p>
                     <div className="flex gap-2">
                         <input readOnly value={`${window.location.origin}/movie/${movie.id}`} className="flex-1 rounded-2xl border border-gray-100 bg-gray-50 px-5 py-4 font-mono text-xs text-gray-400 outline-none" />
                         <button onClick={() => navigator.clipboard.writeText(`${window.location.origin}/movie/${movie.id}`)} className="rounded-2xl bg-mars-dark px-8 py-4 text-xs font-bold uppercase text-white hover:bg-black transition-all active:scale-95 flex items-center gap-2 shadow-lg">
