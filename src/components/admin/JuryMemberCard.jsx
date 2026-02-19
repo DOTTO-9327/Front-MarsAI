@@ -16,7 +16,7 @@ const JuryMemberCard = ({ member }) => {
 
   return (
     <article 
-      onClick={() => navigate('/admin/jury/rating')}
+      onClick={() => navigate(`/admin/jury/${member.id}/rating`)}
       className="bg-white rounded-[2.5rem] p-8 shadow-sm border-2 border-slate-50 flex flex-col md:flex-row items-start md:items-center justify-between group hover:shadow-xl hover:border-primary/10 transition-all cursor-pointer gap-6 md:gap-0"
     >
       <div className="flex items-center gap-6 flex-1 w-full">
