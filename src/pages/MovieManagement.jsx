@@ -18,7 +18,13 @@ const MovieManagement = () => {
         const response = await fetch(`${import.meta.env.VITE_API_URL}/movie`)
         if (!response.ok) throw new Error(`Erreur HTTP : ${response.status}`)
         const result = await response.json()
-        setData(result.data)
+
+        // --- TRI DES DONNÉES ---
+        const sortedData = result.data.sort((a, b) => {
+          return new Date(b.submitted_at) - new Date(a.submitted_at)
+        })
+
+        setData(sortedData)
       } catch (err) {
         setError(err.message)
       } finally {
@@ -129,4 +135,4 @@ const MovieManagement = () => {
   )
 }
 
-export default MovieManagement
+export default MovieManagement 
