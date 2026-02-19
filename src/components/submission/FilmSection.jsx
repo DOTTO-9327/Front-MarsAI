@@ -1,4 +1,3 @@
-
 import { Film, Clock, Check } from 'lucide-react' // Retrait des icônes inutilisées
 import Label from '../ui/Label'
 import Input from '../ui/Input'
@@ -48,7 +47,13 @@ const FilmSection = ({ t, register, errors, watch, setValue }) => {
           <Input
             type="text"
             placeholder={t('placeholders.orig_title')}
-            {...register('film.titleOriginal', { required: 'Requis' })}
+            {...register('film.titleOriginal', {
+              required: 'Requis',
+              maxLength: {
+                value: 255,
+                message: 'Le titre saisi doit contenir moins de 255 caractères',
+              },
+            })}
             className={errors.film?.titleOriginal ? 'border-red-500' : ''}
           />
           {errors.film?.titleOriginal && (
@@ -61,7 +66,11 @@ const FilmSection = ({ t, register, errors, watch, setValue }) => {
           <Input
             type="text"
             placeholder={t('placeholders.intl_title')}
-            {...register('film.titleEnglish', { required: 'Requis' })}
+            {...register('film.titleEnglish', {
+              required: 'Requis',
+              maxLength: {
+                value: 255,
+                message: 'Le titre saisi doit contenir moins de 255 caractères',}, } )}
             className={errors.film?.titleEnglish ? 'border-red-500' : ''}
           />
           {errors.film?.titleEnglish && (
@@ -104,7 +113,7 @@ const FilmSection = ({ t, register, errors, watch, setValue }) => {
               {...register('film.duration', {
                 required: 'Durée requise',
                 min: { value: 1, message: 'Min 1s' },
-                max: { value: 60, message: 'Max 60s' },
+                max: { value: 60, message: 'La vidéo ne peut pas dépasser 60 secondes' },
               })}
             />
           </div>
@@ -178,10 +187,19 @@ const FilmSection = ({ t, register, errors, watch, setValue }) => {
           <TextArea
             rows={4}
             placeholder={t('placeholders.synopsis_orig')}
-            {...register('film.synopsisFr', {
+            {...register('film.synopsisFr', 
+              {
               required: 'Requis',
-              maxLength: 1000,
-            })}
+              minLenght:{
+                value: 10,
+                message: 'le synopsis doit contenir au moins 10 caractères',},
+              maxLength:{
+                value:1000,
+                message: 'Le synospsis ne doit contenir moins de 1000 caractères',
+            
+            },
+          })}
+          
             className={errors.film?.synopsisFr ? 'border-red-500' : ''}
           />
           {errors.film?.synopsisFr && (
@@ -203,9 +221,13 @@ const FilmSection = ({ t, register, errors, watch, setValue }) => {
             rows={4}
             placeholder={t('placeholders.synopsis_en')}
             {...register('film.synopsisEn', {
-              required: 'Requis',
-              maxLength: 1000,
-            })}
+              required: 'Requis', 
+              minLenght:{value: 10,
+                message: 'le synopsis doit contenir au moins 10 caractères'},
+              maxLength: {value:1000
+                 ,message:'Le synopsis doit contenir au moins 1000 caractères'
+            }
+            ,})}
             className={errors.film?.synopsisEn ? 'border-red-500' : ''}
           />
           {errors.film?.synopsisEn && (
