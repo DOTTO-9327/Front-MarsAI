@@ -6,6 +6,8 @@ const JuryDistributionPage = () => {
     // --- ÉTATS ---
     const [juryMembers, setJuryMembers] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [isDistributing, setIsDistributing] = useState(false);
+    
     const [showForm, setShowForm] = useState(false);
     const [status, setStatus] = useState({ type: '', msg: '' });
     const [formData, setFormData] = useState({
@@ -15,6 +17,15 @@ const JuryDistributionPage = () => {
         password: '',
         role: 'JURY'
     });
+
+    // --- Couleurs des Avatars ---
+    const avatarColors = [
+        'bg-orange-500', 'bg-blue-500', 'bg-purple-500', 
+        'bg-pink-500', 'bg-emerald-500', 'bg-indigo-500', 
+        'bg-cyan-500', 'bg-rose-500', 'bg-amber-500'
+    ];
+    // Associe toujours la même couleur au même ID
+    const getRandomColor = (id) => avatarColors[id % avatarColors.length];
 
     // --- CHARGEMENT DES DONNÉES ---
     const fetchStaff = async () => {
@@ -27,11 +38,13 @@ const JuryDistributionPage = () => {
                 const formattedStaff = result.data.map(member => ({
                     id: member.id,
                     name: `${member.firstname} ${member.lastname}`,
+                    initial: member.firstname.charAt(0).toUpperCase(),
+                    bgColor: getRandomColor(member.id),
                     role: member.role,
                     activity: "Actif", 
-                    progress: 0,       // À lier plus tard avec la table rating
-                    total: 0, 
-                    current: 0 
+                    total: member.total_assigned || 0, 
+                    progress: member.current_progress || 0,
+                    current: member.current_progress || 0 
                 }));
                 setJuryMembers(formattedStaff);
             }
@@ -46,7 +59,7 @@ const JuryDistributionPage = () => {
         fetchStaff();
     }, []);
 
-    // --- ACTIONS ---
+    // --- ACTION : AJOUTER UN MEMBRE ---
     const handleAddMember = async (e) => {
         e.preventDefault();
         setStatus({ type: 'info', msg: 'Création du compte...' });
@@ -75,6 +88,31 @@ const JuryDistributionPage = () => {
             }
         } catch (err) {
             setStatus({ type: 'error', msg: err.message });
+        }
+    };
+
+    // --- ACTION : DISTRIBUTION AUTOMATIQUE ---
+    const handleDistribute = async () => {
+        if (!window.confirm("Attention, cela va réassigner tous les films non notés. Continuer ?")) return;
+        
+        setIsDistributing(true);
+        try {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/admin/distribute`, {
+                method: 'POST'
+            });
+            const result = await response.json();
+            
+            if (result.success) {
+                alert(result.message);
+                await fetchStaff(); 
+            } else {
+                alert("Erreur : " + result.message);
+            }
+        } catch (err) {
+            console.error(err);
+            alert("Erreur de connexion au serveur.");
+        } finally {
+            setIsDistributing(false);
         }
     };
 
@@ -200,8 +238,14 @@ const JuryDistributionPage = () => {
                             L'algorithme répartit les films entre les jurés actifs. Chaque film sera assigné à exactement 2 membres pour garantir une double évaluation.
                         </p>
                         <div className="flex flex-col md:flex-row gap-4">
-                            <button className="flex-1 bg-primary hover:bg-blue-700 text-white font-black uppercase tracking-widest py-5 rounded-2xl transition-all active:scale-95">
-                                Lancer l'attribution
+                            {/* BOUTON D'ATTRIBUTION CONNECTÉ */}
+                            <button 
+                                onClick={handleDistribute}
+                                disabled={isDistributing}
+                                className="flex-1 bg-primary hover:bg-blue-700 text-white font-black uppercase tracking-widest py-5 rounded-2xl transition-all active:scale-95 flex justify-center items-center gap-3 disabled:opacity-75 disabled:cursor-not-allowed"
+                            >
+                                {isDistributing && <Loader2 className="animate-spin" size={20} />}
+                                {isDistributing ? "Calcul en cours..." : "Lancer l'attribution"}
                             </button>
                             <button className="flex-1 bg-transparent border-2 border-white/10 hover:border-white/30 text-white font-black uppercase tracking-widest py-5 rounded-2xl transition-all">
                                 Mode Manuel
