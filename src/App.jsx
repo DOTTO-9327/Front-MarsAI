@@ -46,9 +46,8 @@ function App() {
         </Route>
 
         {/* ROUTES JURY RATING */}
-        <Route path="/admin/jury/rating" element={<JuryRatingLayout />}>
+        <Route path="/admin/jury/:juryId/rating" element={<JuryRatingLayout />}>
           <Route index element={<MovieRatingPage />} />
-          <Route path=":movieId" element={<MovieRatingPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -42,7 +42,7 @@ const MovieGallery = () => {
         fetchGallery();
     }, []);
 
-    // Logique de filtrage basée sur les Select de la maquette
+    // Logique de filtrage 
     useEffect(() => {
         let temp = films;
 
@@ -64,7 +64,7 @@ const MovieGallery = () => {
         <div className="min-h-screen bg-white py-16">
             <div className="max-w-6xl mx-auto">
 
-                {/* Bouton Retour (Maquette) */}
+                {/* Bouton Retour */}
                 <button
                     onClick={() => navigate('/')}
                     className="text-md group flex items-center gap-2 font-bold uppercase tracking-widest text-primary transition-all mb-12"
@@ -75,7 +75,7 @@ const MovieGallery = () => {
                     </span>
                 </button>
 
-                {/* Titre de la Galerie (Maquette) */}
+                {/* Titre de la Galerie */}
                 <div className="mb-12">
                     <h2 className="text-mars-dark mb-6">
                         LA GALERIE <br />
@@ -86,7 +86,7 @@ const MovieGallery = () => {
                     </p>
                 </div>
 
-                {/* Barre de Filtres Select (Maquette) */}
+                {/* Barre de Filtres Select */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16">
                     {/* Filtre Type IA */}
                     <div className="relative">
@@ -157,7 +157,7 @@ const MovieGallery = () => {
                             ))}
                         </div>
 
-                        {/* Pagination (Maquette) */}
+                        {/* Pagination  */}
                         <div className="mt-20 flex flex-col items-center gap-6">
                             <div className="flex items-center gap-2">
                                 <button className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 text-light-gray hover:bg-mars-light transition-colors">
