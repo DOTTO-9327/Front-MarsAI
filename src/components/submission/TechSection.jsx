@@ -117,14 +117,14 @@ const TechSection = ({ t, register, errors, watch, setValue }) => {
             rows={4}
             placeholder={t('placeholders.tools')}
             {...register('tech.toolsUsed', {
-              required: 'Requis',
+              required: 'Outils IA utilisés requis',
               maxLength: 500, minLength: {
                 value: 2,
-                message: 'Le champ saisi doit contenir au moins 2 caractères',
+                message: 'Le champ outils IA saisi doit contenir au moins 2 caractères',
               },
               maxLength: {
                 value: 500,
-                message: 'Le champ saisi doit contenir moins de 500 caractères',
+                message: 'Le champ outils IA saisi doit contenir moins de 500 caractères',
               },
             })}
             className={`focus:border-primary bg-white/5 text-white placeholder:text-slate-500 focus:bg-white/10 ${errors.tech?.toolsUsed || toolsUsed.length >= 500 ? 'border-red-500' : 'border-white/10'}`}
@@ -148,13 +148,13 @@ const TechSection = ({ t, register, errors, watch, setValue }) => {
             rows={4}
             placeholder={t('placeholders.process')}
             {...register('tech.creativeProcess', {
-              required: 'Requis',minLength: {
+              required: 'Processus de créativité requis',minLength: {
                 value: 2,
-                message: 'Le champ saisi doit contenir au moins 2 caractères',
+                message: 'Le champ processus de créativité saisi doit contenir au moins 2 caractères',
               },
               maxLength: {
                 value: 500,
-                message: 'Le champ saisi doit contenir moins de 500 caractères',
+                message: 'Le champ processus de créativité saisi doit contenir moins de 500 caractères',
               },
             })}
             className={`focus:border-primary bg-white/5 text-white placeholder:text-slate-500 focus:bg-white/10 ${errors.tech?.creativeProcess || creativeProcess.length >= 500 ? 'border-red-500' : 'border-white/10'}`}
@@ -210,4 +210,4 @@ const TechSection = ({ t, register, errors, watch, setValue }) => {
   )
 }
 
-export default TechSection
+export default TechSection;

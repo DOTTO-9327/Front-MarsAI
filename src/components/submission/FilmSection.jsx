@@ -48,7 +48,7 @@ const FilmSection = ({ t, register, errors, watch, setValue }) => {
             type="text"
             placeholder={t('placeholders.orig_title')}
             {...register('film.titleOriginal', {
-              required: 'Requis',
+              required: 'Titre requis',
               maxLength: {
                 value: 255,
                 message: 'Le titre saisi doit contenir moins de 255 caractères',
@@ -67,7 +67,7 @@ const FilmSection = ({ t, register, errors, watch, setValue }) => {
             type="text"
             placeholder={t('placeholders.intl_title')}
             {...register('film.titleEnglish', {
-              required: 'Requis',
+              required: 'titre en anglais requis',
               maxLength: {
                 value: 255,
                 message: 'Le titre saisi doit contenir moins de 255 caractères',}, } )}
@@ -189,13 +189,13 @@ const FilmSection = ({ t, register, errors, watch, setValue }) => {
             placeholder={t('placeholders.synopsis_orig')}
             {...register('film.synopsisFr', 
               {
-              required: 'Requis',
-              minLenght:{
+              required: 'Synopsis requis',
+              minLength:{
                 value: 10,
-                message: 'le synopsis doit contenir au moins 10 caractères',},
+                message: 'le synopsis doit contenir au moins 10 caractères'},
               maxLength:{
                 value:1000,
-                message: 'Le synospsis ne doit contenir moins de 1000 caractères',
+                message: 'Le synospsis doit contenir moins de 1000 caractères',
             
             },
           })}
@@ -221,10 +221,10 @@ const FilmSection = ({ t, register, errors, watch, setValue }) => {
             rows={4}
             placeholder={t('placeholders.synopsis_en')}
             {...register('film.synopsisEn', {
-              required: 'Requis', 
-              minLenght:{value: 10,
+              required: 'Synopsis requis', 
+              minLength:{value: 10,
                 message: 'le synopsis doit contenir au moins 10 caractères'},
-              maxLength: {value:1000
+              maxLength: {value: 1000
                  ,message:'Le synopsis doit contenir au moins 1000 caractères'
             }
             ,})}
@@ -239,4 +239,4 @@ const FilmSection = ({ t, register, errors, watch, setValue }) => {
   )
 }
 
-export default FilmSection
+export default FilmSection;

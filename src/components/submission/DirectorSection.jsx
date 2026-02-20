@@ -41,7 +41,7 @@ const DirectorSection = ({ t, register, errors }) => {
             type="text"
             placeholder={t('placeholders.firstname')}
             {...register('director.firstname', {
-              required: 'Le prénom est requis',
+              required: 'Prénom requis',
               minLength: {
                 value: 2,
                 message: 'Le prénom doit contenir au moins 2 caractères',
@@ -64,7 +64,7 @@ const DirectorSection = ({ t, register, errors }) => {
             type="text"
             placeholder={t('placeholders.lastname')}
             {...register('director.lastname', {
-              required: 'Le nom est requis',minLength: {
+              required: 'Nom requis',minLength: {
                 value: 2,
                 message: 'Le prénom doit contenir au moins 2 caractères',
               },
@@ -87,10 +87,10 @@ const DirectorSection = ({ t, register, errors }) => {
             type="email"
             placeholder={t('placeholders.email')}
             {...register('director.email', {
-              required: "L'email est requis",
+              required: "Email requis",
               pattern: {
                 value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                message: 'Invalide',
+                message: 'veuillez renseigner un email valide',
               },
             })}
             className={errors.director?.email ? 'border-red-500' : ''}
@@ -107,8 +107,8 @@ const DirectorSection = ({ t, register, errors }) => {
             type="text"
             placeholder="FRANCE"
             {...register('director.country', {
-              required: 'Le pays est requis', 
-              maxLength: {
+              required: 'Pays requis', 
+              maxLength: { 
                 value: 100,
                 message: 'Le pays saisi doit contenir moins de 100 caractères',
               },
@@ -127,7 +127,7 @@ const DirectorSection = ({ t, register, errors }) => {
             type="text"
             placeholder="MARSEILLE"
             {...register('director.city',{
-              required: 'La ville est requise', 
+            
               maxLength: {
                 value: 100,
                 message: 'Le pays saisi doit contenir moins de 100 caractères',
@@ -144,10 +144,9 @@ const DirectorSection = ({ t, register, errors }) => {
             placeholder="ARTISTE 3D"
             {...register('director.job',
               {
-                required: 'Un job est requis',
               maxLength: {
                 value: 100,
-                message: 'Le job saisi doit contenir moins de 100 caractères',
+                message: 'Le métier saisi doit contenir moins de 100 caractères',
               },
             })}
           />
@@ -184,7 +183,7 @@ const DirectorSection = ({ t, register, errors }) => {
           <Input
             type="date"
             {...register('director.birthdate', {
-              required: 'La date de naissance est requise',
+              required: ' date de naissance requise',
             })}
             className={errors.director?.birthdate ? 'border-red-500' : ''}
           />
@@ -200,7 +199,7 @@ const DirectorSection = ({ t, register, errors }) => {
             type="tel"
             placeholder={t('placeholders.phone')}
             {...register('director.phone', {
-              required: 'Le téléphone est requis',
+              required: 'téléphone requis',
             })}
             className={errors.director?.phone ? 'border-red-500' : ''}
           />
@@ -220,7 +219,7 @@ const DirectorSection = ({ t, register, errors }) => {
             type="text"
             placeholder={t('placeholders.social_fb')}
             className="pl-12"
-            {...register('director.social.facebook', { required : 'Le lien facebook est requis ',
+            {...register('director.social.facebook', { 
               })}
           />
         </div>
@@ -232,7 +231,7 @@ const DirectorSection = ({ t, register, errors }) => {
             type="text"
             placeholder={t('placeholders.social_insta')}
             className="pl-12"
-            {...register('director.social.instagram', { required : 'Le lien instagram est requis ',
+            {...register('director.social.instagram', { 
               })}
           />
         </div>
@@ -244,7 +243,7 @@ const DirectorSection = ({ t, register, errors }) => {
             type="text"
             placeholder={t('placeholders.social_x')}
             className="pl-12"
-            {...register('director.social.twitter', { required : 'Le lien twitter est requis ', 
+            {...register('director.social.twitter', { 
               
               })}
           />
@@ -257,7 +256,7 @@ const DirectorSection = ({ t, register, errors }) => {
             type="text"
             placeholder={t('placeholders.social_yt')}
             className="pl-12"
-            {...register('director.social.youtube', { required : 'Le lien youtube est requis '
+            {...register('director.social.youtube', { 
               
               })}
           />
@@ -267,4 +266,4 @@ const DirectorSection = ({ t, register, errors }) => {
   )
 }
 
-export default DirectorSection
+export default DirectorSection;
