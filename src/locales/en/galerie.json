@@ -1,0 +1,15 @@
+{
+    "header": {
+        "button": "Back to Home",
+
+        "description": "Explore the entire official selection. Unique visions, pioneering short films created with Artificial Intelligence.",
+
+        "blackTittle": "THE GALLERY",
+
+         "orangeTittle": "FILM",
+
+          "filterIA": "AI Type",
+
+         "filterCountry": "country origin"
+    }
+}

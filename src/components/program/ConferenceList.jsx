@@ -1,16 +1,16 @@
 
-const ConferenceList = ({ t, agenda }) => {
+const ConferenceList = ({ agenda }) => {
   return (
     <section className="mb-16 mt-28">
       <h2 className="text-4xl tracking-tight text-mars-dark mb-10 inline-block border-b-[5px] border-primary pb-4">
-        Programme des conférences
+        t{('section.conferenceProgram')}
       </h2>
-      
+
       {/* Liste des cartes */}
       <div className="flex flex-col gap-10">
         {agenda.map((item, idx) => (
-          <article 
-            key={idx} 
+          <article
+            key={idx}
             className="bg-mars-light rounded-4xl px-8 py-6 md:py-8 flex flex-col md:flex-row md:items-center gap-4 md:gap-10 shadow-sm border border-transparent hover:border-primary/10 hover:shadow-lg transition-all duration-300 group"
           >
             {/* Heure */}
@@ -24,7 +24,7 @@ const ConferenceList = ({ t, agenda }) => {
               <span className="text-accent text-[0.65rem] font-bold uppercase tracking-[0.2em] mb-2">
                 {item.tag}
               </span>
-              
+
               {/* Titre */}
               <h3 className="text-mars-dark text-lg md:text-xl font-extrabold uppercase leading-tight group-hover:text-primary transition-colors">
                 {item.title}

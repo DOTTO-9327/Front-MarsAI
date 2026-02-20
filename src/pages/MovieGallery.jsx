@@ -5,7 +5,7 @@ import FilmCard from '../components/ui/FilmCard';
 import { Loader2, ArrowLeft, ChevronDown } from 'lucide-react';
 
 const MovieGallery = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation('galerie');
     const navigate = useNavigate();
 
     const [films, setFilms] = useState([]);
@@ -71,18 +71,22 @@ const MovieGallery = () => {
                 >
                     <ArrowLeft className="w-6 h-6 transition-transform group-hover:-translate-x-2" />
                     <span className="relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all group-hover:after:w-full">
-                        {t ? t('nav.back', 'Retour Accueil') : 'Retour Accueil'}
+                        {t('header.button')}
+
                     </span>
                 </button>
 
                 {/* Titre de la Galerie */}
                 <div className="mb-12">
                     <h2 className="text-mars-dark mb-6">
-                        LA GALERIE <br />
-                        <span className="text-accent">DES FILMS</span>
+                        {t('header.blackTittle')} <br />
+
+                        <span className="text-accent">
+                            {t('header.orangeTittle')}</span>
                     </h2>
                     <p className="text-mars-dark font-light text-lg max-w-2xl leading-snug">
-                        Explorez l'intégralité de la sélection officielle. Des visions uniques, des courts-métrages pionniers créés avec l'Intelligence Artificielle.
+                        {t('header.description')}
+
                     </p>
                 </div>
 
@@ -94,8 +98,9 @@ const MovieGallery = () => {
                             onChange={(e) => setSelectedTypeIA(e.target.value)}
                             className="w-full bg-mars-light border-none rounded-xl py-4 px-6 appearance-none font-bold text-light-gray text-sm cursor-pointer outline-none focus:ring-2 focus:ring-primary/20"
                         >
-                            <option value="">Type d'IA</option>
+                            <option value="">{t('header.filterIA')}</option>
                             {typeIAOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+
                         </select>
                         <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-light-gray pointer-events-none" size={18} />
                     </div>
@@ -106,24 +111,13 @@ const MovieGallery = () => {
                             onChange={(e) => setSelectedPays(e.target.value)}
                             className="w-full bg-mars-light border-none rounded-xl py-4 px-6 appearance-none font-bold text-light-gray text-sm cursor-pointer outline-none focus:ring-2 focus:ring-primary/20"
                         >
-                            <option value="">Pays d'origine</option>
+                            <option value="">{t('header.filterCountry')}</option>
                             {paysOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+
                         </select>
                         <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-light-gray pointer-events-none" size={18} />
                     </div>
 
-                    {/* Filtre Statut */}
-                    <div className="relative">
-                        <select
-                            onChange={(e) => setSelectedStatut(e.target.value)}
-                            className="w-full bg-mars-light border-none rounded-xl py-4 px-6 appearance-none font-bold text-light-gray text-sm cursor-pointer outline-none focus:ring-2 focus:ring-primary/20"
-                        >
-                            <option value="">Statut</option>
-                            <option value="Selection">Sélection Officielle</option>
-                            <option value="Winner">Lauréats</option>
-                        </select>
-                        <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-light-gray pointer-events-none" size={18} />
-                    </div>
                 </div>
 
                 {/* Grille de Films */}
