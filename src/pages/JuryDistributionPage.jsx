@@ -1,19 +1,19 @@
 import { useState, useEffect } from 'react';
-import { Zap, UserPlus, X, ShieldCheck, Loader2 } from 'lucide-react';
+import { Zap, UserPlus, X, ShieldCheck, Loader2, Lock } from 'lucide-react';
 import JuryMemberCard from '../components/admin/JuryMemberCard';
 
 const JuryDistributionPage = () => {
-    // --- ÉTATS ---
     const [juryMembers, setJuryMembers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [isDistributing, setIsDistributing] = useState(false);
     
     const [showForm, setShowForm] = useState(false);
     const [status, setStatus] = useState({ type: '', msg: '' });
+    
     const [formData, setFormData] = useState({
         firstname: '',
         lastname: '',
-        email: '',
+        mail: '',
         password: '',
         role: 'JURY'
     });
@@ -24,7 +24,6 @@ const JuryDistributionPage = () => {
         'bg-pink-500', 'bg-emerald-500', 'bg-indigo-500', 
         'bg-cyan-500', 'bg-rose-500', 'bg-amber-500'
     ];
-    // Associe toujours la même couleur au même ID
     const getRandomColor = (id) => avatarColors[id % avatarColors.length];
 
     // --- CHARGEMENT DES DONNÉES ---
@@ -49,7 +48,7 @@ const JuryDistributionPage = () => {
                 setJuryMembers(formattedStaff);
             }
         } catch (err) {
-            console.error("Erreur lors de la récupération du staff:", err);
+            console.error("Erreur staff:", err);
         } finally {
             setLoading(false);
         }
@@ -59,30 +58,30 @@ const JuryDistributionPage = () => {
         fetchStaff();
     }, []);
 
-    // --- ACTION : AJOUTER UN MEMBRE ---
+    // --- ACTION : AJOUTER UN MEMBRE (Hashage géré par le Back) ---
     const handleAddMember = async (e) => {
         e.preventDefault();
-        setStatus({ type: 'info', msg: 'Création du compte...' });
+        setStatus({ type: 'info', msg: 'Sécurisation et création...' });
 
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/admin/staff`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(formData) 
             });
 
             const result = await response.json();
 
             if (result.success) {
                 setStatus({ type: 'success', msg: 'Membre ajouté avec succès !' });
-                setFormData({ firstname: '', lastname: '', email: '', password: '', role: 'JURY' });
+                setFormData({ firstname: '', lastname: '', mail: '', password: '', role: 'JURY' });
                 
                 await fetchStaff();
 
                 setTimeout(() => {
                     setShowForm(false);
                     setStatus({ type: '', msg: '' });
-                }, 2000);
+                }, 2500);
             } else {
                 throw new Error(result.message || "Erreur lors de l'ajout");
             }
@@ -110,7 +109,7 @@ const JuryDistributionPage = () => {
             }
         } catch (err) {
             console.error(err);
-            alert("Erreur de connexion au serveur.");
+            alert("Erreur de connexion.");
         } finally {
             setIsDistributing(false);
         }
@@ -126,7 +125,7 @@ const JuryDistributionPage = () => {
                             Distribution & Jury
                         </h3>
                         <p className="max-w-2xl text-light-gray font-medium text-lg leading-snug">
-                            Gérez les lots de visionnage pour chaque membre du comité.
+                            Gérez les membres du comité et la répartition sécurisée des films.
                         </p>
                     </div>
 
@@ -150,7 +149,10 @@ const JuryDistributionPage = () => {
                             <div className="p-3 bg-primary/10 rounded-xl text-primary">
                                 <ShieldCheck size={24} />
                             </div>
-                            <h4 className="font-black text-2xl uppercase tracking-tight">Enregistrer un collaborateur</h4>
+                            <div>
+                                <h4 className="font-black text-2xl uppercase tracking-tight leading-none">Ajouter un membre</h4>
+                                <p className="text-[10px] text-light-gray font-bold uppercase mt-1">Sécurité : Hachage BCrypt activé</p>
+                            </div>
                         </div>
 
                         <form onSubmit={handleAddMember} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -172,15 +174,18 @@ const JuryDistributionPage = () => {
                                 <label className="text-[10px] font-black uppercase tracking-widest text-light-gray ml-2">Email Pro</label>
                                 <input 
                                     type="email" required className="bg-gray-50 border-none rounded-2xl p-4 text-sm focus:ring-2 ring-primary outline-none"
-                                    value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})}
+                                    value={formData.mail} onChange={e => setFormData({...formData, mail: e.target.value})}
                                 />
                             </div>
-                            <div className="flex flex-col gap-2">
+                            <div className="flex flex-col gap-2 relative">
                                 <label className="text-[10px] font-black uppercase tracking-widest text-light-gray ml-2">Mot de passe provisoire</label>
-                                <input 
-                                    type="password" required className="bg-gray-50 border-none rounded-2xl p-4 text-sm focus:ring-2 ring-primary outline-none"
-                                    value={formData.password} onChange={e => setFormData({...formData, password: e.target.value})}
-                                />
+                                <div className="relative">
+                                    <input 
+                                        type="password" required className="w-full bg-gray-50 border-none rounded-2xl p-4 pr-12 text-sm focus:ring-2 ring-primary outline-none"
+                                        value={formData.password} onChange={e => setFormData({...formData, password: e.target.value})}
+                                    />
+                                    <Lock className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-300" size={16} />
+                                </div>
                             </div>
                             <div className="flex flex-col gap-2">
                                 <label className="text-[10px] font-black uppercase tracking-widest text-light-gray ml-2">Rôle / Accès</label>
@@ -194,13 +199,13 @@ const JuryDistributionPage = () => {
                             </div>
                             <div className="flex items-end">
                                 <button type="submit" className="w-full bg-black text-white h-13 rounded-2xl font-black uppercase tracking-widest text-[11px] hover:bg-primary transition-all shadow-lg">
-                                    Créer le compte
+                                    Enregistrer le collaborateur
                                 </button>
                             </div>
                         </form>
 
                         {status.msg && (
-                            <div className={`mt-6 p-4 rounded-xl font-bold text-xs uppercase tracking-widest text-center ${status.type === 'error' ? 'bg-red-50 text-red-500' : 'bg-green-50 text-green-500'}`}>
+                            <div className={`mt-6 p-4 rounded-xl font-bold text-xs uppercase tracking-widest text-center animate-pulse ${status.type === 'error' ? 'bg-red-50 text-red-500' : 'bg-green-50 text-green-500'}`}>
                                 {status.msg}
                             </div>
                         )}
@@ -208,7 +213,7 @@ const JuryDistributionPage = () => {
                 )}
 
                 {/* LISTE DES MEMBRES */}
-                <section className="space-y-8 mb-12" aria-label="Membres du jury">
+                <section className="space-y-8 mb-12">
                     {loading ? (
                         <div className="flex flex-col items-center justify-center py-20 gap-4">
                             <Loader2 className="animate-spin text-primary" size={40} />
@@ -220,7 +225,7 @@ const JuryDistributionPage = () => {
                         ))
                     ) : (
                         <div className="bg-white rounded-[2.5rem] p-20 text-center border-2 border-dashed border-gray-100">
-                            <p className="text-light-gray font-bold italic">Aucun membre trouvé en base de données.</p>
+                            <p className="text-light-gray font-bold italic">Aucun membre trouvé.</p>
                         </div>
                     )}
                 </section>
@@ -228,17 +233,16 @@ const JuryDistributionPage = () => {
                 {/* Section Distribution Automatique */}
                 <section className="bg-mars-dark rounded-[2.5rem] p-12 text-white shadow-2xl relative overflow-hidden">
                     <div className="relative z-10">
-                        <div className="flex items-center gap-3 mb-6">
-                            <Zap className="text-accent fill-accent" size={24} />
+                        <div className="flex items-center gap-3 mb-6 text-accent">
+                            <Zap fill="currentColor" size={24} />
                         </div>
                         <h2 className="text-4xl font-black uppercase tracking-tighter mb-4 leading-tight">
                             Distribution Automatique
                         </h2>
                         <p className="text-slate-400 text-sm font-medium leading-relaxed max-w-2xl mb-10 uppercase tracking-wide">
-                            L'algorithme répartit les films entre les jurés actifs. Chaque film sera assigné à exactement 2 membres pour garantir une double évaluation.
+                            Répartit équitablement les films approuvés entre les jurés (2 jurés par film).
                         </p>
                         <div className="flex flex-col md:flex-row gap-4">
-                            {/* BOUTON D'ATTRIBUTION CONNECTÉ */}
                             <button 
                                 onClick={handleDistribute}
                                 disabled={isDistributing}
@@ -252,7 +256,6 @@ const JuryDistributionPage = () => {
                             </button>
                         </div>
                     </div>
-                    <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-primary/5 blur-[120px] rounded-full" />
                 </section>
             </div>
         </main>
