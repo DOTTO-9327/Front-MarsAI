@@ -1,0 +1,50 @@
+{
+    "header": {
+        
+        "orangeTittle": "LES MEMBRES DU JURY",
+
+        "whiteTittle1": "UN JURY",
+
+        "BlueTittle": "D'EXCEPTION",
+
+        "whiteTittle2": "POUR LE FUTUR"
+    },
+
+    "section": {
+        "presidentTittle": "Président du Jury",
+
+        "presidentLegend1": "Nous ne jugeons pas seulement des films, mais des visions d'avenirs souhaitables créées avec des outils qui nous dépassent encore. C'est le début d'une nouvelle ère.",
+
+        "presidentLegend2": " Réalisateur multi-récompensé, Julien Valros apporte son regard expert sur les nouvelles formes de narration numérique.",
+
+        "presidentBio": "Voir sa biographie",
+
+        "blackTittle": "LES MEMBRES",
+
+        "blueTittle": "DU JURY",
+
+        "memberLegend": "Des experts, créateurs et visionnaires réunis pour délibérer sur la sélection officielle.",
+
+        "whiteTittle": "LA CHARTE",
+
+        "orangeTittle": "DE NOTATION",
+
+        "notationLegend": "Le jury s'engage à évaluer chaque court-métrage selon quatre piliers fondamentaux pour garantir l'équité entre les participants.",
+
+        "tittle_1": "Originalité IA",
+
+        "desc_1": "Niveau d'innovation et d'utilisation créative des outils IA.",
+
+        "tittle_2": "Esthétique Visuelle",
+
+        "desc_2": "Qualité artistique et cohérence de l'univers visuel généré.",
+
+        "tittle_3": "Qualité Narrative",
+
+        "desc_3": "La force de l'histoire et son impact émotionnel sur l'audience.",
+
+        "tittle_4": "Émotion & Impact",
+
+        "desc_4": "La capacité du film à toucher le spectateur durablement."
+    }
+}

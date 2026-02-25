@@ -1,9 +1,12 @@
+import { useTranslation } from "react-i18next";
 
 const ConferenceList = ({ agenda }) => {
+  const { t } = useTranslation('program');
+
   return (
     <section className="mb-16 mt-28">
       <h2 className="text-4xl tracking-tight text-mars-dark mb-10 inline-block border-b-[5px] border-primary pb-4">
-        t{('section.conferenceProgram')}
+        {t('section.conferenceProgram')}
       </h2>
 
       {/* Liste des cartes */}

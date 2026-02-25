@@ -9,8 +9,21 @@
 
         "descriptionPlaceEvent": "L'épicentre de la révolution créative marseillaise. 4000m² dédiés à l'image et au futur.",
 
-        "conferenceProgram": "Programme des conférences"
+        "conferenceProgram": "Programme des conférences",
 
+        "accessTittle": "Accès",
+
+        "Publictransport": "Transports en commun",
+
+        "Transportbycar": "Voiture",
+
+        "Address": "Adresse" 
+    },
+
+    "button": {
+
+        "Reservemyplace": "Reserver ma place"
+        
     }
 
 }

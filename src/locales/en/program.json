@@ -9,7 +9,21 @@
 
         "descriptionPlaceEvent": "The epicenter of Marseille's creative revolution. 4000m² dedicated to image and the future.",
 
-         "conferenceProgram": "CONFERENCE PROGRAM"
+         "conferenceProgram": "CONFERENCE PROGRAM",
 
+          "accessTittle": "Access",
+
+          "PublicTransport": "Public Transport",
+
+          "Transportbycar": "Transport by Car",
+
+           "Address": "Adress"
+    },
+
+    "button": {
+
+        "Reservemyplace": "Reserve my place"
+        
     }
+
 }

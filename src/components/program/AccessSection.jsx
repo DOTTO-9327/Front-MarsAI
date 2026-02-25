@@ -1,12 +1,17 @@
 import { TrainFront, Car, Navigation, MapPin } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
-const AccessSection = ({ t }) => {
+const AccessSection = () => {
+    const { t } = useTranslation('program');
+
+
 
     const accessPoints = [
         {
             icon: TrainFront,
             title: "Transports en commun",
             description: "Tram T2 / T3 - Arrêt Arenc Le Silo. Métro M2 - Station Désirée Clary."
+            
         },
         {
             icon: Car,
@@ -23,7 +28,7 @@ const AccessSection = ({ t }) => {
     return (
         <section className="mb-16 mt-28">
             <h2 className="text-4xl font-black uppercase tracking-tight text-mars-dark mb-10 inline-block border-b-[5px] border-primary pb-4">
-                {t ? t('access.title', 'Accès') : 'Accès'}
+                {t('section.accessTittle')}
             </h2>
 
             <div className="flex flex-col gap-10">
