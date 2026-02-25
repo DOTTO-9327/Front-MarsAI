@@ -1,39 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, Sparkles } from 'lucide-react';
-
-/* ==========================================================================
-  A FAIRE : SYSTÈME D'AUTHENTIFICATION 
-  ==========================================================================
-  
-  Ce composant est prêt, mais nécessite les actiopns suivantes :
-  
-  1. CONTEXTE AUTH : Créer 'src/context/AuthContext.js' pour gérer l'état global.
-     - Implémenter une fonction 'login(userData)' qui met à jour l'état.
-     - Gérer la persistance via localStorage : 
-       localStorage.setItem('user', JSON.stringify(userData));
-  
-  2. PROVIDER : Envelopper le composant <App /> avec <AuthProvider>.
-  
-  3. ROUTE PROTÉGÉE : Utiliser le composant <ProtectedRoute /> dans 'App.jsx' 
-     pour entourer les routes sous '/admin' (sauf '/admin/login').
-     
-  4. Une fois fait, décommenter l'import 'useAuth' et la ligne 
-     const { login } = useAuth(); ci-dessous.
-  ==========================================================================
-*/
-
-// import { useAuth } from '../context/AuthContext'; // À DÉCOMMENTER 
+import { useAuth } from '../context/AuthContext';
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const { login } = useAuth(); // Utilisation du vrai contexte
   
-  // Simulation de useAuth pour éviter les erreurs de compilation 
-  const login = (data) => console.log("Login contextuel avec :", data); 
-  // const { login } = useAuth(); //  À ACTIVER PLUS TARD
-
   const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [formData, setFormData] = useState({ mail: '', password: '' }); 
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -43,8 +18,7 @@ const LoginPage = () => {
     setError('');
 
     try {
-      // Appel à l'API de connexion 
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/login`, { 
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, { 
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -53,15 +27,14 @@ const LoginPage = () => {
       const data = await response.json();
 
       if (data.success) {
-        // 1. Stockage dans le futur contexte global
-        login(data.user); 
-        // 2. Redirection vers le tableau de bord
+        // Sauvegarde de l'utilisateur et du token dans le contexte
+        login(data.user, data.token); 
         navigate('/admin'); 
       } else {
         setError(data.message || 'Identifiants invalides');
       }
     } catch (err) {
-      setError("Le serveur est injoignable. L'API est-elle lancée ?");
+      setError("L'identifiant ou le mot de passe est incorrect.");
     } finally {
       setIsLoading(false);
     }
@@ -69,8 +42,6 @@ const LoginPage = () => {
 
   return (
     <main className="min-h-screen bg-mars-light flex flex-col items-center justify-center p-6 font-sans">
-      
-      {/* Header Branding */}
       <header className="text-center mb-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
         <h1 className="text-5xl md:text-6xl font-black text-mars-dark italic tracking-tighter uppercase">
           Connexion
@@ -83,10 +54,7 @@ const LoginPage = () => {
         </div>
       </header>
 
-      {/* Login Card */}
-      <section className="bg-white rounded-4xl shadow-2xl shadow-primary/5 p-8 md:p-12 w-full max-w-md border border-gray-100 transition-all">
-        
-        {/* Affichage des erreurs API */}
+      <section className="bg-white rounded-[2.5rem] shadow-2xl shadow-primary/5 p-8 md:p-12 w-full max-w-md border border-gray-100 transition-all">
         {error && (
           <div className="mb-6 p-4 bg-red-50 text-red-600 text-xs font-bold rounded-xl border border-red-100 animate-shake">
             {error}
@@ -94,27 +62,24 @@ const LoginPage = () => {
         )}
 
         <form onSubmit={handleSubmit} className="space-y-7">
-          
-          {/* Email Input */}
           <div className="space-y-2">
-            <label htmlFor="email" className="block text-[10px] font-black uppercase tracking-widest text-mars-dark/60 ml-1">
+            <label htmlFor="mail" className="block text-[10px] font-black uppercase tracking-widest text-mars-dark/60 ml-1">
               Adresse E-mail
             </label>
             <div className="relative group">
               <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-light-gray group-focus-within:text-primary transition-colors" size={18} />
               <input
                 type="email"
-                id="email"
+                id="mail"
                 required
                 placeholder="EMAIL@EXEMPLE.COM"
-                value={formData.email}
-                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                value={formData.mail}
+                onChange={(e) => setFormData({...formData, mail: e.target.value})}
                 className="w-full bg-mars-light border-2 border-transparent rounded-2xl py-4 pl-12 pr-4 text-sm font-medium focus:bg-white focus:border-primary/20 outline-none transition-all"
               />
             </div>
           </div>
 
-          {/* Password Input */}
           <div className="space-y-2">
             <label htmlFor="password" className="block text-[10px] font-black uppercase tracking-widest text-mars-dark/60 ml-1">
               Mot de passe
@@ -140,7 +105,6 @@ const LoginPage = () => {
             </div>
           </div>
 
-          {/* Submit Button */}
           <button
             type="submit"
             disabled={isLoading}
@@ -150,7 +114,6 @@ const LoginPage = () => {
           </button>
         </form>
       </section>
-
     </main>
   );
 };

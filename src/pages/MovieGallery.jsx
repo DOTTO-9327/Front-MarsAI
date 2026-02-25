@@ -15,7 +15,6 @@ const MovieGallery = () => {
     // États pour les filtres
     const [selectedTypeIA, setSelectedTypeIA] = useState("");
     const [selectedPays, setSelectedPays] = useState("");
-    const [selectedStatut, setSelectedStatut] = useState("");
 
     useEffect(() => {
         const fetchGallery = async () => {
@@ -105,17 +104,6 @@ const MovieGallery = () => {
                         <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-light-gray pointer-events-none" size={18} />
                     </div>
 
-                    <div className="relative">
-                        <select
-                            onChange={(e) => setSelectedStatut(e.target.value)}
-                            className="w-full bg-mars-light border-none rounded-xl py-4 px-6 appearance-none font-bold text-light-gray text-sm cursor-pointer outline-none focus:ring-2 focus:ring-primary/20"
-                        >
-                            <option value="">Statut</option>
-                            <option value="Selection">Sélection Officielle</option>
-                            <option value="Winner">Lauréats</option>
-                        </select>
-                        <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-light-gray pointer-events-none" size={18} />
-                    </div>
                 </div>
 
                 {/* Grille de Films */}
