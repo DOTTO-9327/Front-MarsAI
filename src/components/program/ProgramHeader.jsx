@@ -1,9 +1,11 @@
-import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { MapPin, ArrowLeft, Sparkles } from 'lucide-react';
 
-const ProgramHeader = ({ t }) => {
+const ProgramHeader = () => {
     const navigate = useNavigate();
+    const { t } = useTranslation('program');
+
 
     return (
         <header className="mb-12 max-w-7xl mx-auto">
@@ -14,7 +16,7 @@ const ProgramHeader = ({ t }) => {
             >
                 <ArrowLeft className="w-6 h-6 transition-transform group-hover:-translate-x-2" />
                 <span className="relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all group-hover:after:w-full">
-                    {t ? t('nav.back', 'Retour Accueil') : 'Retour Accueil'}
+                    {t('header.button')}
                 </span>
             </button>
 
@@ -22,7 +24,7 @@ const ProgramHeader = ({ t }) => {
             <div className="flex items-center gap-4 text-accent mb-8">
                 <Sparkles size={40} strokeWidth={1} />
                 <span className="text-lg font-bold uppercase tracking-[0.2em]">
-                    {t ? t('program.infos', 'Infos Pratiques') : 'Infos Pratiques'}
+                    {t('header.infosPratiques')}
                 </span>
             </div>
 
@@ -43,7 +45,7 @@ const ProgramHeader = ({ t }) => {
                     </h3>
 
                     <p className="text-gray-500 text-sm font-bold leading-relaxed tracking-widest max-w-4xl">
-                        {t ? t('venue.desc', "L'épicentre de la révolution créative marseillaise. 4000m² dédiés à l'image et au futur.") : "L'épicentre de la révolution créative marseillaise. 4000m² dédiés à l'image et au futur."}
+                        {t('section.descriptionPlaceEvent')}
                     </p>
                 </div>
             </div>

@@ -1,10 +1,12 @@
 import React from 'react';
 import { Zap } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-const WorkshopGrid = ({ t }) => {
+const WorkshopGrid = () => {
     const navigate = useNavigate();
-    
+    const { t } = useTranslation('program');
+
     // Données des ateliers incluant les IDs et les lieux pour la page de soumission
     const workshops = [
         {
@@ -42,16 +44,16 @@ const WorkshopGrid = ({ t }) => {
     ];
 
     const handleBooking = (workshop) => {
-        navigate('/reserver', { 
-            state: { 
-                workshopData: workshop 
-            } 
+        navigate('/reserver', {
+            state: {
+                workshopData: workshop
+            }
         });
     };
 
     return (
         <section className="bg-mars-dark rounded-4xl p-8 md:p-16 text-white relative overflow-hidden mb-16 shadow-2xl">
-            
+
             <header className="relative z-10 mb-12">
                 <div className="flex items-center gap-3 text-accent mb-6">
                     <Zap size={30} fill="currentColor" />
@@ -59,12 +61,12 @@ const WorkshopGrid = ({ t }) => {
                         {t ? t('workshops.badge', 'Ateliers Pratiques') : 'Ateliers Pratiques'}
                     </span>
                 </div>
-                
+
                 <h2 className="text-5xl md:text-6xl leading-none uppercase mb-6">
                     WORKSHOPS<br />
                     <span className="text-primary">IA CRÉATIVE</span>
                 </h2>
-                
+
                 <p className="text-slate-400 text-xs md:text-sm font-bold tracking-widest max-w-2xl leading-relaxed">
                     {t ? t('workshops.desc', "Passez de la théorie à la pratique avec les meilleurs experts internationaux. Attention, places très limitées (max 15 par session).") : "Passez de la théorie à la pratique avec les meilleurs experts internationaux. Attention, places très limitées (max 15 par session)."}
                 </p>
@@ -73,8 +75,8 @@ const WorkshopGrid = ({ t }) => {
             {/* Grille des cartes */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
                 {workshops.map((ws, idx) => (
-                    <article 
-                        key={ws.id} 
+                    <article
+                        key={ws.id}
                         className="bg-white/5 border border-white/10 p-8 md:p-10 rounded-3xl hover:border-primary/50 hover:bg-white/10 transition-all duration-300 group flex flex-col h-full"
                     >
                         {/* Horaire */}
@@ -95,11 +97,11 @@ const WorkshopGrid = ({ t }) => {
                             </div>
 
                             {/* Bouton avec gestionnaire de clic corrigé */}
-                            <button 
+                            <button
                                 onClick={() => handleBooking(ws)}
                                 className="w-full py-4 bg-white text-mars-dark text-xs font-black uppercase tracking-widest rounded-xl hover:bg-primary hover:text-white hover:scale-[1.02] active:scale-95 transition-all duration-300 cursor-pointer shadow-lg"
                             >
-                                {t ? t('workshops.cta', 'Réserver ma place') : 'Réserver ma place'}
+                                {t('button.Reservemyplace')}
                             </button>
                         </div>
                     </article>

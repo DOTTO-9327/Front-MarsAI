@@ -1,0 +1,50 @@
+{
+    "header": {
+        
+        "orangeTittle": "THE JURY MEMBERS",
+
+        "whiteTittle1": "AN JURY",
+
+        "BlueTittle": "EXCEPTIONAL",
+
+        "whiteTittle2": "FOR THE FUTURE"
+    },
+
+     "section": {
+        "presidentTittle": "President of Jury",
+
+        "presidentLegend1": "We are not just judging films, but visions of desirable futures created with tools that are still beyond our grasp. This is the beginning of a new era.",
+
+        "presidentLegend2": " Multi-award-winning director Julien Valros brings his expert perspective to new forms of digital storytelling.",
+
+        "presidentBio" : "See his biography",
+
+        "blackTittle": "THE MEMBERS",
+
+        "blueTittle": "OF THE JURY",
+
+        "memberLegend": "Experts, creators and visionaries gathered to deliberate on the official selection.",
+
+        "whiteTittle": "CHARTER",
+
+        "orangeTittle": "RATING ",
+
+        "notationLegend": "The jury is committed to evaluating each short film according to four fundamental pillars to ensure fairness between participants.",
+
+         "tittle_1": "AI Originality",
+
+        "desc_1": "Level of innovation and creative use of AI tools.",
+
+        "tittle_2": "Visual Aesthetics",
+
+        "desc_2": "Artistic quality and consistency of the generated visual universe.",
+
+        "tittle_3": "Narrative Quality",
+
+        "desc_3": "The power of the story and its emotional impact on the audience.",
+
+        "tittle_4": "Emotion & Impact",
+
+        "desc_4": "The film's ability to have a lasting impact on the viewer."
+    }
+}

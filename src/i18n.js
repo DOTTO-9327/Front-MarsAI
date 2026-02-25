@@ -5,15 +5,28 @@ import homeFR from './locales/fr/home.json';
 import submissionFR from './locales/fr/submission.json';
 import homeEN from './locales/en/home.json';
 import submissionEN from './locales/en/submission.json';
+import galerieFR from './locales/fr/galerie.json';
+import galerieEN from './locales/en/galerie.json';
+import programFR from './locales/fr/program.json';
+import programEN from './locales/en/program.json';
+import juryFR from './locales/fr/jury.json';
+import juryEN from './locales/en/jury.json';
+
 
 const resources = {
   fr: {
     home: homeFR,         
-    submission: submissionFR 
+    submission: submissionFR, 
+    galerie: galerieFR,
+    program: programFR,
+    jury: juryFR
   },
   en: {
     home: homeEN,
-    submission: submissionEN
+    submission: submissionEN,
+    galerie: galerieEN,
+    program: programEN,
+    jury: juryEN
   }
 };
 
@@ -23,7 +36,7 @@ i18n
   .init({
     resources,
     fallbackLng: 'fr',
-    ns: ['home', 'submission'], 
+    ns: ['home', 'submission', 'galerie', 'program', 'jury'], 
     defaultNS: 'home',          
     interpolation: {
       escapeValue: false 

@@ -2,8 +2,11 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Award, Quote, CheckCircle2 } from 'lucide-react';
 
+
+
 const JuryPage = () => {
-    const { t } = useTranslation();
+
+    const { t } = useTranslation('jury');
 
     const juryMembers = [
         { name: "Aiko Sato", role: "Productrice / France", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600" },
@@ -15,10 +18,10 @@ const JuryPage = () => {
     ];
 
     const notationCriteria = [
-        { id: 1, title: "Originalité IA", desc: "Niveau d'innovation et d'utilisation créative des outils IA." },
-        { id: 2, title: "Esthétique Visuelle", desc: "Qualité artistique et cohérence de l'univers visuel généré." },
-        { id: 3, title: "Qualité Narrative", desc: "La force de l'histoire et son impact émotionnel sur l'audience." },
-        { id: 4, title: "Émotion & Impact", desc: "La capacité du film à toucher le spectateur durablement." }
+        { id: 1, title: t('section.tittle_1'), desc: t('section.desc_1') },
+        { id: 2, title: t('section.tittle_2'), desc: t('section.desc_2') },
+        { id: 3, title: t('section.tittle_3'), desc: t('section.desc_3') },
+        { id: 4, title: t('section.tittle_4'), desc: t('section.desc_4') }
     ];
 
     return (
@@ -30,14 +33,14 @@ const JuryPage = () => {
                     <div className="flex items-center gap-4 text-accent mb-8">
                         <Award size={40} strokeWidth={1} />
                         <span className="text-lg font-bold uppercase tracking-[0.2em]">
-                            {t ? t('program.infos', 'Les membres du jury') : 'Les membres du jury'}
+                            {t('header.orangeTittle')}
                         </span>
                     </div>
 
                     <h1 className="text-white text-5xl md:text-7xl font-black uppercase tracking-tighter mb-12 leading-[0.9]">
-                        UN JURY <br />
-                        <span className="text-primary">D'EXCEPTION</span> <br />
-                        <span className="text-white">POUR LE FUTUR</span>
+                        {t('header.whiteTittle1')} <br />
+                        <span className="text-primary">{t('header.BlueTittle')}</span> <br />
+                        <span className="text-white">{t('header.whiteTittle2')}</span>
                     </h1>
 
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -50,7 +53,7 @@ const JuryPage = () => {
                             />
                             <div className="absolute inset-0 bg-linear-to-t from-mars-dark via-transparent to-transparent" />
                             <div className="absolute bottom-10 left-10">
-                                <span className="text-accent font-bold uppercase tracking-widest text-xs mb-2 block">Président du Jury</span>
+                                <span className="text-accent font-bold uppercase tracking-widest text-xs mb-2 block">{t('section.presidentTittle')}</span>
                                 <h2 className="text-white text-4xl font-black uppercase">Julien Valros</h2>
                             </div>
                         </div>
@@ -60,14 +63,14 @@ const JuryPage = () => {
                             <div className="bg-white/5 border border-white/10 p-10 rounded-[40px] relative">
                                 <Quote className="text-primary mb-6" size={48} />
                                 <p className="text-2xl md:text-3xl text-white font-medium leading-tight italic mb-8">
-                                    "Nous ne jugeons pas seulement des films, mais des visions d'avenirs souhaitables créées avec des outils qui nous dépassent encore. C'est le début d'une nouvelle ère."
+                                    {t('section.presidentLegend1')}
                                 </p>
                                 <p className="text-light-gray text-lg">
-                                    Réalisateur multi-récompensé, Julien Valros apporte son regard expert sur les nouvelles formes de narration numérique.
+                                    {t('section.presidentLegend2')}
                                 </p>
                             </div>
                             <button className="bg-accent text-white px-10 py-5 rounded-2xl font-black uppercase tracking-widest hover:scale-105 transition-transform  shadow-accent/20">
-                                Voir sa biographie
+                                {t('section.presidentBio')}
                             </button>
                         </div>
                     </div>
@@ -80,12 +83,12 @@ const JuryPage = () => {
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
                         <div>
                             <h2 className="text-mars-dark text-5xl font-black uppercase tracking-tighter leading-none">
-                                LES MEMBRES <br />
-                                <span className="text-primary">DU JURY</span>
+                                {t('section.blackTittle')}<br />
+                                <span className="text-primary"> {t('section.blueTittle')}</span>
                             </h2>
                         </div>
                         <p className="text-light-gray font-medium max-w-md">
-                            Des experts, créateurs et visionnaires réunis pour délibérer sur la sélection officielle.
+                            {t('section.memberLegend')}
                         </p>
                     </div>
 
@@ -116,11 +119,11 @@ const JuryPage = () => {
                         {/* Header de la Card */}
                         <div className="mb-16 relative z-10">
                             <h2 className="text-white text-5xl font-black uppercase tracking-tighter mb-6 leading-tight">
-                                LA CHARTE <br />
-                                <span className="text-accent">DE NOTATION</span>
+                                {t('section.whiteTittle')}<br />
+                                <span className="text-accent"> {t('section.orangeTittle')}</span>
                             </h2>
                             <p className="text-light-gray max-w-2xl text-lg font-medium">
-                                Le jury s'engage à évaluer chaque court-métrage selon quatre piliers fondamentaux pour garantir l'équité entre les participants.
+                                {t('section.notationLegend')}
                             </p>
                         </div>
 
