@@ -15,7 +15,6 @@ const MovieGallery = () => {
     // États pour les filtres
     const [selectedTypeIA, setSelectedTypeIA] = useState("");
     const [selectedPays, setSelectedPays] = useState("");
-    const [selectedStatut, setSelectedStatut] = useState("");
 
     useEffect(() => {
         const fetchGallery = async () => {

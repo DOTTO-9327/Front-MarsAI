@@ -19,44 +19,65 @@ import MovieRatingPage from './pages/MovieRatingPage'
 import BookingSubmission from './pages/BookingSubmission'
 import LoginPage from './pages/LoginPage'
 import EditSubmissionPage from './pages/EditSubmissionPage'
+import { AuthProvider } from './context/AuthContext'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
+    <AuthProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
 
-        {/* ROUTES PUBLIQUES */}
-        <Route path="/" element={<MainLayout />}>
-          <Route index element={<Homepage />} />
-          <Route path="soumettre" element={<SubmissionForm />} />
-          <Route path="programme" element={<Program />} />
-          <Route path="galerie" element={<MovieGallery />} />
-          <Route path="jury" element={<JuryPage />} />
-          <Route path="reserver" element={<BookingSubmission />} />
-          <Route path="movie/:title" element={<MovieDetail />} />
-          <Route path="/edit/:id" element={<EditSubmissionPage />} />
-        </Route>
+          {/* ROUTES PUBLIQUES */}
+          <Route path="/" element={<MainLayout />}>
+            <Route index element={<Homepage />} />
+            <Route path="soumettre" element={<SubmissionForm />} />
+            <Route path="programme" element={<Program />} />
+            <Route path="galerie" element={<MovieGallery />} />
+            <Route path="jury" element={<JuryPage />} />
+            <Route path="reserver" element={<BookingSubmission />} />
+            <Route path="movie/:title" element={<MovieDetail />} />
+            <Route path="/edit/:id" element={<EditSubmissionPage />} />
+          </Route>
 
-        {/* LOGIN : Complètement indépendant (pas de sidebar, pas de header admin) */}
-        <Route path="/admin/login" element={<LoginPage />} />
+          {/* LOGIN : Complètement indépendant */}
+          <Route path="/admin/login" element={<LoginPage />} />
 
-        {/* ROUTES ADMIN */}
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<DashboardAdmin />} />
-          <Route path="movie" element={<MovieManagement />} />
-          <Route path="jury" element={<JuryDistributionPage />} />
-          <Route path="movie/:title" element={<MovieDetailAdmin />} />
-          <Route path="resultats" element={<OfficialLeaderboard />} />
-          <Route path="evenements" element={<AdminPlanning />} />
-        </Route>
+          {/* ROUTES ADMIN (Protégées) */}
+          <Route path="/admin" element={
+            <ProtectedRoute allowedRoles={['ADMIN', 'JURY']}>
+              <AdminLayout />
+            </ProtectedRoute>
+          }>
+            {/* Accessible aux 2 rôles (Admin & Jury) */}
+            <Route index element={<DashboardAdmin />} />
+            <Route path="resultats" element={<OfficialLeaderboard />} />
+            <Route path="jury" element={<JuryDistributionPage />} />
 
-        {/* ROUTES JURY RATING */}
-        <Route path="/admin/jury/:juryId/rating" element={<JuryRatingLayout />}>
-          <Route index element={<MovieRatingPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+            {/* Strictement réservé aux ADMINS */}
+            <Route path="movie" element={
+              <ProtectedRoute allowedRoles={['ADMIN']}><MovieManagement /></ProtectedRoute>
+            } />
+            <Route path="movie/:title" element={
+              <ProtectedRoute allowedRoles={['ADMIN']}><MovieDetailAdmin /></ProtectedRoute>
+            } />
+            <Route path="evenements" element={
+              <ProtectedRoute allowedRoles={['ADMIN']}><AdminPlanning /></ProtectedRoute>
+            } />
+          </Route>
+
+          {/* ROUTES JURY RATING (Protégé) */}
+          <Route path="/admin/jury/:juryId/rating" element={
+            <ProtectedRoute allowedRoles={['ADMIN', 'JURY']}>
+              <JuryRatingLayout />
+            </ProtectedRoute>
+          }>
+            <Route index element={<MovieRatingPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   )
 }
 
