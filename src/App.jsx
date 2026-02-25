@@ -17,6 +17,8 @@ import AdminPlanning from './pages/AdminPlanning'
 import JuryRatingLayout from './layouts/JuryRatingLayout'
 import MovieRatingPage from './pages/MovieRatingPage'
 import BookingSubmission from './pages/BookingSubmission'
+import LoginPage from './pages/LoginPage'
+import EditSubmissionPage from './pages/EditSubmissionPage'
 
 function App() {
   return (
@@ -33,7 +35,11 @@ function App() {
           <Route path="jury" element={<JuryPage />} />
           <Route path="reserver" element={<BookingSubmission />} />
           <Route path="movie/:title" element={<MovieDetail />} />
+          <Route path="/edit/:id" element={<EditSubmissionPage />} />
         </Route>
+
+        {/* LOGIN : Complètement indépendant (pas de sidebar, pas de header admin) */}
+        <Route path="/admin/login" element={<LoginPage />} />
 
         {/* ROUTES ADMIN */}
         <Route path="/admin" element={<AdminLayout />}>

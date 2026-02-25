@@ -12,12 +12,10 @@ const MovieGallery = () => {
     const [filteredFilms, setFilteredFilms] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // États pour les filtres de la maquette
+    // États pour les filtres
     const [selectedTypeIA, setSelectedTypeIA] = useState("");
     const [selectedPays, setSelectedPays] = useState("");
     const [selectedStatut, setSelectedStatut] = useState("");
-
-    const serverUrl = 'http://localhost:3000/';
 
     useEffect(() => {
         const fetchGallery = async () => {
@@ -26,7 +24,6 @@ const MovieGallery = () => {
                 const response = await fetch(`${import.meta.env.VITE_API_URL}/movie`);
                 const result = await response.json();
 
-                // On affiche les films validés
                 const validated = result.data.filter(
                     f => f.status?.toUpperCase() === 'VALIDÉ' || f.status?.toUpperCase() === 'APPROVED'
                 );
@@ -42,7 +39,6 @@ const MovieGallery = () => {
         fetchGallery();
     }, []);
 
-    // Logique de filtrage 
     useEffect(() => {
         let temp = films;
 
@@ -56,18 +52,17 @@ const MovieGallery = () => {
         setFilteredFilms(temp);
     }, [selectedTypeIA, selectedPays, films]);
 
-    // Extraction des options pour les filtres
     const typeIAOptions = [...new Set(films.flatMap(f => f.ia_tools ? f.ia_tools.split(',').map(t => t.trim()) : []))];
     const paysOptions = [...new Set(films.map(f => f.original_language))];
 
     return (
         <div className="min-h-screen bg-white py-16">
-            <div className="max-w-6xl mx-auto">
+            <div className="max-w-6xl mx-auto px-6"> 
 
                 {/* Bouton Retour */}
                 <button
                     onClick={() => navigate('/')}
-                    className="text-md group flex items-center gap-2 font-bold uppercase tracking-widest text-primary transition-all mb-12"
+                    className="text-md group flex items-center gap-2 font-bold uppercase tracking-widest text-primary transition-all mb-12 cursor-pointer"
                 >
                     <ArrowLeft className="w-6 h-6 transition-transform group-hover:-translate-x-2" />
                     <span className="relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all group-hover:after:w-full">
@@ -90,9 +85,8 @@ const MovieGallery = () => {
                     </p>
                 </div>
 
-                {/* Barre de Filtres Select */}
+                {/* Barre de Filtres */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16">
-                    {/* Filtre Type IA */}
                     <div className="relative">
                         <select
                             onChange={(e) => setSelectedTypeIA(e.target.value)}
@@ -105,7 +99,6 @@ const MovieGallery = () => {
                         <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-light-gray pointer-events-none" size={18} />
                     </div>
 
-                    {/* Filtre Pays */}
                     <div className="relative">
                         <select
                             onChange={(e) => setSelectedPays(e.target.value)}
@@ -123,7 +116,7 @@ const MovieGallery = () => {
                 {/* Grille de Films */}
                 {loading ? (
                     <div className="flex flex-col items-center justify-center py-40">
-                        <Loader2 className="animate-spin text-primary w-12 h-12 mb-4" />
+                        <Loader2 className="animate-spin text-primary w-12 h-12" />
                     </div>
                 ) : (
                     <>
@@ -134,15 +127,15 @@ const MovieGallery = () => {
                                     title={film.original_title}
                                     director={`${film.firstname} ${film.lastname}`}
                                     country={film.original_language || "FR"}
-                                    thumbnail={`${serverUrl}${film.cover_image}`}
-                                    tags={film.ia_tools ? film.ia_tools.split(',') : ["AI"]}
+                                    thumbnail={film.cover_image} 
+                                    tags={film.ia_tools ? film.ia_tools.split(',').slice(0, 2) : ["AI"]}
                                     onClick={() => {
                                         const slug = film.original_title
                                             .toLowerCase()
                                             .trim()
                                             .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
                                             .replace(/[^\w\s-]/g, '')
-                                            .replace(/[\s_]+/g, '-')
+                                            .replace(/[\s_-]+/g, '-')
                                             .replace(/^-+|-+$/g, '');
 
                                         navigate(`/movie/${slug}`, { state: { movieId: film.id } });
@@ -151,15 +144,15 @@ const MovieGallery = () => {
                             ))}
                         </div>
 
-                        {/* Pagination  */}
+                        {/* Pagination */}
                         <div className="mt-20 flex flex-col items-center gap-6">
                             <div className="flex items-center gap-2">
-                                <button className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 text-light-gray hover:bg-mars-light transition-colors">
+                                <button className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 text-light-gray hover:bg-mars-light transition-colors cursor-pointer">
                                     <ChevronDown className="rotate-90" size={18} />
                                 </button>
-                                <button className="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white font-black text-sm shadow-lg shadow-primary/30">1</button>
-                                <button className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 text-light-gray font-bold text-sm hover:bg-mars-light transition-colors">2</button>
-                                <button className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 text-light-gray hover:bg-mars-light transition-colors">
+                                <button className="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white font-black text-sm shadow-lg shadow-primary/30 cursor-pointer">1</button>
+                                <button className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 text-light-gray font-bold text-sm hover:bg-mars-light transition-colors cursor-pointer">2</button>
+                                <button className="w-10 h-10 flex items-center justify-center rounded-full border border-slate-200 text-light-gray hover:bg-mars-light transition-colors cursor-pointer">
                                     <ChevronDown className="-rotate-90" size={18} />
                                 </button>
                             </div>
