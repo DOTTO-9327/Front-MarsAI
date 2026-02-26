@@ -1,49 +1,57 @@
 import React, { useState, useEffect } from 'react';
-import { Star, Info, Loader2, CheckCircle2 } from 'lucide-react';
+import { Star, Info, Loader2, CheckCircle2, MessageSquare } from 'lucide-react'; // Ajout de MessageSquare
 import { useOutletContext } from 'react-router-dom';
 
 /**
  * Composant MovieRatingPage
  * -------------------------
- * Interface permettant à un membre du jury de visionner un film assigné
- * et de soumettre sa note (de 0 à 10).
+ * Interface permettant à un membre du jury de visionner un film assigné,
+ * de soumettre sa note (de 0 à 10) et de laisser un commentaire.
  */
 const MovieRatingPage = () => {
     // Récupérer les props passées par le layout parent (JuryRatingLayout)
     const { selectedMovie, handleMovieRated, getFinalImageUrl: getMediaUrl } = useOutletContext();
-    // rating : Stocke la valeur actuelle du curseur de la note.
+    
+    // États pour le formulaire
     const [rating, setRating] = useState(0);
-    // isSaving : Verrouille le bouton pendant l'appel API pour éviter les doubles clics.
+    const [comment, setComment] = useState(''); // <-- Nouvel état pour le commentaire
+    
+    // États pour l'interface
     const [isSaving, setIsSaving] = useState(false);
-    // saved : Affiche la pastille verte "Note enregistrée" si la note est validée en BDD.
     const [saved, setSaved] = useState(false);
 
-    // Ce useEffect se déclenche à chaque fois que l'utilisateur clique sur un nouveau film dans la sidebar.
-    // Il permet de pré-remplir la note si le film a déjà été évalué, ou de réinitialiser à 0 sinon.
+    // Initialisation lors du changement de film
     useEffect(() => {
-        // Si la DB renvoie une note on l'applique. Sinon, on remet à 0.
+        // Pré-remplissage si déjà évalué, sinon reset
         setRating(selectedMovie.note !== null ? selectedMovie.note : 0);
-        // On met à jour l'état de sauvegarde visuel
+        // Pré-remplissage du commentaire s'il existe dans la DB
+        setComment(selectedMovie.comment || ''); 
         setSaved(selectedMovie.note !== null);
     }, [selectedMovie]);
 
-    // SAUVEGARDER LA NOTE
-    // Déclenchée lors du clic sur le bouton "Valider la note".
+    // SAUVEGARDER LA NOTE ET LE COMMENTAIRE
     const handleSaveRating = async () => {
         setIsSaving(true);
         try {
+            // Note: Si vous utilisez le token JWT, ajoutez-le dans les headers ici
             const response = await fetch(`${import.meta.env.VITE_API_URL}/admin/rating/${selectedMovie.rating_id}`, {
                 method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ note: rating })
+                headers: { 
+                    'Content-Type': 'application/json',
+                    // 'Authorization': `Bearer ${localStorage.getItem('token')}` // Décommentez si la route est protégée
+                },
+                // On envoie la note ET le commentaire au backend
+                body: JSON.stringify({ 
+                    note: rating,
+                    comment: comment 
+                })
             });
 
             const result = await response.json();
 
             if (result.success) {
                 setSaved(true);
-                // On notifie le composant parent (sidebar) pour mettre à jour la liste (ajout pastille verte)
-                // parseInt pour s'assurer que le parent manipule un entier
+                // On notifie le composant parent pour mettre à jour la liste (ajout pastille verte)
                 handleMovieRated(selectedMovie.rating_id, parseInt(rating));
             }
         } catch (err) {
@@ -75,7 +83,7 @@ const MovieRatingPage = () => {
                     <video
                         key={selectedMovie.movie_id}
                         controls
-                        controlsList="nodownload" // Sécurité pour masquer le bouton télécharger.
+                        controlsList="nodownload"
                         className="h-full w-full object-contain bg-black"
                         poster={getMediaUrl(selectedMovie.thumbnail)}
                         preload="metadata"
@@ -126,14 +134,15 @@ const MovieRatingPage = () => {
                     {saved && (
                         <div className="relative z-10 flex items-center gap-2 bg-green-50 px-6 py-3 rounded-2xl border border-green-100 animate-in zoom-in">
                             <CheckCircle2 className="text-green-500" size={20} />
-                            <p className="font-black text-green-600 tracking-tighter text-xl uppercase">Note enregistrée</p>
+                            <p className="font-black text-green-600 tracking-tighter text-xl uppercase">Évaluation enregistrée</p>
                         </div>
                     )}
                 </div>
 
                 <div className="space-y-12 relative z-10">
+                    
+                    {/* SLIDER DE NOTATION */}
                     <div>
-                        {/* Affichage visuel de la note actuelle */}
                         <div className="flex justify-between items-end mb-6">
                             <div>
                                 <p className="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-1">Système de notation</p>
@@ -144,7 +153,6 @@ const MovieRatingPage = () => {
                             </p>
                         </div>
 
-                        {/* Slider natif HTML5 de type range */}
                         <input
                             type="range" min="0" max="10" step="1"
                             value={rating}
@@ -155,13 +163,10 @@ const MovieRatingPage = () => {
                             className="w-full h-4 bg-slate-100 rounded-full appearance-none cursor-pointer accent-primary mb-6"
                         />
 
-                        {/* Réglette personnalisée : Points d'arrêt de 0 à 10 générés dynamiquement */}
                         <div className="flex justify-between mt-6 px-1">
                             {[...Array(11).keys()].map(n => (
                                 <div key={n} className="flex flex-col items-center gap-2">
-                                    {/* Le point change de couleur si la note actuelle est supérieure ou égale */}
                                     <div className={`w-2 h-2 rounded-full transition-colors duration-300 ${rating >= n ? 'bg-primary' : 'bg-slate-200'}`}></div>
-                                    {/* Le chiffre de la note actuelle est mis en évidence  */}
                                     <span className={`text-[10px] font-black transition-all duration-300 ${rating == n ? 'text-primary scale-125' : 'text-slate-300'}`}>
                                         {n}
                                     </span>
@@ -170,7 +175,23 @@ const MovieRatingPage = () => {
                         </div>
                     </div>
 
-                    {/* Bouton de soumission */}
+                    {/* CHAMP COMMENTAIRE */}
+                    <div>
+                        <label className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4">
+                            <MessageSquare size={14} /> Avis du Jury (Optionnel)
+                        </label>
+                        <textarea
+                            value={comment}
+                            onChange={(e) => {
+                                setComment(e.target.value);
+                                setSaved(false); // On retire la pastille verte si on modifie le commentaire
+                            }}
+                            placeholder="Ce que j'ai pensé de la réalisation, du scénario, de l'utilisation de l'IA..."
+                            className="w-full h-32 p-6 rounded-3xl border-2 border-slate-100 bg-slate-50 text-sm font-medium outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 transition-all resize-none text-mars-dark placeholder-slate-400"
+                        />
+                    </div>
+
+                    {/* BOUTON DE SOUMISSION */}
                     <div className="flex gap-4 pt-4">
                         <button
                             onClick={handleSaveRating}
@@ -178,11 +199,12 @@ const MovieRatingPage = () => {
                             className="w-full md:w-auto flex items-center justify-center gap-2 bg-primary text-white font-black uppercase tracking-widest py-6 px-12 rounded-3xl shadow-2xl shadow-primary/30 hover:bg-primary/90 transition-all hover:-translate-y-1 active:scale-95 disabled:opacity-75 disabled:cursor-not-allowed"
                         >
                             {isSaving ? <Loader2 className="animate-spin" size={20} /> : <Star fill="currentColor" size={20} />}
-                            {isSaving ? 'Enregistrement...' : 'Valider la note'}
+                            {isSaving ? 'Enregistrement...' : 'Valider mon évaluation'}
                         </button>
                     </div>
                 </div>
 
+                {/* Décoration d'arrière-plan */}
                 <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-primary/5 blur-[100px] rounded-full pointer-events-none"></div>
             </section>
         </div>

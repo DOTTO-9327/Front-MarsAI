@@ -1,45 +1,43 @@
 import { ArrowRight } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
-import ToggleButton from './Togglebutton'
+import ToggleButton from './Togglebutton' // Assurez-vous que le chemin est correct selon votre structure
 
 const CardMovie = ({ id, cover_image, original_title, submitted_at, firstname, lastname, status }) => {
   const navigate = useNavigate()
   
   /**
    * Gestion dynamique de l'URL de l'image
-   * Détecte si l'image provient de S3 (https://) ou du serveur local
    */
   const getFinalImageUrl = (path) => {
     if (!path) return 'https://placehold.co/400x600?text=No+Cover'
+    if (path.startsWith('http')) return path
     
-    // Si c'est une URL complète (S3 Scaleway), on la retourne telle quelle
-    if (path.startsWith('http')) {
-      return path
-    }
-    
-    // Sinon, on utilise la variable d'environnement
     const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000'
     const cleanPath = path.startsWith('/') ? path : `/${path}`
-    
     return `${baseUrl}${cleanPath}`
   }
 
   const date = new Date(submitted_at).toLocaleDateString('fr-FR')
 
+  // 1. MISE À JOUR DES TRADUCTIONS DE STATUT
   const statusTranslations = {
     'PENDING': 'EN ATTENTE',
     'APPROVED': 'VALIDÉ',
     'REJECTED': 'REFUSÉ',
+    'CHANGES_REQUESTED': 'À MODIFIER', // <-- Nouveau
     'EN ATTENTE': 'EN ATTENTE',
     'VALIDÉ': 'VALIDÉ',
-    'REFUSÉ': 'REFUSÉ'
+    'REFUSÉ': 'REFUSÉ',
+    'À MODIFIER': 'À MODIFIER'
   }
 
+  // 2. MISE À JOUR DES COULEURS DES BADGES
   const getStatusStyle = (status) => {
     const s = status?.toUpperCase()
     if (s === 'VALIDÉ' || s === 'APPROVED') return 'bg-green-100 text-green-700'
     if (s === 'REFUSÉ' || s === 'REJECTED') return 'bg-red-100 text-red-700'
-    return 'bg-orange-100 text-orange-700'
+    if (s === 'À MODIFIER' || s === 'CHANGES_REQUESTED') return 'bg-blue-100 text-blue-700' // <-- Nouveau (Bleu)
+    return 'bg-orange-100 text-orange-700' // Par défaut (EN ATTENTE)
   }
 
   const handleNavigation = (e) => {
@@ -62,7 +60,7 @@ const CardMovie = ({ id, cover_image, original_title, submitted_at, firstname, l
       onClick={handleNavigation}
       className="group grid grid-cols-6 items-center gap-4 px-6 py-3 transition-all cursor-pointer bg-white border border-transparent hover:border-primary/10 hover:shadow-md rounded-3xl"
     >
-      {/* SECTION IMAGE */}
+      {/* 1. SECTION IMAGE */}
       <div>
         <img 
           src={getFinalImageUrl(cover_image)} 
@@ -72,28 +70,27 @@ const CardMovie = ({ id, cover_image, original_title, submitted_at, firstname, l
         />
       </div>
 
-      {/* TITRE */}
-      <div className="text-[13px] leading-tight font-black uppercase tracking-tight text-mars-dark">
-        {original_title}
+      {/* 2 & 3. TITRE ET RÉALISATEUR (col-span-2 pour s'aligner avec le header) */}
+      <div className="col-span-2 flex flex-col justify-center overflow-hidden">
+        <div className="text-[13px] leading-tight font-black uppercase tracking-tight text-mars-dark truncate mb-1">
+          {original_title}
+        </div>
+        <div className="text-[10px] font-extrabold text-light-gray tracking-wide uppercase truncate">
+          {firstname} <span className="text-mars-dark">{lastname}</span>
+        </div>
       </div>
 
-      {/* RÉALISATEUR */}
-      <div className="flex flex-col text-xs font-extrabold text-light-gray tracking-wide uppercase">
-        <span>{firstname}</span>
-        <span className="text-mars-dark">{lastname}</span>
-      </div>
-
-      {/* STATUT */}
+      {/* 4. STATUT */}
       <div className="flex justify-center">
         <span className={`rounded-full px-4 py-1.5 text-[9px] font-black tracking-[0.15em] ${getStatusStyle(status)}`}>
           {statusTranslations[status?.toUpperCase()] || status}
         </span>
       </div>
 
-      {/* DATE */}
+      {/* 5. DATE */}
       <div className="text-center text-sm font-bold text-gray-400">{date}</div>
 
-      {/* ACTIONS */}
+      {/* 6. ACTIONS (Mise en avant + Flèche) */}
       <div className="flex items-center justify-between pl-4">
         <div className="no-nav">
           <ToggleButton />

@@ -1,27 +1,25 @@
 import { useParams, useNavigate, useLocation } from 'react-router-dom'
-import { ArrowLeft, User, Globe, BookOpen, Cpu, Copy, Loader2, ChevronDown } from 'lucide-react'
+import { ArrowLeft, User, Globe, BookOpen, Cpu, Copy, Loader2, ChevronDown, MessageSquare, AlertTriangle } from 'lucide-react'
 import { useState, useEffect } from 'react'
+import { useAuth } from '../context/AuthContext'
 
 const MovieDetailAdmin = () => {
     const { title } = useParams()
     const location = useLocation()
     const navigate = useNavigate()
+    const { user, token } = useAuth() 
 
-    // On récupère l'ID passé par CardMovie via le state
     const id = location.state?.movieId
 
     const [movie, setMovie] = useState(null)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const [updating, setUpdating] = useState(false)
+    const [comment, setComment] = useState('') 
 
-    /**
-     * Gestion dynamiquement des URLs des médias (S3 ou Local)
-     */
     const getMediaUrl = (path) => {
         if (!path) return null;
-        if (path.startsWith('http')) return path; // URL directe S3
-
+        if (path.startsWith('http')) return path; 
         const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
         const cleanPath = path.startsWith('/') ? path : `/${path}`;
         return `${baseUrl}${cleanPath}`;
@@ -31,9 +29,11 @@ const MovieDetailAdmin = () => {
         'PENDING': 'EN ATTENTE',
         'APPROVED': 'VALIDÉ',
         'REJECTED': 'REFUSÉ',
+        'CHANGES_REQUESTED': 'À MODIFIER',
         'EN ATTENTE': 'EN ATTENTE',
         'VALIDÉ': 'VALIDÉ',
-        'REFUSÉ': 'REFUSÉ'
+        'REFUSÉ': 'REFUSÉ',
+        'À MODIFIER': 'À MODIFIER'
     }
 
     useEffect(() => {
@@ -45,7 +45,9 @@ const MovieDetailAdmin = () => {
         const fetchMovieDetail = async () => {
             try {
                 setLoading(true)
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/movie/${id}`)
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/movie/${id}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                })
                 if (!response.ok) throw new Error('Film introuvable')
                 const result = await response.json()
                 setMovie(result.data)
@@ -56,20 +58,39 @@ const MovieDetailAdmin = () => {
             }
         }
         fetchMovieDetail()
-    }, [id, navigate])
+    }, [id, navigate, token])
 
     const handleStatusChange = async (newStatus) => {
+        // Validation front-end
+        if ((newStatus === 'REFUSÉ' || newStatus === 'À MODIFIER') && !comment.trim()) {
+            alert("Veuillez obligatoirement saisir un motif de refus ou de modification.");
+            return;
+        }
+
         try {
             setUpdating(true)
             const response = await fetch(`${import.meta.env.VITE_API_URL}/movie/${id}/status`, {
                 method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ status: newStatus }),
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` 
+                },
+                body: JSON.stringify({ 
+                    status: newStatus,
+                    comment: comment, 
+                    userId: user?.id  
+                }),
             })
-            if (!response.ok) throw new Error('Erreur API')
+            
+            const result = await response.json()
+            if (!response.ok) throw new Error(result.message || 'Erreur API')
+            
             setMovie(prev => ({ ...prev, status: newStatus }))
+            setComment('') 
+            alert(result.message);
+
         } catch (err) {
-            alert("Erreur de mise à jour")
+            alert(err.message)
         } finally {
             setUpdating(false)
         }
@@ -78,21 +99,15 @@ const MovieDetailAdmin = () => {
     const getStatusTheme = (status) => {
         const s = status?.toUpperCase()
         if (s === 'VALIDÉ' || s === 'APPROVED') {
-            return {
-                container: 'bg-green-50 border-green-200 text-green-700',
-                select: 'border-green-300 text-green-800'
-            }
+            return { container: 'bg-green-50 border-green-200 text-green-700', select: 'border-green-300 text-green-800' }
         }
         if (s === 'REFUSÉ' || s === 'REJECTED') {
-            return {
-                container: 'bg-red-50 border-red-200 text-red-700',
-                select: 'border-red-300 text-red-800'
-            }
+            return { container: 'bg-red-50 border-red-200 text-red-700', select: 'border-red-300 text-red-800' }
         }
-        return {
-            container: 'bg-orange-50 border-orange-200 text-orange-700',
-            select: 'border-orange-300 text-orange-800'
+        if (s === 'À MODIFIER' || s === 'CHANGES_REQUESTED') {
+            return { container: 'bg-blue-50 border-blue-200 text-blue-700', select: 'border-blue-300 text-blue-800' }
         }
+        return { container: 'bg-orange-50 border-orange-200 text-orange-700', select: 'border-orange-300 text-orange-800' }
     }
 
     if (loading) return <div className="flex h-96 items-center justify-center"><Loader2 className="animate-spin text-primary" size={40} /></div>
@@ -108,22 +123,15 @@ const MovieDetailAdmin = () => {
                 <ArrowLeft size={16} /> Retour Liste des films
             </button>
 
-            {/* Hero Section avec Lecteur Vidéo */}
             <div className="relative mb-8 aspect-video w-full overflow-hidden rounded-[40px] shadow-2xl bg-black border border-gray-100">
                 {movie.video_local_path ? (
-                    <video
-                        controls
-                        className="h-full w-full object-contain"
-                        poster={getMediaUrl(movie.cover_image)}
-                        preload="metadata"
-                    >
+                    <video controls className="h-full w-full object-contain" poster={getMediaUrl(movie.cover_image)} preload="metadata">
                         <source src={getMediaUrl(movie.video_local_path)} type="video/mp4" />
                         Votre navigateur ne supporte pas la lecture de vidéos.
                     </video>
                 ) : (
                     <div className="flex h-full w-full items-center justify-center bg-mars-dark">
-                        <img src={getMediaUrl(movie.cover_image)} className="absolute inset-0 h-full w-full object-cover opacity-20 blur-sm" alt="" />
-                        <p className="relative font-black uppercase tracking-widest text-white">Vidéo non disponible</p>
+                        <p className="font-black uppercase tracking-widest text-white">Vidéo non disponible</p>
                     </div>
                 )}
             </div>
@@ -138,9 +146,7 @@ const MovieDetailAdmin = () => {
                                 <div>
                                     <p className="text-[10px] font-bold uppercase text-light-gray tracking-widest">Réalisateur</p>
                                     <p className="font-bold text-mars-dark">
-                                        {movie.firstname && movie.lastname
-                                            ? `${movie.firstname} ${movie.lastname}`
-                                            : `Réalisateur #${movie.director_id}`}
+                                        {movie.firstname && movie.lastname ? `${movie.firstname} ${movie.lastname}` : `Réalisateur #${movie.director_id}`}
                                     </p>
                                 </div>
                             </div>
@@ -154,9 +160,26 @@ const MovieDetailAdmin = () => {
                         </div>
                     </div>
 
-                    <div className={`w-full rounded-3xl p-6 md:w-72 border transition-all duration-300 relative ${theme.container}`}>
-                        <label className="mb-3 block text-[10px] font-black uppercase tracking-widest opacity-80">
-                            Statut actuel : {updating ? 'Mise à jour...' : displayStatus}
+                    {/* Bloc Modération */}
+                    <div className={`w-full rounded-3xl p-6 md:w-80 border transition-all duration-300 relative ${theme.container}`}>
+                        <div className="mb-4 flex flex-col gap-1">
+                            <label className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest opacity-80">
+                                <MessageSquare size={14} /> Motif / Commentaire
+                            </label>
+                            <span className="flex items-center gap-1 text-[9px] font-bold uppercase opacity-70">
+                                <AlertTriangle size={10} /> Ce texte sera visible par le réalisateur.
+                            </span>
+                        </div>
+                        
+                        <textarea 
+                            value={comment}
+                            onChange={(e) => setComment(e.target.value)}
+                            placeholder="Saisissez vos retours ou demandes de modifications..."
+                            className="w-full rounded-2xl border-none bg-white/50 p-4 text-xs font-medium outline-none focus:ring-2 focus:ring-current mb-4 h-24 resize-none placeholder-current/50"
+                        />
+
+                        <label className="mb-2 block text-[10px] font-black uppercase tracking-widest opacity-80">
+                            Statut actuel : {updating ? 'En cours...' : displayStatus}
                         </label>
 
                         <div className="relative">
@@ -166,9 +189,10 @@ const MovieDetailAdmin = () => {
                                 disabled={updating}
                                 className={`w-full cursor-pointer appearance-none rounded-2xl border-2 bg-white/90 p-4 text-sm font-black outline-none transition-all shadow-sm pr-10 hover:bg-white ${theme.select}`}
                             >
-                                <option value="" disabled>MODIFIER LE STATUT</option>
+                                <option value="" disabled>APPLIQUER LA DÉCISION</option>
                                 <option value="EN ATTENTE" className="text-orange-700 font-bold">⏳ EN ATTENTE</option>
                                 <option value="VALIDÉ" className="text-green-700 font-bold">✅ VALIDÉ</option>
+                                <option value="À MODIFIER" className="text-blue-700 font-bold">🔄 À MODIFIER</option>
                                 <option value="REFUSÉ" className="text-red-700 font-bold">❌ REFUSÉ</option>
                             </select>
                             <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none opacity-50" size={18} />
