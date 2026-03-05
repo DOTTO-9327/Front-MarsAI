@@ -1,9 +1,9 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { ChevronRight, Trophy, ChevronDown } from 'lucide-react';
 import Searchbar from '../components/admin/searchbar';
 
 const OfficialLeaderboard = () => {
-  const [searchTerm, setSearchTerm] = useState("");
+  // const [searchTerm, setSearchTerm] = useState("");
 
   // Données fictives
   const results = [
