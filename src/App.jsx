@@ -21,6 +21,8 @@ import LoginPage from './pages/LoginPage'
 import EditSubmissionPage from './pages/EditSubmissionPage'
 import { AuthProvider } from './context/AuthContext'
 import ProtectedRoute from './components/ProtectedRoute'
+import EditEventPage from './pages/EditEventPage'
+import CreateEventPage from './pages/CreateEventPage'
 
 function App() {
   return (
@@ -64,6 +66,12 @@ function App() {
             } />
             <Route path="evenements" element={
               <ProtectedRoute allowedRoles={['ADMIN']}><AdminPlanning /></ProtectedRoute>
+            } />
+            <Route path="evenements/create" element={
+              <ProtectedRoute allowedRoles={['ADMIN']}><CreateEventPage /></ProtectedRoute>
+            } />
+            <Route path="evenements/edit/:id" element={
+              <ProtectedRoute allowedRoles={['ADMIN']}><EditEventPage /></ProtectedRoute>
             } />
           </Route>
 
