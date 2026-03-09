@@ -38,7 +38,7 @@ function App() {
             <Route path="jury" element={<JuryPage />} />
             <Route path="reserver" element={<BookingSubmission />} />
             <Route path="movie/:title" element={<MovieDetail />} />
-            <Route path="/edit/:id" element={<EditSubmissionPage />} />
+            <Route path="/edit/:token" element={<EditSubmissionPage />} />
           </Route>
 
           {/* LOGIN : Complètement indépendant */}
