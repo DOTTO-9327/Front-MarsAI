@@ -91,17 +91,6 @@ const SubmissionPage = () => {
       }
       if (!response.ok) throw new Error('Erreur lors de la soumission')
 
- 
-    
-      await fetch(`${import.meta.env.VITE_API_URL}/emails/send-confirmation`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          email: data.director.email,
-          firstname: data.director.firstname,
-          filmTitle: data.film.titleOriginal,
-        }),
-      })
 
       toast.update(loadingToast, {
         render: 'Dossier envoyé avec succès ! 🎉',
