@@ -74,8 +74,19 @@ const SubmissionPage = () => {
 
       // --- ÉQUIPE (Tableau dynamique envoyé en JSON) ---
       if (data.team && data.team.length > 0) {
-        formData.append('team', JSON.stringify(data.team))
+        // formData.append('team', JSON.stringify(data.team))
+
+        if (data.team && data.team.length > 0) {
+          data.team.forEach((member, index) => {
+            Object.keys(member).forEach((key) => {
+              formData.append(`team[${index}][${key}]`, member[key] || '')
+            })
+          })
+        }
       }
+
+      console.log('📋 Données brutes du formulaire:', data)
+      console.log('📤 FormData (paires clés/valeurs):', [...formData])
 
       const response = await fetch(
         `${import.meta.env.VITE_API_URL}/submission`,
@@ -85,12 +96,14 @@ const SubmissionPage = () => {
         }
       )
 
+      console.log('📥 Statut HTTP réponse:', response.status, response.statusText)
+
       if (!response.ok) {
         const errorData = await response.json()
-        throw new Error(errorData.message || 'Erreur serveur')
+        console.error('❌ Détails de l\'erreur renvoyée par le backend:', errorData)
+        const detailedMsg = errorData.error || (errorData.errors ? JSON.stringify(errorData.errors) : null) || errorData.message || 'Erreur serveur'
+        throw new Error(detailedMsg)
       }
-      if (!response.ok) throw new Error('Erreur lors de la soumission')
-
 
       toast.update(loadingToast, {
         render: 'Dossier envoyé avec succès ! 🎉',
@@ -100,6 +113,7 @@ const SubmissionPage = () => {
         closeButton: true,
       })
     } catch (error) {
+      console.error('💥 Erreur capturée dans onSubmit:', error)
       toast.update(loadingToast, {
         render: `Erreur : ${error.message}`,
         type: 'error',

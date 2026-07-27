@@ -118,7 +118,7 @@ const TechSection = ({ t, register, errors, watch, setValue }) => {
             placeholder={t('placeholders.tools')}
             {...register('tech.toolsUsed', {
               required: 'Outils IA utilisés requis',
-              maxLength: 500, minLength: {
+              minLength: {
                 value: 2,
                 message: 'Le champ outils IA saisi doit contenir au moins 2 caractères',
               },
